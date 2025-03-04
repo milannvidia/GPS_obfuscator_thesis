@@ -1,0 +1,9 @@
+[package]
+name = "obfuscator"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+geo = "0.29.3"
+rand = "0.9.0"
+rayon = "1.10.0"
