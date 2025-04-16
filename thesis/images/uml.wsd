@@ -1,0 +1,23 @@
+@startuml
+class LocationManager{
+    +getFinePermission()
+    +getCoarsePermission()
+    +getLocation()
+    +startTracking()
+    +stopTracking()
+    useCallback()
+}
+class LocationWorker{
+    doWork()
+    onStopped()
+    -startLocationUpdates()
+}
+interface LocationObfuscator{
+    +obfuscateLocation(location)
+    +load()
+    +store()
+    +clearStorage()
+}
+LocationManager *-- LocationWorker
+LocationManager *-- LocationObfuscator
+@enduml

@@ -1,17 +1,17 @@
 INFO:  ANSI Code Page: 1252
-INFO:  latexindent.exe version 3.24.4, 2024-07-18, a script to indent .tex files
-       latexindent.exe lives here: C:/texlive/2024/bin/windows/
-       Fri Mar 28 11:15:26 2025
-       Filename: c:/Users/MilanSchollier/Documents/projecten/Masterproef/public/thesis/chapters/__latexindent_temp_methodologie.tex
+INFO:  latexindent.exe version 3.24.5, 2025-03-13, a script to indent .tex files
+       latexindent.exe lives here: C:/texlive/2025/bin/windows/
+       Wed Apr 16 19:54:22 2025
+       Filename: c:/Users/MilanSchollier/Documents/projecten/Masterproef/GPS_obfuscator_thesis/thesis/chapters/__latexindent_temp_theoretisch kader.tex
 INFO:  Processing switches:
        -y|--yaml: YAML settings specified via command line
        -c|--cruft: cruft directory
-INFO:  Directory for backup files and log file c:\Users\MilanSchollier\Documents\projecten\Masterproef\public\thesis\indent.log:
-       c:\Users\MilanSchollier\Documents\projecten\Masterproef\public\thesis\
+INFO:  Directory for backup files and log file c:\Users\MilanSchollier\Documents\projecten\Masterproef\GPS_obfuscator_thesis\thesis\indent.log:
+       c:\Users\MilanSchollier\Documents\projecten\Masterproef\GPS_obfuscator_thesis\thesis\
 INFO:  YAML settings read: defaultSettings.yaml
-       Reading defaultSettings.yaml from C:/texlive/2024/bin/windows/defaultSettings.yaml
-       Reading defaultSettings.yaml (2nd attempt) from C:/texlive/2024/bin/windows/../../texmf-dist/scripts/latexindent/defaultSettings.yaml
-       and then, if necessary, C:/texlive/2024/bin/windows/LatexIndent/defaultSettings.yaml
+       Reading defaultSettings.yaml from C:/texlive/2025/bin/windows/defaultSettings.yaml
+       Reading defaultSettings.yaml (2nd attempt) from C:/texlive/2025/bin/windows/../../texmf-dist/scripts/latexindent/defaultSettings.yaml
+       and then, if necessary, C:/texlive/2025/bin/windows/LatexIndent/defaultSettings.yaml
 INFO:  YAML reading settings
        Home directory is C:\Users\MilanSchollier
        latexindent.pl didn't find indentconfig.yaml or .indentconfig.yaml

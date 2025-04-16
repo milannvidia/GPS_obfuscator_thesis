@@ -18,7 +18,7 @@
 \usepackage[backend=biber, style=ieee, citestyle=numeric-comp, maxnames=99]{biblatex}  % make use of the biblatex package to cite references
 \addbibresource{bib.bib}
 \AtBeginBibliography{\footnotesize}
-
+\usepackage[inkscapelatex=false]{svg}
 \usepackage{cmbright}                           % new improved font
 \usepackage{listings}             		        % voor het weergeven van broncode
 \usepackage[outputdir=cache]{minted}                     % for beautiful listings
@@ -137,6 +137,7 @@
 \input{chapters/inleiding}
 \input{chapters/theoretisch kader}
 \input{chapters/methodologie}
+\input{chapters/implementatie}
 \input{chapters/resultaten}
 \input{chapters/conclusie}
 \input{chapters/discussie}

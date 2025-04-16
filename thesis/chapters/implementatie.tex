@@ -1,0 +1,20 @@
+\section*{Implementatie}
+\subsection*{Implementatiedetails}
+De eerste stap in dit project was het onderzoeken van hoe Android omgaat met locatiegegevens en het implementeren van deze functionaliteit in een testapplicatie. Zodra deze applicatie functioneel was, werden de eerste tests uitgevoerd en werd de nuttige code afgesplitst om de basis te vormen van de Android-library.
+\subsection*{applicatie}
+De applicatie heeft verschillende iteraties doorgemaakt. In de eerste versie werd onderzoek gedaan naar de werking van de Fused Location Provider. Hierbij werden twee instanties geïnstalleerd: één met de permissie voor coarse location en één met de permissie voor fine location.
+
+In latere versies werden diverse invoervelden toegevoegd om variabelen eenvoudig aan te passen. Daarnaast werd de library geïntegreerd, zodat het obfuscatie-algoritme grondig onderzocht kon worden.
+\subsection*{Library}
+De library werkt als volgt: het centrale aanspreekpunt is de klasse LocationManager, die als singleton is opgezet. In deze klasse worden alle variabelen ingesteld die nodig zijn om de Android LocationManager correct te configureren. Deze waarden zijn standaard nauwkeurig ingesteld, zodat zelfs onervaren ontwikkelaars direct aan de slag kunnen.
+
+De LocationManager maakt ook een Android-worker aan wanneer nodig. Deze worker handelt continue locatierequests af en roept telkens de vooraf ingestelde callbackfunctie van de LocationManager aan.
+
+Daarnaast beheert de LocationManager een obfuscatieklasse. Deze klasse moet de LocationObfuscator-interface implementeren en wordt aangeroepen in de callbackfunctie om binnenkomende locaties te obfusceren.
+\subsubsection*{UML}
+\begin{figure}
+    \centering
+    \includesvg[width=0.75\columnwidth]{out/images/uml/uml.svg}
+\end{figure}
+\subsection*{dataverwerking}
+Om alles gegevens te verzamelen is er een eenvoudige backend voorzien waar de testapplicatie al de nodige gegevens naar toe verstuurde. Deze gegevens werden dan bijgehouden in een csv bestand om met jupyter notebooks te verwerken en te visualiseren.
