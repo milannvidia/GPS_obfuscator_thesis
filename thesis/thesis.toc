@@ -1,4 +1,4 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {A}Een aanhangsel}{7}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Beschrijving van deze masterproef in de vorm van een wetenschappelijk artikel}{9}{appendix.B}%
-\contentsline {chapter}{\numberline {C}Poster}{11}{appendix.C}%
+\contentsline {chapter}{\numberline {A}Een aanhangsel}{9}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Beschrijving van deze masterproef in de vorm van een wetenschappelijk artikel}{11}{appendix.B}%
+\contentsline {chapter}{\numberline {C}Poster}{13}{appendix.C}%
