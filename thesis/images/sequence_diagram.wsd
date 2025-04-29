@@ -1,0 +1,24 @@
+@startuml
+participant "Application" as app
+participant "LocationManager" as LM
+participant "LocationObfuscator" as LO
+participant "LocationWorker" as LW
+activate app
+activate LM
+activate LO
+app -> LM : startTracking()
+LM -> LW : initialize()
+activate LW
+' LW -> LW : create FusedLocationProviderClient
+' LW -> LW : create location request
+' LW -> LW : requestLocationUpdates(LocationRequest)
+loop on new location
+    LW -> LM : useCallback(location)
+    LM -> LO : obfuscateLocation(location)
+    LO --> LM : obfuscated location
+    LM -> app : invoke callback
+end
+app -> LM : stopTracking()
+LM -> LW : terminate()
+deactivate LW
+@enduml

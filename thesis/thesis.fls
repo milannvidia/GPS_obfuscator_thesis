@@ -568,7 +568,6 @@ INPUT ./chapters/abstract.tex
 INPUT ./chapters/abstract.tex
 INPUT ./chapters/abstract.tex
 INPUT chapters/abstract.tex
-INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cmbright/cmbrsl10.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cmbright/cmbr8.tfm
 INPUT c:/texlive/2025/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
 INPUT c:/texlive/2025/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
@@ -601,12 +600,15 @@ INPUT ./chapters/inleiding.tex
 INPUT chapters/inleiding.tex
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cmbright/cmbr10.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cmbright/cmbrbx10.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc
+INPUT ./chapters/stateOfTheArt.tex
+INPUT ./chapters/stateOfTheArt.tex
+INPUT ./chapters/stateOfTheArt.tex
+INPUT ./chapters/stateOfTheArt.tex
+INPUT chapters/stateOfTheArt.tex
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cmbright/cmbrbx10.tfm
-INPUT ./chapters/theoretisch kader.tex
-INPUT ./chapters/theoretisch kader.tex
-INPUT ./chapters/theoretisch kader.tex
-INPUT ./chapters/theoretisch kader.tex
-INPUT chapters/theoretisch kader.tex
 INPUT ./images/activity_lifecycle.png
 INPUT ./images/activity_lifecycle.png
 INPUT ./images/activity_lifecycle.png
@@ -623,11 +625,11 @@ INPUT ./svg-inkscape/workmanager_main_svg-raw.pdf
 INPUT ./svg-inkscape/workmanager_main_svg-raw.pdf
 INPUT ./svg-inkscape/workmanager_main_svg-raw.pdf
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cmbright/cmbrbx10.tfm
-INPUT ./chapters/methodologie.tex
-INPUT ./chapters/methodologie.tex
-INPUT ./chapters/methodologie.tex
-INPUT ./chapters/methodologie.tex
-INPUT chapters/methodologie.tex
+INPUT ./chapters/design.tex
+INPUT ./chapters/design.tex
+INPUT ./chapters/design.tex
+INPUT ./chapters/design.tex
+INPUT chapters/design.tex
 INPUT ./chapters/implementatie.tex
 INPUT ./chapters/implementatie.tex
 INPUT ./chapters/implementatie.tex
@@ -661,9 +663,6 @@ INPUT ./chapters/bijlage1.tex
 INPUT ./chapters/bijlage1.tex
 INPUT ./chapters/bijlage1.tex
 INPUT chapters/bijlage1.tex
-INPUT c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
-INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
-INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc
 INPUT c:/texlive/2025/texmf-dist/tex/latex/cmbright/ot1cmtl.fd
 INPUT c:/texlive/2025/texmf-dist/tex/latex/cmbright/ot1cmtl.fd
 INPUT c:/texlive/2025/texmf-dist/tex/latex/cmbright/ot1cmtl.fd
@@ -701,7 +700,8 @@ INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr17.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr8.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrbx10.pfb
-INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrsl10.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrmi10.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrmi8.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hftl10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbmr10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb

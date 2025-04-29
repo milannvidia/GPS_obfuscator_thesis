@@ -1,12 +1,32 @@
-\section*{Implementatie}
-\subsection*{Implementatiedetails}
-De eerste stap in dit project was het onderzoeken van hoe Android omgaat met locatiegegevens en het implementeren van deze functionaliteit in een testapplicatie. Zodra deze applicatie functioneel was, werden de eerste tests uitgevoerd en werd de nuttige code afgesplitst om de basis te vormen van de Android-library.
-\subsection*{applicatie}
-De applicatie heeft verschillende iteraties doorgemaakt. In de eerste versie werd onderzoek gedaan naar de werking van de Fused Location Provider. Hierbij werden twee instanties geïnstalleerd: één met de permissie voor coarse location en één met de permissie voor fine location.
+\chapter{Implementatie}
+% dit als intro
+De eerste stap in deze thesis was het onderzoeken van hoe Android omgaat met locatiegegevens en het implementeren van deze functionaliteit in een testapplicatie. Zodra deze applicatie functioneel was, werden de eerste tests uitgevoerd en werd de nuttige code afgesplitst om de basis te vormen van de Android-library.
+\section{Overzicht library}
+\subsection{Locatie tracking}
+\subsubsection{background en foreground services}
+\subsubsection{Permissies}
+\subsection{Obfuscatie}
+\subsubsection{Toon zijn algoritme}
+\subsection{Opslag}
+\subsection{Netwerk}
 
-In latere versies werden diverse invoervelden toegevoegd om variabelen eenvoudig aan te passen. Daarnaast werd de library geïntegreerd, zodat het obfuscatie-algoritme grondig onderzocht kon worden.
-\subsection*{Library}
-De library werkt als volgt: het centrale aanspreekpunt is de klasse LocationManager, die als singleton is opgezet. In deze klasse worden alle variabelen ingesteld die nodig zijn om de Android LocationManager correct te configureren. Deze waarden zijn standaard nauwkeurig ingesteld, zodat zelfs onervaren ontwikkelaars direct aan de slag kunnen.
+\section{Dataverwerking}
+
+
+% uml interactie
+% pilaren en implementatie van obfuscatie maar wel in aard van ideologieen waarin ik de functies dan aanhaal
+% conclusie miss nog een globale flow
+\subsection*{Applicatie \& library}
+% nog over de gebruikte libraries praten
+In eerste instantie werd onderzocht hoe Android-applicaties omgaan met locatiegegevens. Dit onderzoek werd uitgevoerd in Android Studio, met als doel het ontwikkelen van een werkend prototype. Het prototype bevatte een eenvoudige knop waarmee gebruikers toestemming konden verlenen en locatierequests konden starten.
+
+Om toestemming te vragen, moest in het manifest van de applicatie worden aangegeven welke rechten de applicatie mogelijk nodig heeft. In dit geval waren de volgende permissies vereist: "ACCESS_BACKGROUND_LOCATION", "ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION", "FOREGROUND_SERVICE" en "FOREGROUND_SERVICE_LOCATION". Tijdens runtime werd gebruikgemaakt van de functie "registerForActivityResult" binnen de activity om deze rechten aan te vragen. Het is echter belangrijk op te merken dat deze functie pas kan worden aangeroepen nadat de activity is gecreëerd.
+
+Om de werking van locatiepermissies verder te onderzoeken, werden twee versies van de applicatie geïnstalleerd. Eén versie beschikte enkel over de permissie voor coarse location, terwijl de andere versie ook toegang had tot fine location. Dit maakte het mogelijk om de verschillen tussen beide toestemmingen te analyseren en te onderzoeken hoe Android de locatie van gebruikers beschermt.
+
+Vervolgens werd de prioriteit van de Fused Location Provider gevarieerd om de impact hiervan te testen. Er werden tests uitgevoerd met zowel de instelling "High Accuracy" als "Balanced Power Accuracy". Bij lagere prioriteitsinstellingen bleek echter dat de resultaten sterk afhankelijk waren van het gebruiksniveau van de telefoon, wat leidde tot een te grote variabiliteit in de gegevens.
+
+Dan werd het protoype omgezet naar een applicatie en library apart. Hierbij werd extra aandacht besteed aan de structuur en opbouw van de library. Zodat er een locationManager is dat het centrale aanspreekpunt is en alles regelt voor de programmeur. Dit is een singleton zodat het van overal aanspreekbaar is. In deze klasse worden alle variabelen ingesteld die nodig zijn om de Android LocationManager en de services correct te configureren. Deze waarden zijn standaard nauwkeurig ingesteld, zodat zelfs onervaren ontwikkelaars direct aan de slag kunnen. Aan de activity werden dan ook velden toegevoegd zodat deze gevarieerd kunnen worden tijdens het testen.
 
 De LocationManager maakt ook een Android-worker aan wanneer nodig. Deze worker handelt continue locatierequests af en roept telkens de vooraf ingestelde callbackfunctie van de LocationManager aan.
 
@@ -14,8 +34,8 @@ Daarnaast beheert de LocationManager een obfuscatieklasse. Deze klasse moet de L
 \subsubsection*{UML}
 \begin{figure}
     \centering
-    \label{fig:uml_library}
-    \caption{UML van library}
+    \label{fig:class_diagram_library}
+    \caption{klasse diagram van library}
     \includesvg[width=0.75\textwidth]{images/uml.svg}
 \end{figure}
 \subsection*{dataverwerking}
