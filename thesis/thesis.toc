@@ -4,29 +4,53 @@
 \contentsline {section}{\numberline {1.2}afbakening}{1}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Huidige kennis}{2}{section.1.3}%
 \contentsline {section}{\numberline {1.4}theoretische en praktische relevantie:}{2}{section.1.4}%
-\contentsline {section}{\numberline {1.5}eventueel info over android controleren?}{2}{section.1.5}%
+\contentsline {section}{\numberline {1.5}eventueel info over Android controleren?}{2}{section.1.5}%
 \contentsline {section}{\numberline {1.6}Conclusie}{2}{section.1.6}%
-\contentsline {chapter}{\numberline {2}Theoretisch kader}{3}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Design}{9}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Vereisten}{9}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Veronderstellingen}{9}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Flow diagram}{10}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Conclusie}{10}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Implementatie}{11}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Overzicht library}{12}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Locatie tracking}{12}{subsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.1.1}background en foreground services}{12}{subsubsection.4.1.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.1.2}Permissies}{12}{subsubsection.4.1.1.2}%
-\contentsline {subsection}{\numberline {4.1.2}Obfuscatie}{12}{subsection.4.1.2}%
-\contentsline {subsubsection}{\numberline {4.1.2.1}Toon zijn algoritme}{12}{subsubsection.4.1.2.1}%
-\contentsline {subsection}{\numberline {4.1.3}Opslag}{12}{subsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.1.4}Netwerk}{12}{subsection.4.1.4}%
-\contentsline {section}{\numberline {4.2}Dataverwerking}{12}{section.4.2}%
-\contentsline {chapter}{\numberline {5}Resultaten}{15}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Conclusie}{17}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Conclusie}{17}{section.6.1}%
-\contentsline {chapter}{\numberline {7}Discussie}{19}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Conclusie}{19}{section.7.1}%
-\contentsline {chapter}{\numberline {A}Een aanhangsel}{21}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Beschrijving van deze masterproef in de vorm van een wetenschappelijk artikel}{23}{appendix.B}%
-\contentsline {chapter}{\numberline {C}Poster}{25}{appendix.C}%
+\contentsline {chapter}{\numberline {2}State of the art}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Android besturingssysteem}{3}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}library}{3}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}activity}{3}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}services}{5}{subsection.2.1.3}%
+\contentsline {paragraph}{AlarmManager}{5}{section*.7}%
+\contentsline {paragraph}{Coroutines}{5}{section*.8}%
+\contentsline {paragraph}{WorkManager}{5}{figure.caption.10}%
+\contentsline {section}{\numberline {2.2}Locatie obfuscatie}{6}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Android's oplossing}{6}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Voorgaand onderzoek}{7}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Onderzoeken}{7}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Verschillende nauwkeurigheidsniveaus}{8}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Coarse location Android}{8}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}activity}{9}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Invloed van zendmasten}{9}{subsection.2.3.4}%
+\contentsline {chapter}{\numberline {3}Design}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Vereisten}{11}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Veronderstellingen}{12}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Flow diagram}{12}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Conclusie}{12}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Implementatie}{13}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Overzicht library}{13}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Locatie tracking}{13}{subsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.1.1}background en foreground services}{13}{subsubsection.4.1.1.1}%
+\contentsline {paragraph}{Foreground services}{14}{section*.13}%
+\contentsline {paragraph}{Background tasks}{14}{section*.14}%
+\contentsline {paragraph}{Integratie in de library}{15}{section*.15}%
+\contentsline {subsubsection}{\numberline {4.1.1.2}Permissies}{15}{subsubsection.4.1.1.2}%
+\contentsline {subsection}{\numberline {4.1.2}Obfuscatie}{15}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}Standaard obfuscatiealgoritme}{16}{subsubsection.4.1.2.1}%
+\contentsline {subsection}{\numberline {4.1.3}Opslag}{16}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Netwerk}{17}{subsection.4.1.4}%
+\contentsline {section}{\numberline {4.2}Dataverwerking}{17}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Verzameling}{17}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}verwerking}{18}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Conclusie}{18}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Resultaten}{19}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Visuele representatie}{19}{section.5.1}%
+\contentsline {chapter}{\numberline {6}Conclusie}{21}{chapter.6}%
+\contentsline {section}{\numberline {6.1}validiteit}{21}{section.6.1}%
+\contentsline {section}{\numberline {6.2}resultaten interpreteren}{21}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Conclusie}{22}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Discussie}{23}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Conclusie}{23}{section.7.1}%
+\contentsline {chapter}{\numberline {A}Een aanhangsel}{25}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Beschrijving van deze masterproef in de vorm van een wetenschappelijk artikel}{27}{appendix.B}%
+\contentsline {chapter}{\numberline {C}Poster}{29}{appendix.C}%

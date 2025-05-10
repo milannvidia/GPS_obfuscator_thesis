@@ -1,3 +1,9 @@
 \chapter{Conclusie}
 Begin tekstje Conclusie
+\section{validiteit}
+\section{resultaten interpreteren}
+In de huidige versie van de library is slechts beperkt onderzoek verricht naar de langdurige stabiliteit van locatieverzameling in de achtergrond en naar mogelijke onbekende beperkingen die verder reiken dan de maximale threadtijd van 10 minuten per 15 minuten. Om dit grondig te testen, zouden meerdere langdurige runtimes moeten worden voorzien.
+
+Voor de testapplicatie is een fallbackmechanisme geïmplementeerd voor mislukte HTTP-verzoeken, waarbij deze tijdelijk worden opgeslagen in de shared preferences van Android. Echter, shared preferences zijn niet geschikt voor het verwerken van grote hoeveelheden data, wat leidt tot vertragingen bij het lezen en schrijven, vooral wanneer er gedurende langere tijd geen netwerkverbinding beschikbaar is. Bovendien kan de plotselinge piek in internetverkeer bij het herstellen van een netwerkverbinding resulteren in crashes op Android. Verdere uitbreiding van de testapplicatie vereist daarom throttlingmechanismen en een robuustere permanente opslagoplossing, met name voor scenario's waarin testapparaten langdurig geen internetverbinding hebben.
+
 \section{Conclusie}

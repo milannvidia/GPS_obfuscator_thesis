@@ -1,46 +1,84 @@
-\chapter{Theoretisch kader}
-
-\subsection*{library in Android}
+\chapter{State of the art}
+Voor de achtergrond te kaderen voor het werk van deze thesis te kunnen bespreken zijn er 2 grote stromingen: Android besturingssysteem en locatieverzameling/-obfuscatie. Ook is er een extra sectie voorzien voor het onderzoek naar hoe de standaardimplementatie van obfuscatie werkt in Android.
+\section{Android besturingssysteem}
+\subsection{library}
 Voor de efficiënte implementatie van code door ontwikkelaars, zonder herhaaldelijk gebruik te maken van copy-paste, worden libraries gebruikt. Android-applicaties worden geprogrammeerd in Java of Kotlin, waarbij de build-tool Gradle wordt ingezet. Deze build-tool beheert de installatie van de benodigde libraries, zodat deze eenvoudig beschikbaar zijn voor integratie in de eigen code.
-\newline
 In tegenstelling tot een standaardapplicatie, die wordt gecompileerd naar een \gls{apk}, wordt een library gecompileerd naar een \gls{aar}. Deze \gls{aar}-bestanden kunnen vervolgens worden gepubliceerd naar publieke Gradle-plugins, waardoor ze eenvoudig herbruikbaar zijn in andere projecten.
+\subsection{activity}
 \begin{figure}[h]
     \includegraphics[width=0.75\textwidth]{images/activity_lifecycle.png}
     \label{fig:android_lifecycle}
     \caption{Activity lifecycle Android}
 \end{figure}
-Bij het ontwikkelen van een library die op de achtergrond locaties verzamelt, is het essentieel om rekening te houden met de strikte regels van de Android-lifecycle. Een library kan inspelen op de lifecycle van de aanroepende activity door gebruik te maken van specifieke functies die corresponderen met de verschillende lifecycle-states. Hierbij is het van belang te benadrukken dat er geen garantie is dat de onDestroy-functie wordt aangeroepen. Daarom moet alle data die naar permanente opslag geschreven moet worden, verwerkt worden in de onStop-functie.
+Een activity in Android is een enkele, gefocuste taak die een gebruiker kan uitvoeren. Het vormt een van de fundamentele bouwstenen van een Android-applicatie. Elke activity heeft een eigen lifecycle, die wordt beheerd door het Android-systeem. Deze lifecycle bestaat uit verschillende states, zoals onCreate, onStart, onResume, onPause, onStop en onDestroy. 
 
+Bij het ontwikkelen van een applicatie is het belangrijk om rekening te houden met deze lifecycle-methoden, omdat ze bepalen hoe de applicatie reageert op gebruikersinteracties en systeemgebeurtenissen. Bijvoorbeeld, in de onCreate-methode wordt de initiële setup van de activity uitgevoerd, zoals het instellen van de gebruikersinterface. De onPause- en onStop-methoden worden aangeroepen wanneer de activity naar de achtergrond gaat, en resources kunnen hier worden vrijgegeven om geheugen te besparen.
+
+De mogelijkheden binnen de thread van een activity zijn beperkt. Langdurige taken worden bijvoorbeeld abrupt beëindigd wanneer de activity naar de achtergrond verdwijnt. Om dit probleem te omzeilen, biedt Android alternatieve oplossingen, die verderop in deze thesis worden besproken. Daarnaast is het niet toegestaan om blocking calls, zoals een HTTP-request of het opvragen van locatiegegevens via de Location Provider, uit te voeren in de main thread. Dit is noodzakelijk om te voorkomen dat de gebruikersinterface vastloopt en de gebruikservaring negatief wordt beïnvloed. Zo crashed de applicatie als de main thread wordt geblocked voor 5 seconden.
+\subsection{services}
+Om de beperkingen van een activity, die slechts kort op de achtergrond actief kan blijven, te omzeilen, biedt Android verschillende tools die door de jaren heen zijn geëvolueerd. Deze tools maken het mogelijk om taken op de achtergrond uit te voeren, zelfs wanneer de applicatie niet actief is. De belangrijkste tools zijn de AlarmManager, coroutines en de WorkManager. Hieronder worden deze tools besproken, samen met hun voor- en nadelen.
+
+\paragraph{AlarmManager}
+De AlarmManager is een mechanisme dat het apparaat uit de zogenaamde 'doze mode' of energiebesparende modus kan halen. Dit maakt het mogelijk om op specifieke tijdstippen een taak uit te voeren. Echter, de AlarmManager heeft enkele beperkingen. Zo kan het slechts één keer per uur een taak uitvoeren en is het niet geschikt voor langdurige taken. Dit maakt het minder geschikt voor toepassingen die continu of frequent achtergrondtaken moeten uitvoeren.
+
+\paragraph{Coroutines}
+Coroutines kunnen worden gezien als een lichtgewicht alternatief voor threads. Ze bieden een efficiënte manier om asynchrone taken uit te voeren zonder de main thread te blokkeren. Echter, coroutines zijn gekoppeld aan de lifecycle van de aanroepende activity. Dit betekent dat wanneer de activity wordt gestopt, ook de coroutines worden beëindigd. Hierdoor zijn coroutines niet geschikt voor persistent werk dat moet blijven draaien, ongeacht de status van de activity.
+
+\paragraph{WorkManager}
 \begin{figure}[h]
     \includesvg[width=0.75\textwidth]{images/workmanager_main.svg}
     \label{fig:workmanager}
     \caption{Android WorkManager}
 \end{figure}
-Om de beperkingen van een activity, die slechts kort op de achtergrond actief kan blijven, te omzeilen, biedt Android verschillende tools die door de jaren heen zijn geëvolueerd. Deze tools maken het mogelijk om taken op de achtergrond uit te voeren, zelfs wanneer de applicatie niet actief is. De belangrijkste tools zijn de AlarmManager, coroutines en de WorkManager. Hieronder worden deze tools besproken, samen met hun voor- en nadelen.
-
-\subsubsection*{AlarmManager}
-De AlarmManager is een mechanisme dat het apparaat uit de zogenaamde "doze mode" of energiebesparende modus kan halen. Dit maakt het mogelijk om op specifieke tijdstippen een taak uit te voeren. Echter, de AlarmManager heeft enkele beperkingen. Zo kan het slechts één keer per uur een taak uitvoeren en is het niet geschikt voor langdurige taken. Dit maakt het minder geschikt voor toepassingen die continu of frequent achtergrondtaken moeten uitvoeren.
-
-\subsubsection*{Coroutines}
-Coroutines kunnen worden gezien als een lichtgewicht alternatief voor threads. Ze bieden een efficiënte manier om asynchrone taken uit te voeren zonder de main thread te blokkeren. Echter, coroutines zijn gekoppeld aan de lifecycle van de aanroepende activity. Dit betekent dat wanneer de activity wordt gestopt, ook de coroutines worden beëindigd. Hierdoor zijn coroutines niet geschikt voor persistent werk dat moet blijven draaien, ongeacht de status van de activity.
-
-\subsubsection*{WorkManager}
 De WorkManager is een krachtig en flexibel API voor het uitvoeren van achtergrondtaken. Het biedt ondersteuning voor zowel eenmalige (one-time) als periodieke (periodic) taken. Voor achtergrondtaken die regelmatig moeten worden uitgevoerd, zoals het verzamelen van locatiegegevens, is de periodieke versie geschikt. Hierbij kan een taak bijvoorbeeld elke 15 minuten worden uitgevoerd, met een maximale duur van 10 minuten per taak. Voor taken die slechts één keer hoeven te worden uitgevoerd, zoals een langdurige upload, kan de eenmalige versie worden gebruikt. Het is echter belangrijk op te merken dat langdurige taken in de foreground een permanente notificatie in het besturingssysteem vereisen, wat de gebruiker kan storen.
 
-\subsection*{Locatie obfuscatie}
-In de studie van obfuscatie heb je 2 paden 
-\subsubsection*{Voorgaand onderzoek}
-In een voorgaand onderzoek van Toon Dehaene is gebleken dat de huidige stand van zaken 
-\subsubsection*{Android's oplossing}
+\section{Locatie obfuscatie}
+In de studie van obfuscatie heb je 2 paden: hoe android het aanpakt en voorgaand onderzoek losstaand van Android.
+\subsection{Android's oplossing}
 Voordat er dieper wordt ingegaan op locatie-obfuscatie in Android, is het belangrijk om de werking van de locatievoorzieningen in Android te bespreken. Android biedt twee primaire opties om locatiegegevens op te vragen: de standaard open-source implementatie en de Google Play Services-implementatie.
 
 De standaard open-source implementatie leest enkel de data uit van de sensoren en voert geen verdere berekeningen of obfuscatie-algoritmen uit. Deze aanpak biedt ontwikkelaars meer vrijheid, maar brengt ook enkele nadelen met zich mee. Zo worden applicaties die deze versie gebruiken vaker gemarkeerd als potentieel kwaadaardig, omdat ze minder geïntegreerd zijn in het Android-ecosysteem.
 
-De Google Play Services-implementatie, daarentegen, maakt gebruik van de Fused Location Provider (FLP). De FLP combineert gegevens van verschillende sensoren, zoals GPS, wifi, mobiele netwerken en zelfs bewegingssensoren, om een zo nauwkeurig mogelijke locatie te berekenen. Dit proces wordt "sensor fusion" genoemd. De Fused Location Provider biedt ontwikkelaars een eenvoudige API om locatiegegevens op te vragen, waarbij automatisch de meest geschikte bron wordt gekozen op basis van de context, zoals batterijverbruik, nauwkeurigheid en beschikbaarheid van sensoren. Bovendien ondersteunt de FLP zowel real-time locatie-updates als eenmalige locatieverzoeken, wat het een flexibele oplossing maakt voor uiteenlopende toepassingen.
+De Google Play Services-implementatie, daarentegen, maakt gebruik van de Fused Location Provider. De Fused Location Provider combineert gegevens van verschillende sensoren, zoals GPS, wifi, mobiele netwerken en zelfs bewegingssensoren, om een zo nauwkeurig mogelijke locatie te berekenen. Dit proces wordt 'sensor fusion' genoemd. De Fused Location Provider biedt ontwikkelaars een eenvoudige API om locatiegegevens op te vragen, waarbij automatisch de meest geschikte bron wordt gekozen op basis van de context, zoals batterijverbruik, nauwkeurigheid en beschikbaarheid van sensoren. Bovendien ondersteunt de Fused Location Provider zowel real-time locatie-updates als eenmalige locatieverzoeken, wat het een flexibele oplossing maakt voor uiteenlopende toepassingen.
 
-In Android zijn er daarnaast verschillende methoden om locatiegegevens te verkrijgen. De meest nauwkeurige methode is via GPS-satellieten, maar alternatieve methoden zoals het gebruik van lokale telefoonmasten of wifi-netwerken bieden ook mogelijkheden. Deze alternatieve methoden introduceren een inherente vorm van obfuscatie, aangezien de nauwkeurigheid doorgaans lager is dan die van GPS. Echter, in dichtbevolkte stedelijke gebieden kan dit juist leiden tot een hogere nauwkeurigheid dan GPS, omdat gebouwen GPS-signalen kunnen blokkeren.
+In de Fused Location Provider zijn er daarnaast verschillende methoden om locatiegegevens te verkrijgen. De meest nauwkeurige methode is via GPS-satellieten, maar alternatieve methoden zoals het gebruik van lokale telefoonmasten of wifi-netwerken bieden ook mogelijkheden. Deze alternatieve methoden introduceren een inherente vorm van obfuscatie, aangezien de nauwkeurigheid doorgaans lager is dan die van GPS. Echter, in dichtbevolkte stedelijke gebieden kan dit juist leiden tot een hogere nauwkeurigheid dan GPS, omdat gebouwen GPS-signalen kunnen blokkeren.
 
+Dan sinds Android 12 is er een nieuwe toestemming gekomen dat de gebruiker moet toelaten. Namelijk bij het vragen van locatie permissies kan de gebruiker kiezen voor coarse location.
 De coarse location-functionaliteit in Android maakt geen gebruik van GPS-satellieten en voegt bovendien een extra laag van obfuscatie toe aan de locatiegegevens. Hoe deze obfuscatie precies wordt toegepast, is echter niet publiekelijk gedocumenteerd. Sinds Android 12 hebben gebruikers de mogelijkheid gekregen om alleen toegang tot een benaderde locatie (approximate location) toe te staan, wat een extra dimensie toevoegt aan de discussie over privacy en nauwkeurigheid.
 
-Deze ontwikkelingen roepen vragen op over de balans tussen gebruikersprivacy en de bruikbaarheid van locatiegegevens. De introductie van de Fused Location Provider en de mogelijkheid om coarse location te gebruiken, tonen aan dat Android een actieve rol speelt in het verbeteren van zowel de gebruikerservaring als de privacybescherming. Hoe deze balans verder kan worden geoptimaliseerd, vormt een interessant onderwerp voor verder onderzoek.
+\subsection{Voorgaand onderzoek}
+In eerdere onderzoeken, uitgevoerd door Kevin De Boeck, werd aangetoond dat locatie-obfuscatie een dringende noodzaak is. Uit data-analyse op een dataset van locatiegegevens in Frankrijk, verzameld over een periode van zeven dagen, bleek dat gevoelige locaties eenvoudig konden worden geïdentificeerd. Daarnaast konden sociale netwerken worden gereconstrueerd en konden plaatsen van interesse voor individuen gemakkelijk in kaart worden gebracht.
 
+Voortbouwend op deze bevindingen heeft Toon Dehaene onderzoek gedaan naar methoden om GPS-locaties te obfusceren. Het voorgestelde algoritme introduceerde het concept van privacycirkels op locaties die niet eerder waren bezocht. Wanneer een gebruiker zich opnieuw binnen dezelfde cirkel bevindt, wordt altijd het middelpunt van deze cirkel geretourneerd. Dit proces voegt ruis toe aan de coördinaten. Bovendien werd er variatie toegevoegd aan de tijdstippen van locatiegegevens. Dit algoritme werd geïmplementeerd in Rust en toegepast aan de serverzijde om locatie-obfuscatie te realiseren. Het algoritme vormde tevens de basis voor de standaardimplementatie van obfuscatie in de Android-library wat verder wordt uitgelegd.
+
+In vervolgonderzoeken werd verder geëxperimenteerd met het gridlocken van locaties aan lokale wegen. Dit had als doel om de obfuscatie realistischer te laten lijken, met name in afgelegen gebieden.
+% TODO verder uitbreiden
+
+\section{Onderzoeken}
+Aangezien de Android Developer-website niet alle vragen beantwoordt en er nog veel onduidelijkheden zijn, is een deel van de state-of-the-art gewijd aan onderzoek naar hoe deze variabelen het uiteindelijke resultaat beïnvloeden.
+\subsection{Verschillende nauwkeurigheidsniveaus}
+De Fused Location Provider biedt vier prioriteitsniveaus voor het bepalen van de locatie, zoals beschreven in de Android-documentatie:
+
+\begin{itemize}
+    \item \textbf{Balanced power accuracy}: Gebruik deze instelling om locatieprecisie op te vragen binnen een stadsblok, wat een nauwkeurigheid van ongeveer 100 meter is. Dit wordt beschouwd als een grove nauwkeurigheid en verbruikt waarschijnlijk minder stroom. Met deze instelling maken de locatieservices waarschijnlijk gebruik van Wi-Fi en positionering van zendmasten. Houd er echter rekening mee dat de keuze van de locatieprovider afhankelijk is van veel andere factoren, zoals welke bronnen beschikbaar zijn.
+    \item \textbf{High accuracy}: Gebruik deze instelling om de meest nauwkeurige locatie op te vragen. Met deze instelling is de kans groter dat de locatieservices GPS gebruiken om de locatie te bepalen.
+    \item \textbf{Low power}: Gebruik deze instelling om precisie op stadsniveau aan te vragen, wat een nauwkeurigheid van ongeveer 10 kilometer is. Dit wordt beschouwd als een grove nauwkeurigheid en verbruikt waarschijnlijk minder stroom.
+    \item \textbf{Passive}: Gebruik deze instelling als u een verwaarloosbare invloed op het stroomverbruik nodig heeft, maar locatie-updates wilt ontvangen wanneer deze beschikbaar zijn. Met deze instelling activeert uw app geen locatie-updates, maar ontvangt u locaties die door andere apps worden geactiveerd.
+\end{itemize}
+
+Naast de beschreven verschillen in nauwkeurigheid en energieverbruik, zijn er ook andere factoren die deze instellingen beïnvloeden. Uit experimenten bleek bijvoorbeeld dat de instelling \textit{balanced power accuracy} wordt beïnvloed door de doze-modus of energiebesparingsmodus van Android. Tijdens tests werd vastgesteld dat een actief gebruikte telefoon een consistente locatie-trace genereerde, terwijl drie andere telefoons aanzienlijke hiaten vertoonden. Deze hiaten werden veroorzaakt doordat de Fused Location Provider de callback niet activeerde vanwege de energiebesparende staten.
+
+Tests met de prioriteiten \textit{low power} en \textit{passive} werden niet uitgevoerd. De \textit{low power}-instelling was niet relevant voor onderzoek naar gebruikerslocatie-traces, terwijl de \textit{passive}-instelling te veel externe variabelen bevatte, waardoor geen waardevolle resultaten konden worden verkregen.
+\subsection{Coarse location Android}
+Om de coarse location-functionaliteit te onderzoeken, werd de applicatie tweemaal geïnstalleerd op dezelfde telefoon: één keer met coarse location-permissies en één keer met fine location-permissies. Beide applicaties waren geconfigureerd met dezelfde prioriteitsinstellingen om een eerlijke vergelijking mogelijk te maken. Een van de onderzoeksvragen was of de instelling \textit{balanced power accuracy}, die geen gebruik maakt van satellieten, dezelfde resultaten zou opleveren als coarse location. Dit zou inzicht geven in de vraag of de obfuscatie uitsluitend voortkomt uit de inherente onnauwkeurigheid van de gebruikte technologieën, of dat Android actief een extra laag van obfuscatie toepast op de locatiegegevens.
+Als resultaat vinden we de volgende visualisatie\ref{fig:coarsevsfine}. Hierbij is rood de trace met fine probleem en blauw coarse permissies.
+\subsection{activity}
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{images/coarsevsfine1.png}
+    \includegraphics[width=\textwidth]{images/coarsevsfine2.png}
+    \label{fig:coarsevsfine}
+    \caption{Vergelijking coarse permissies en fine permissies}
+\end{figure}
+\subsection{Invloed van zendmasten}
+Uit de verzamelde data van eerdere experimenten bleek dat de gegenereerde locaties met coarse location-permissies op verschillende apparaten identieke resultaten opleverden. Dit riep de vraag op of deze locaties werden berekend op basis van telefoonmasten. Om dit te onderzoeken, werden alle telefoonmasten in Vlaanderen in kaart gebracht en vergeleken met de verzamelde locatiegegevens. Hoewel dit een interessante invalshoek biedt, valt verder onderzoek naar dit onderwerp buiten de scope van deze thesis.
+ 

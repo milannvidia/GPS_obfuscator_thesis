@@ -2,24 +2,32 @@
 hier nog tekst voor het algemene
 \section{Vereisten}
 % dit aanpassen zeggen dat dit de hoofd doelen zijn.
-Voor dit onderzoek zijn de volgende zaken het doel:
-1. Een library ontwikkelen voor algemene bruikbaarheid: Het doel is om een library te maken die in elke applicatie kan worden gebruikt. Deze library moet het proces van permissies aanvragen, initialisatie, gebruik en uitbreiding zo soepel mogelijk laten verlopen. Dit betekent dat de library flexibel, modulair en eenvoudig te integreren moet zijn in verschillende soorten applicaties.
-% lijst alles grondiger uitleggen wat is flexibel,...
-% lijst op wat ivm met privacy poi 
-% 
-% parameters aanpassen
-% punt 2 weglaten 
-% algemeen gewoon zeggen test applicatie weg laten
-2. Een testapplicatie ontwikkelen voor toekomstige onderzoekers: Naast de library is het doel om een testapplicatie te schrijven. Deze testapplicatie zal dienen als een referentie-implementatie en als hulpmiddel voor toekomstige onderzoekers. Hierdoor hoeven zij niet telkens zelf een applicatie te ontwikkelen, maar kunnen ze eenvoudig hun eigen algoritmes testen in een bestaande, goed gedefinieerde omgeving.
+De doelstellingen van dit onderzoek zijn als volgt geformuleerd:
+1. Het ontwikkelen van een library met algemene bruikbaarheid: Het streven is om een library te creëren die in diverse applicaties kan worden toegepast. Deze library moet het proces van het aanvragen van permissies, initialisatie, gebruik en uitbreiding zo efficiënt mogelijk ondersteunen. Dit impliceert dat de library de volgende dingen moet zijn om in uiteenlopende soorten applicaties te kunnen werken.
+\begin{itemize}
+    \item \textbf{Flexibel}: De library mag niet beperkt zijn tot de standaardinstellingen van de Android-implementatie en moet voldoende configuratiemogelijkheden bieden.
+    \item \textbf{Modulair}: Gebruikers moeten in staat zijn om hun eigen obfuscatiealgoritmen te ontwikkelen en te integreren.
+    \item \textbf{Eenvoudig te integreren}: De library moet functioneren met minimale setup en gebruiksvriendelijke integratiemogelijkheden bieden.
+    \item \textbf{Beginnersvriendelijk}: Een van de aannames is dat de ontwikkelaar mogelijk weinig tot geen kennis heeft van locatie services in Android. Daarom moeten de standaardinstellingen een solide basis bieden voor het veilig omgaan met locatiegegevens.  
+\end{itemize}
+2. Op het vlak van privacy is de vereiste dat alle kwetsbare data het apparaat niet verlaat en dat de geobfusceerde locatie nog steeds bruikbaar is maar het niet toelaat een individu te traceren.
+Voor het aspect van obfuscatie vallen we terug op het werk van Toon Dehaene. Hierbij werd er gebruik gemaakt van ruis op de coördinaten en privacy cirkels. De cirkels zorgen er voor dat er geen gemiddelde kan genomen worden van de locaties om zo toch point of interest te kunnen verzamelen.
+
 % vereisten ivm met library en privacy vallen we terug op toon
+Deze technieken worden gecombineerd om een balans te vinden tussen privacy en bruikbaarheid, waarbij de gebruiker beschermd blijft tegen potentiële privacy-inbreuken.
 Door deze doelen te realiseren, wordt niet alleen de bruikbaarheid van de ontwikkelde oplossingen vergroot, maar wordt ook de drempel voor toekomstig onderzoek verlaagd.
 \section{Veronderstellingen}
 % deze veronderstellingen zijn niet volledig naast de point
 % eerder voor u oplossing te comprimeren
 % mijn oplossing werkt niet als dit ... 
 % dat de developer ook goedwillig 
-Een van de aannames is dat de ontwikkelaar mogelijk weinig tot geen kennis heeft van locatie services in Android. Daarom moeten de standaardinstellingen een solide basis bieden voor het veilig omgaan met locatiegegevens.  
-Daarnaast kan voor veel applicaties worden aangenomen dat gebruikers nieuwsgierig zijn. Dit vormt echter geen probleem, aangezien het manipuleren van gevoelige informatie in dergelijke gevallen enkel nadelig is voor de gebruiker zelf.
+Om de werking van de library te kunnen garanderen, worden de volgende veronderstellingen gemaakt:
+\begin{itemize}
+    \item \textbf{Goede intenties van de ontwikkelaar}: Er wordt aangenomen dat de ontwikkelaar te goeder trouw handelt. De library kan immers aangepast of volledig omzeild worden, waardoor het mogelijk is om alsnog de echte locatie door te sturen.
+    \item \textbf{Integriteit van het Android-systeem}: Het wordt verondersteld dat de Android-installatie waarop de applicatie draait niet gecompromitteerd is. Dit betekent dat er geen derde partij of de eigenaar roottoegang heeft, aangezien dit zou toelaten om privacygevoelige gegevens rechtstreeks uit te lezen.
+    \item \textbf{Correct gebruik van onderzoeks- en debugmodus}: De applicatie zal een onderzoeks- en debugmodus bevatten. Het is essentieel dat deze modus niet in productieomgevingen wordt gebruikt, omdat dit zou kunnen leiden tot het versturen van de echte locatie samen met de geobfusceerde locatie.
+    \item \textbf{Gebruikersanonimiteit}: De permanente opslag van gegevens wordt gekoppeld aan de installatie van de applicatie in plaats van aan een specifieke gebruiker. Dit voorkomt dat locaties aan een gebruiker worden gelinkt en maakt het onmogelijk om door middel van herhaalde installaties en verwijderingen een gemiddelde van locaties te berekenen.
+\end{itemize}
 \section{Flow diagram} % andere naam
 % ook wat tekst
 

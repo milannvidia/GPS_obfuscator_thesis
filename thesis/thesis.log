@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.4)  29 APR 2025 15:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.4)  10 MAY 2025 14:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1595,7 +1595,7 @@ Package pdftex.def Info: covers/Disclaimer_NL.pdf , page1 used on input line 133
 [6
 
  <./covers/Disclaimer_Nl.pdf>] (./chapters/abstract.tex
-Overfull \hbox (9.24742pt too wide) in paragraph at lines 29--30
+Overfull \hbox (9.24742pt too wide) in paragraph at lines 16--17
 []\OT1/cmbr/m/n/10.95 De meth-o-den die wor-den ge-bruikt om deze waarde-volle lo-catiegegevens te verza-me-len, gebeuren
  []
 
@@ -1607,11 +1607,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [7
 
 ]
-LaTeX Font Info:    Trying to load font information for OML+cmbrm on input line 38.
+LaTeX Font Info:    Trying to load font information for OML+cmbrm on input line 25.
  (c:/texlive/2025/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
 File: omlcmbrm.fd 2005/04/13 v8.1 (WaS)
 )
-LaTeX Font Info:    Trying to load font information for OMS+cmbrs on input line 38.
+LaTeX Font Info:    Trying to load font information for OMS+cmbrs on input line 25.
  (c:/texlive/2025/texmf-dist/tex/latex/cmbright/omscmbrs.fd
 File: omscmbrs.fd 2005/04/13 v8.1 (WaS)
 ))
@@ -1678,29 +1678,16 @@ Package cleveref Info: loaded `english' language definitions on input line 1.
 [2]
 Chapter 2.
 LaTeX Font Info:    Font shape `OT1/cmbr/b/n' in size <12> not available
-(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 3.
+(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 4.
 <images/activity_lifecycle.png, id=140, 514.92375pt x 665.48625pt>
 File: images/activity_lifecycle.png Graphic file (type png)
 <use images/activity_lifecycle.png>
-Package pdftex.def Info: images/activity_lifecycle.png  used on input line 8.
+Package pdftex.def Info: images/activity_lifecycle.png  used on input line 9.
 (pdftex.def)             Requested size: 320.0935pt x 413.6939pt.
 LaTeX Font Info:    Font shape `OT1/cmbr/b/n' in size <10> not available
-(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 10.
+(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 11.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
-
-<./svg-inkscape/workmanager_main_svg-raw.pdf, id=142, 722.7pt x 406.51875pt>
-File: ./svg-inkscape/workmanager_main_svg-raw.pdf Graphic file (type pdf)
-<use ./svg-inkscape/workmanager_main_svg-raw.pdf>
-Package pdftex.def Info: ./svg-inkscape/workmanager_main_svg-raw.pdf  used on input line 15.
-(pdftex.def)             Requested size: 722.69823pt x 406.51775pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Font Info:    Font shape `OT1/cmbr/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 21.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -1711,40 +1698,169 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-Package cleveref Info: loaded `english' language definitions on input line 26.
+Package cleveref Info: loaded `english' language definitions on input line 18.
 [4 <./images/activity_lifecycle.png>]
-Underfull \vbox (badness 4328) has occurred while \output is active []
+LaTeX Font Info:    Font shape `OT1/cmbr/b/n' in size <10.95> not available
+(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 22.
+<./svg-inkscape/workmanager_main_svg-raw.pdf, id=159, 722.7pt x 406.51875pt>
+File: ./svg-inkscape/workmanager_main_svg-raw.pdf Graphic file (type pdf)
+<use ./svg-inkscape/workmanager_main_svg-raw.pdf>
+Package pdftex.def Info: ./svg-inkscape/workmanager_main_svg-raw.pdf  used on input line 29.
+(pdftex.def)             Requested size: 722.69823pt x 406.51775pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 1688) has occurred while \output is active []
 
 
 
-Package cleveref Info: loaded `english' language definitions on input line 34.
-[5 <./svg-inkscape/workmanager_main_svg-raw.pdf>]
-Overfull \hbox (9.23836pt too wide) in paragraph at lines 41--42
-\OT1/cmbr/m/n/10.95 natieve meth-o-den in-tro-duc-eren een in-her-ente vorm van ob-fus-catie, aangezien de nauwkeurigheid
+Package cleveref Info: loaded `english' language definitions on input line 37.
+[5]
+
+Package cleveref Info: loaded `english' language definitions on input line 45.
+[6 <./svg-inkscape/workmanager_main_svg-raw.pdf>]
+
+Package cleveref Info: loaded `english' language definitions on input line 63.
+[7]
+LaTeX Font Info:    Font shape `OT1/cmbr/m/it' in size <10.95> not available
+(Font)              Font shape `OT1/cmbr/m/sl' tried instead on input line 69.
+
+
+LaTeX Warning: Reference `fig:coarsevsfine' on page 8 undefined on input line 74.
+
+
+Overfull \hbox (7.07574pt too wide) in paragraph at lines 73--75
+\OT1/cmbr/m/n/10.95 Om de coarse location-functionaliteit te on-der-zoeken, werd de ap-pli-catie tweemaal ge^^?^^Pnstalleerd
+ []
+
+
+
+Package cleveref Info: loaded `english' language definitions on input line 75.
+[8]
+<images/coarsevsfine1.png, id=194, 1606.0pt x 941.5175pt>
+File: images/coarsevsfine1.png Graphic file (type png)
+<use images/coarsevsfine1.png>
+Package pdftex.def Info: images/coarsevsfine1.png  used on input line 77.
+(pdftex.def)             Requested size: 426.79135pt x 250.2049pt.
+<images/coarsevsfine2.png, id=195, 1606.0pt x 941.5175pt>
+File: images/coarsevsfine2.png Graphic file (type png)
+<use images/coarsevsfine2.png>
+Package pdftex.def Info: images/coarsevsfine2.png  used on input line 78.
+(pdftex.def)             Requested size: 426.79135pt x 250.2049pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (./chapters/design.tex
+
+Package cleveref Info: loaded `english' language definitions on input line 1.
+[9]
+
+Package cleveref Info: loaded `english' language definitions on input line 1.
+[10 <./images/coarsevsfine1.png> <./images/coarsevsfine2.png>]
+Chapter 3.
+
+
+[11
+
+]
+Overfull \hbox (9.7879pt too wide) in paragraph at lines 27--28
+[]\OT1/cmbr/bx/n/10.95 Integriteit van het Android-systeem\OT1/cmbr/m/n/10.95 : Het wordt veron-der-steld dat de Android-installatie
+ []
+
+) (./chapters/implementatie.tex
+
+Package cleveref Info: loaded `english' language definitions on input line 1.
+[12]
+Chapter 4.
+
+Overfull \hbox (6.75085pt too wide) in paragraph at lines 3--4
+\OT1/cmbr/m/n/10.95 De eerste stap in deze the-sis was het on-der-zoeken van hoe An-droid om-gaat met lo-catiegegevens
+ []
+
+<./svg-inkscape/uml_svg-raw.pdf, id=223, 306.39468pt x 250.63951pt>
+File: ./svg-inkscape/uml_svg-raw.pdf Graphic file (type pdf)
+<use ./svg-inkscape/uml_svg-raw.pdf>
+Package pdftex.def Info: ./svg-inkscape/uml_svg-raw.pdf  used on input line 9.
+(pdftex.def)             Requested size: 306.39394pt x 250.63889pt.
+LaTeX Font Info:    Trying to load font information for OT1+cmtl on input line 12.
+(c:/texlive/2025/texmf-dist/tex/latex/cmbright/ot1cmtl.fd
+File: ot1cmtl.fd 2005/04/13 v8.1 (WaS)
+)
+
+[13
+
+]
+
+Package cleveref Info: loaded `english' language definitions on input line 26.
+[14 <./svg-inkscape/uml_svg-raw.pdf>]
+
+./chapters/implementatie.tex:38: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38     \item E
+                nkel manifest: ACCESS\_BACKGROUND\_LOCATION, FOREGROUND\_SER...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 38
+[][]
+ []
+
+
+Underfull \hbox (badness 1430) in paragraph at lines 38--39
+[]\OT1/cmbr/m/n/10.95 Enkel man-i-fest: AC-CESS[]BACKGROUND[]LOCATION, FORE-GROUND[]SERVICE en
+ []
+
+
+./chapters/implementatie.tex:39: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.39     \item M
+                et RequestPermission: ACCESS\_COARSE\_LOCATION en ACCESS\_FI...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 39
+[][]
  []
 
 
 
 Package cleveref Info: loaded `english' language definitions on input line 46.
-[6]) (./chapters/design.tex
+[15]
 
-Package cleveref Info: loaded `english' language definitions on input line 1.
-[7]
+LaTeX Warning: Reference `fig:flow_obfuscatie_algoritmen' on page 16 undefined on input line 49.
 
-[8
+<images/obfuscatie_flow.png, id=261, 657.95813pt x 411.78844pt>
+File: images/obfuscatie_flow.png Graphic file (type png)
+<use images/obfuscatie_flow.png>
+Package pdftex.def Info: images/obfuscatie_flow.png  used on input line 60.
+(pdftex.def)             Requested size: 320.0935pt x 200.33292pt.
 
-]
-Chapter 3.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-[9]) (./chapters/implementatie.tex
 
-Package cleveref Info: loaded `english' language definitions on input line 1.
-[10]
-Chapter 4.
+Package cleveref Info: loaded `english' language definitions on input line 66.
+[16]
+Overfull \hbox (0.79488pt too wide) in paragraph at lines 70--71
+\OT1/cmbr/m/n/10.95 afkom-stig van de de-bug-call-back, samen met rel-e-vante con-fig-u-ratiepa-ram-e-ters. Deze gegevens
+ []
 
-Overfull \hbox (6.75085pt too wide) in paragraph at lines 3--4
-\OT1/cmbr/m/n/10.95 De eerste stap in deze the-sis was het on-der-zoeken van hoe An-droid om-gaat met lo-catiegegevens
+
+Overfull \hbox (9.67091pt too wide) in paragraph at lines 74--75
+\OT1/cmbr/m/n/10.95 nisme ge^^?^^Pmple-menteerd waar-bij de data lokaal werd opges-la-gen wan-neer er geen netwerkverbind-
  []
 
 
@@ -1752,78 +1868,31 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[11
-
-]
-./chapters/implementatie.tex:23: Missing $ inserted.
-<inserted text> 
-                $
-l.23 ...n de volgende permissies vereist: "ACCESS_
-                                                  BACKGROUND_LOCATION", "ACC...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-LaTeX Warning: Command \" invalid in math mode on input line 23.
-
-./chapters/implementatie.tex:23: Please use \mathaccent for accents in math mode.
-\bbl@umlaute #1->\leavevmode \bgroup \accent 
-                                             \csname \f@encoding dqpos\endcs...
-l.23 ...n aangeroepen nadat de activity is gecreë
-                                                  erd.
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-./chapters/implementatie.tex:24: Missing $ inserted.
-<inserted text> 
-                $
-l.24 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (1632.42091pt too wide) in paragraph at lines 23--24
-\OT1/cmbr/m/n/10.95 "ACCESS$[]\OML/cmbrm/m/it/10.95 ACKGROUND[]OCATION\OT1/cmbr/m/n/10.95 "\OML/cmbrm/m/it/10.95 ; \OT1/cmbr/m/n/10.95 "\OML/cmbrm/m/it/10.95 ACCESS[]OARSE[]OCATION\OT1/cmbr/m/n/10.95 "\OML/cmbrm/m/it/10.95 ; \OT1/cmbr/m/n/10.95 "\OML/cmbrm/m/it/10.95 ACCESS[]INE[]OCATION\OT1/cmbr/m/n/10.95 "\OML/cmbrm/m/it/10.95 ; \OT1/cmbr/m/n/10.95 "\OML/cmbrm/m/it/10.95 FOREGROUND[]ERVICE\OT1/cmbr/m/n/10.95 "\OML/cmbrm/m/it/10.95 en\OT1/cmbr/m/n/10.95 "\OML/cmbrm/m/it/10.95 FOREGROUND[]ERVICE[]OCATION\OT1/cmbr/m/n/10.95 "\OML/cmbrm/m/it/10.95 :Tijdensruntimewerdgebruikgemaaktvandefunctie\OT1/cmbr/m/n/10.95 "\OML/cmbrm/m/it/10.95 registerForActivityResult\OT1/cmbr/m/n/10.95 "\OML/cmbrm/m/it/10.95 binnendeactivityomdezerechtenaantevragen:Hetisechterbelangrijkoptemerkendatdezefunctiepaskanwordenaangeroepennadatdeactivityisgecre[]erd:$ 
- []
-
-
-
-Package cleveref Info: loaded `english' language definitions on input line 30.
-[12]
-Overfull \hbox (47.77345pt too wide) in paragraph at lines 33--34
-[]\OT1/cmbr/m/n/10.95 Daarnaast be-heert de Lo-ca-tion-Man-ager een ob-fus-catieklasse. Deze klasse moet de LocationObfuscator-
- []
-
-<./svg-inkscape/uml_svg-raw.pdf, id=223, 306.39468pt x 250.63951pt>
-File: ./svg-inkscape/uml_svg-raw.pdf Graphic file (type pdf)
-<use ./svg-inkscape/uml_svg-raw.pdf>
-Package pdftex.def Info: ./svg-inkscape/uml_svg-raw.pdf  used on input line 39.
-(pdftex.def)             Requested size: 306.39394pt x 250.63889pt.
-) (./chapters/resultaten.tex
+Package cleveref Info: loaded `english' language definitions on input line 78.
+[17 <./images/obfuscatie_flow.png>]) (./chapters/resultaten.tex
 
 Package cleveref Info: loaded `english' language definitions on input line 1.
-[13 <./svg-inkscape/uml_svg-raw.pdf>]
-
-[14
-
-]
+[18]
 Chapter 5.
 ) (./chapters/conclusie.tex
 
-[15]
+[19
 
-[16
+]
+
+[20
 
 ]
 Chapter 6.
 ) (./chapters/discussie.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[17]
 
-[18
 
-]
+[21]
+
+Package cleveref Info: loaded `english' language definitions on input line 1.
+[22]
 Chapter 7.
 )
 
@@ -1831,30 +1900,28 @@ LaTeX Warning: Empty bibliography on input line 148.
 
 (./chapters/bijlage1.tex
 
-[19]
+[23
 
-[20
+]
+
+[24
 
 ]
 Appendix A.
 )
 
-[21]
+[25]
 
-[22
+[26
 
 ]
 Appendix B.
-LaTeX Font Info:    Trying to load font information for OT1+cmtl on input line 159.
-(c:/texlive/2025/texmf-dist/tex/latex/cmbright/ot1cmtl.fd
-File: ot1cmtl.fd 2005/04/13 v8.1 (WaS)
-)
-<article.pdf, id=293, 614.295pt x 794.97pt>
+<article.pdf, id=328, 614.295pt x 794.97pt>
 File: article.pdf Graphic file (type pdf)
 <use article.pdf>
 Package pdftex.def Info: article.pdf  used on input line 162.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-<article.pdf, id=295, page=1, 614.295pt x 794.97pt>
+<article.pdf, id=330, page=1, 614.295pt x 794.97pt>
 File: article.pdf Graphic file (type pdf)
 <use article.pdf, page 1>
 Package pdftex.def Info: article.pdf , page1 used on input line 162.
@@ -1865,7 +1932,7 @@ Package pdftex.def Info: article.pdf , page1 used on input line 162.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
-[23]
+[27]
 File: article.pdf Graphic file (type pdf)
 <use article.pdf, page 1>
 Package pdftex.def Info: article.pdf , page1 used on input line 162.
@@ -1880,21 +1947,21 @@ File: article.pdf Graphic file (type pdf)
 <use article.pdf, page 1>
 Package pdftex.def Info: article.pdf , page1 used on input line 162.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
-[24
+[28
 
  <./article.pdf>]
 Appendix C.
 
 
-[25
+[29
 
 ]
-<covers/back_fiiw_gent.pdf, id=349, 597.55246pt x 845.07724pt>
+<covers/back_fiiw_gent.pdf, id=383, 597.55246pt x 845.07724pt>
 File: covers/back_fiiw_gent.pdf Graphic file (type pdf)
 <use covers/back_fiiw_gent.pdf>
 Package pdftex.def Info: covers/back_fiiw_gent.pdf  used on input line 170.
 (pdftex.def)             Requested size: 597.551pt x 845.07518pt.
-<covers/back_fiiw_gent.pdf, id=351, page=1, 597.55246pt x 845.07724pt>
+<covers/back_fiiw_gent.pdf, id=385, page=1, 597.55246pt x 845.07724pt>
 File: covers/back_fiiw_gent.pdf Graphic file (type pdf)
 <use covers/back_fiiw_gent.pdf, page 1>
 Package pdftex.def Info: covers/back_fiiw_gent.pdf , page1 used on input line 170.
@@ -1917,7 +1984,7 @@ File: covers/back_fiiw_gent.pdf Graphic file (type pdf)
 <use covers/back_fiiw_gent.pdf, page 1>
 Package pdftex.def Info: covers/back_fiiw_gent.pdf , page1 used on input line 170.
 (pdftex.def)             Requested size: 597.57834pt x 845.11386pt.
-[26
+[30
 
 
  <./covers/back_fiiw_gent.pdf>] (./thesis.aux
@@ -1945,7 +2012,7 @@ Package rerunfilecheck Warning: File `thesis.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `thesis.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  14D1A6B1C9AD4F3046936CFEA5BD8E46;3656.
+(rerunfilecheck)             After:  BB5F3FEC7922468D41166E0C37C7EAE7;6202.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                thesis
@@ -1956,24 +2023,24 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 62594 strings out of 473190
- 1452243 string characters out of 5719980
- 2545118 words of memory out of 5000000
- 84882 multiletter control sequences out of 15000+600000
- 569668 words of font info for 71 fonts, out of 8000000 for 9000
+ 62648 strings out of 473190
+ 1453474 string characters out of 5719980
+ 2544118 words of memory out of 5000000
+ 84918 multiletter control sequences out of 15000+600000
+ 570020 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 95i,17n,101p,2457b,2068s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 95i,17n,101p,2457b,2070s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{glo:aar} has been referenced but does not exist, replaced by a fixed one
 
 
 pdfTeX warning (dest): name{glo:apk} has been referenced but does not exist, replaced by a fixed one
 
-<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hftl10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on thesis.pdf (40 pages, 921335 bytes).
+<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrsl10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hftl10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on thesis.pdf (44 pages, 5222139 bytes).
 PDF statistics:
- 452 PDF objects out of 1000 (max. 8388607)
- 347 compressed objects within 4 object streams
- 95 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 486 PDF objects out of 1000 (max. 8388607)
+ 373 compressed objects within 4 object streams
+ 112 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 
