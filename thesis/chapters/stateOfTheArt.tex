@@ -6,9 +6,10 @@ Voor de efficiënte implementatie van code door ontwikkelaars, zonder herhaaldel
 In tegenstelling tot een standaardapplicatie, die wordt gecompileerd naar een \gls{apk}, wordt een library gecompileerd naar een \gls{aar}. Deze \gls{aar}-bestanden kunnen vervolgens worden gepubliceerd naar publieke Gradle-plugins, waardoor ze eenvoudig herbruikbaar zijn in andere projecten.
 \subsection{activity}
 \begin{figure}[h]
-    \includegraphics[width=0.75\textwidth]{images/activity_lifecycle.png}
-    \label{fig:android_lifecycle}
+    \centering
     \caption{Activity lifecycle Android}
+    \label{fig:android_lifecycle}
+    \includegraphics[width=0.75\textwidth]{images/activity_lifecycle.png}
 \end{figure}
 Een activity in Android is een enkele, gefocuste taak die een gebruiker kan uitvoeren. Het vormt een van de fundamentele bouwstenen van een Android-applicatie. Elke activity heeft een eigen lifecycle, die wordt beheerd door het Android-systeem. Deze lifecycle bestaat uit verschillende states, zoals onCreate, onStart, onResume, onPause, onStop en onDestroy. 
 
@@ -26,9 +27,10 @@ Coroutines kunnen worden gezien als een lichtgewicht alternatief voor threads. Z
 
 \paragraph{WorkManager}
 \begin{figure}[h]
-    \includesvg[width=0.75\textwidth]{images/workmanager_main.svg}
-    \label{fig:workmanager}
+    \centering
     \caption{Android WorkManager}
+    \label{fig:workmanager}
+    \includesvg[width=0.75\textwidth]{images/workmanager_main.svg}
 \end{figure}
 De WorkManager is een krachtig en flexibel API voor het uitvoeren van achtergrondtaken. Het biedt ondersteuning voor zowel eenmalige (one-time) als periodieke (periodic) taken. Voor achtergrondtaken die regelmatig moeten worden uitgevoerd, zoals het verzamelen van locatiegegevens, is de periodieke versie geschikt. Hierbij kan een taak bijvoorbeeld elke 15 minuten worden uitgevoerd, met een maximale duur van 10 minuten per taak. Voor taken die slechts één keer hoeven te worden uitgevoerd, zoals een langdurige upload, kan de eenmalige versie worden gebruikt. Het is echter belangrijk op te merken dat langdurige taken in de foreground een permanente notificatie in het besturingssysteem vereisen, wat de gebruiker kan storen.
 
@@ -43,18 +45,19 @@ De Google Play Services-implementatie, daarentegen, maakt gebruik van de Fused L
 
 In de Fused Location Provider zijn er daarnaast verschillende methoden om locatiegegevens te verkrijgen. De meest nauwkeurige methode is via GPS-satellieten, maar alternatieve methoden zoals het gebruik van lokale telefoonmasten of wifi-netwerken bieden ook mogelijkheden. Deze alternatieve methoden introduceren een inherente vorm van obfuscatie, aangezien de nauwkeurigheid doorgaans lager is dan die van GPS. Echter, in dichtbevolkte stedelijke gebieden kan dit juist leiden tot een hogere nauwkeurigheid dan GPS, omdat gebouwen GPS-signalen kunnen blokkeren.
 
-Dan sinds Android 12 is er een nieuwe toestemming gekomen dat de gebruiker moet toelaten. Namelijk bij het vragen van locatie permissies kan de gebruiker kiezen voor coarse location.
-De coarse location-functionaliteit in Android maakt geen gebruik van GPS-satellieten en voegt bovendien een extra laag van obfuscatie toe aan de locatiegegevens. Hoe deze obfuscatie precies wordt toegepast, is echter niet publiekelijk gedocumenteerd. Sinds Android 12 hebben gebruikers de mogelijkheid gekregen om alleen toegang tot een benaderde locatie (approximate location) toe te staan, wat een extra dimensie toevoegt aan de discussie over privacy en nauwkeurigheid.
+Sinds Android 12 hebben gebruikers de mogelijkheid gekregen om alleen toegang tot een benaderde locatie (approximate location) toe te staan, wat een extra dimensie toevoegt aan de discussie over privacy en nauwkeurigheid.
+De coarse location-functionaliteit in Android maakt geen gebruik van GPS-satellieten en voegt bovendien een extra laag van obfuscatie toe aan de locatiegegevens. Hoe deze obfuscatie precies wordt toegepast, is echter niet publiekelijk gedocumenteerd. 
 
 \subsection{Voorgaand onderzoek}
 In eerdere onderzoeken, uitgevoerd door Kevin De Boeck, werd aangetoond dat locatie-obfuscatie een dringende noodzaak is. Uit data-analyse op een dataset van locatiegegevens in Frankrijk, verzameld over een periode van zeven dagen, bleek dat gevoelige locaties eenvoudig konden worden geïdentificeerd. Daarnaast konden sociale netwerken worden gereconstrueerd en konden plaatsen van interesse voor individuen gemakkelijk in kaart worden gebracht.
 
 Voortbouwend op deze bevindingen heeft Toon Dehaene onderzoek gedaan naar methoden om GPS-locaties te obfusceren. Het voorgestelde algoritme introduceerde het concept van privacycirkels op locaties die niet eerder waren bezocht. Wanneer een gebruiker zich opnieuw binnen dezelfde cirkel bevindt, wordt altijd het middelpunt van deze cirkel geretourneerd. Dit proces voegt ruis toe aan de coördinaten. Bovendien werd er variatie toegevoegd aan de tijdstippen van locatiegegevens. Dit algoritme werd geïmplementeerd in Rust en toegepast aan de serverzijde om locatie-obfuscatie te realiseren. Het algoritme vormde tevens de basis voor de standaardimplementatie van obfuscatie in de Android-library wat verder wordt uitgelegd.
 
-In vervolgonderzoeken werd verder geëxperimenteerd met het gridlocken van locaties aan lokale wegen. Dit had als doel om de obfuscatie realistischer te laten lijken, met name in afgelegen gebieden.
+In vervolgonderzoeken werd verder geëxperimenteerd met het gridsnapping van locaties aan lokale wegen. Dit had als doel om de obfuscatie realistischer te laten lijken, met name in afgelegen gebieden.
+% meer voor aanval dan verdediging. Een van de zwakke punten is in afgelege gebieden => discussie ook info over gridsnapping kan veel vrijgeven
 % TODO verder uitbreiden
 
-\section{Onderzoeken}
+\section{Preliminaire experimenten}
 Aangezien de Android Developer-website niet alle vragen beantwoordt en er nog veel onduidelijkheden zijn, is een deel van de state-of-the-art gewijd aan onderzoek naar hoe deze variabelen het uiteindelijke resultaat beïnvloeden.
 \subsection{Verschillende nauwkeurigheidsniveaus}
 De Fused Location Provider biedt vier prioriteitsniveaus voor het bepalen van de locatie, zoals beschreven in de Android-documentatie:
@@ -74,10 +77,11 @@ Om de coarse location-functionaliteit te onderzoeken, werd de applicatie tweemaa
 Als resultaat vinden we de volgende visualisatie\ref{fig:coarsevsfine}. Hierbij is rood de trace met fine probleem en blauw coarse permissies.
 \subsection{activity}
 \begin{figure}[h]
+    \centering
+    \caption{Vergelijking coarse permissies en fine permissies}
+    \label{fig:coarsevsfine}
     \includegraphics[width=\textwidth]{images/coarsevsfine1.png}
     \includegraphics[width=\textwidth]{images/coarsevsfine2.png}
-    \label{fig:coarsevsfine}
-    \caption{Vergelijking coarse permissies en fine permissies}
 \end{figure}
 \subsection{Invloed van zendmasten}
 Uit de verzamelde data van eerdere experimenten bleek dat de gegenereerde locaties met coarse location-permissies op verschillende apparaten identieke resultaten opleverden. Dit riep de vraag op of deze locaties werden berekend op basis van telefoonmasten. Om dit te onderzoeken, werden alle telefoonmasten in Vlaanderen in kaart gebracht en vergeleken met de verzamelde locatiegegevens. Hoewel dit een interessante invalshoek biedt, valt verder onderzoek naar dit onderwerp buiten de scope van deze thesis.

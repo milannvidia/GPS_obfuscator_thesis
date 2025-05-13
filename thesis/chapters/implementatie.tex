@@ -1,11 +1,13 @@
+% Zeker nog library voor afstand nog
 \chapter{Implementatie}
 % dit als intro
 De eerste stap in deze thesis was het onderzoeken van hoe Android omgaat met locatiegegevens en het implementeren van deze functionaliteit in een testapplicatie. Zodra deze applicatie functioneel was, werden de eerste tests uitgevoerd en werd de nuttige code afgesplitst om de basis te vormen van de Android-library.
 \section{Overzicht library}
+De structuur van de library is weergegeven in Figuur~\ref{fig:uml_library}. Het merendeel van de functionaliteit is ondergebracht in de klasse \texttt{LocationManager}, die fungeert als het centrale beheerpunt voor locatieverzameling. De klasse \texttt{LocationWorker} vormt de implementatie die vereist is om de WorkManager te benutten voor achtergrondtaken. Daarnaast biedt de interface \texttt{LocationObfuscator} een abstractielaag waarmee ontwikkelaars eigen obfuscatiealgoritmen kunnen implementeren.
 \begin{figure}
     \centering
-    \label{fig:uml_library}
     \caption{Klasse diagram van de library}
+    \label{fig:uml_library}
     \includesvg[width=0.75\textwidth]{images/uml.svg}
 \end{figure}
 \subsection{Locatie tracking}
@@ -28,8 +30,10 @@ De WorkManager biedt een modern alternatief voor het uitvoeren van periodieke ta
 
 \paragraph{Integratie in de library}
 Doordat de WorkManager beide vereisten kan afhandelen, is er slechts één klasse nodig die zowel foreground services als periodieke taken implementeert. Deze klasse, die de \texttt{Worker}-interface implementeert, bevat tevens de \texttt{LocationCallback} die vereist is voor de \texttt{FusedLocationProvider}. Deze callback speelt alle resultaten direct door naar de \texttt{LocationManager}, die deze resultaten vervolgens verwerkt volgens de ingestelde configuratie. Deze aanpak minimaliseert de complexiteit en verhoogt de herbruikbaarheid van de code.
+
+Een bijkomende reden om de \texttt{LocationManager} als een Singleton te implementeren, is de beperking van de LocationWorker om complexe structuren of referenties door te geven. Door gebruik te maken van een Singleton-patroon kan de LocationWorker de \texttt{LocationManager} initialiseren en een referentie behouden naar diens variabelen. Zo bevat de \texttt{LocationManager} bijvoorbeeld een boolean genaamd \texttt{running}, waarmee kan worden aangegeven of de locatieverzameling actief is. Indien de locatieverzameling wordt stopgezet, kan de LocationWorker deze status uitlezen en zichzelf correct beëindigen.
 \subsubsection{Permissies}
-voordeel van Android is sandboxing, waardoor alles waar de applicatie probeert toegang tot te krijgen gemonitord kan worden. Hierdoor moet de applicatie toestemming vragen voor vele dingen anders als de applicatie probeert toegang te krijgen zal e applicatie crashen.
+voordeel van Android is sandboxing, waardoor alles waar de applicatie probeert toegang tot te krijgen gemonitord kan worden. Hierdoor moet de applicatie toestemming vragen voor vele dingen anders als de applicatie probeert toegang te krijgen zal de applicatie crashen.
 permissies zijn verdeeld in 2 categorieën. Degene die in de manifest van de Android applicatie kunnen vermeld worden en er geen nood is om rechtstreeks toestemming aan de gebruiker te vragen.
 
 De andere moet ook in de manifest vermeld worden maar moet ook vanuit de hoofdactiviteit opgevraagd worden met de functie RequestPermission waarbij Android dan visueel de permissie vragen afhandelt. Het is echter belangrijk op te merken dat deze functie pas kan worden aangeroepen nadat de activity is gecreëerd.
@@ -55,8 +59,8 @@ Daarnaast bevat het algoritme een mechanisme om te voorkomen dat locaties te fre
 Om jitter te vermijden—waarbij de obfuscator blijft schakelen tussen twee overlappende privacycirkels en daardoor een nauwkeurigere locatie prijsgeeft—wordt een extra controle uitgevoerd. Indien de gebruiker zich nog steeds binnen de laatst gebruikte privacycirkel bevindt, wordt deze cirkel opnieuw gebruikt voor de obfuscering. Dit mechanisme draagt bij aan een consistente en veilige verwerking van locatiegegevens.
 \begin{figure}
     \centering
-    \label{fig:flow_obfuscatie_algoritmen}
     \caption{Flow diagram van het obfuscatie algoritme}
+    \label{fig:flow_obfuscatie_algoritmen}
     \includegraphics[width=0.75\textwidth]{images/obfuscatie_flow.png}
 \end{figure}
 \subsection{Opslag}
@@ -73,7 +77,9 @@ De \texttt{blobs}-endpoint werd gebruikt om de privacycirkels door te sturen.
 
 Om de afhankelijkheid van een continue internetverbinding te minimaliseren, werd een mechanisme geïmplementeerd waarbij de data lokaal werd opgeslagen wanneer er geen netwerkverbinding beschikbaar was. Zodra de verbinding werd hersteld, werden de opgeslagen gegevens alsnog doorgestuurd naar de server.
 \subsection{verwerking}
-Voor de verwerking van de resultaten werden jupyter notebooks gehanteerd samen met de library Folium om de resultaten visueel te kunnen representeren.
+Voor de verwerking van de resultaten werden jupyter notebooks gehanteerd samen met de library Folium om de resultaten visueel te kunnen representeren. De eerste visualisatie was het verschil tussen coarse en fine Permissies vergelijken voor een experiment, dit was beide gedaan op balanced power accuracy gebeurd zodat beide geen gps satellieten gebruikt. Het resultaat is te zien in het hoofdstuk experimenten in state of the art \ref{fig:coarsevsfine}.
+Een tweede test betrof het gebruik van twee telefoons met coarse permissies en twee met fine permissies. Voor elk paar werd één telefoon ingesteld op high accuracy en de andere op balanced power accuracy. Deze test werd echter niet opgenomen in het experimentenonderdeel van het hoofdstuk \textit{State of the Art}, omdat er te veel externe factoren waren die de resultaten beïnvloedden, zoals de beperkingen opgelegd door de energiebesparingsfunctionaliteiten van Android.
+De overige tests richtten zich op het evalueren van de standaardimplementatie van het obfuscatiealgoritme. Hierbij werden verschillende variabelen gevarieerd om de werking van het algoritme te analyseren en mogelijke verbeterpunten te identificeren. De inzichten die uit deze tests voortkwamen, werden gebruikt om de library verder te debuggen en te optimaliseren. Een uitgebreide bespreking van deze resultaten is te vinden in het hoofdstuk \textit{Resultaten}.
 
 \section{Conclusie}
 In dit hoofdstuk werd de implementatie van de Android-library uitgebreid besproken. De library is ontworpen om locatiegegevens op een privacyvriendelijke manier te verzamelen en te verwerken. Het centrale beheer van locatieverzameling wordt uitgevoerd door de \texttt{LocationManager}, terwijl de WorkManager zorgt voor een flexibele en betrouwbare uitvoering van zowel foreground services als periodieke background tasks.
