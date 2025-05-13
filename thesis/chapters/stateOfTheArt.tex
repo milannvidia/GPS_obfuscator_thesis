@@ -74,8 +74,7 @@ Naast de beschreven verschillen in nauwkeurigheid en energieverbruik, zijn er oo
 Tests met de prioriteiten \textit{low power} en \textit{passive} werden niet uitgevoerd. De \textit{low power}-instelling was niet relevant voor onderzoek naar gebruikerslocatie-traces, terwijl de \textit{passive}-instelling te veel externe variabelen bevatte, waardoor geen waardevolle resultaten konden worden verkregen.
 \subsection{Coarse location Android}
 Om de coarse location-functionaliteit te onderzoeken, werd de applicatie tweemaal geïnstalleerd op dezelfde telefoon: één keer met coarse location-permissies en één keer met fine location-permissies. Beide applicaties waren geconfigureerd met dezelfde prioriteitsinstellingen om een eerlijke vergelijking mogelijk te maken. Een van de onderzoeksvragen was of de instelling \textit{balanced power accuracy}, die geen gebruik maakt van satellieten, dezelfde resultaten zou opleveren als coarse location. Dit zou inzicht geven in de vraag of de obfuscatie uitsluitend voortkomt uit de inherente onnauwkeurigheid van de gebruikte technologieën, of dat Android actief een extra laag van obfuscatie toepast op de locatiegegevens.
-Als resultaat vinden we de volgende visualisatie\ref{fig:coarsevsfine}. Hierbij is rood de trace met fine probleem en blauw coarse permissies.
-\subsection{activity}
+Als resultaat vinden we de volgende visualisatie\ref{fig:coarsevsfine}. Hierbij is rood de trace met fine probleem en blauw coarse permissies. Waaruit we kunnen concluderen dat bovenop de inherente onnauwkeurigheid ook nog extra obfuscatie gebeurd.
 \begin{figure}[h]
     \centering
     \caption{Vergelijking coarse permissies en fine permissies}
@@ -83,6 +82,25 @@ Als resultaat vinden we de volgende visualisatie\ref{fig:coarsevsfine}. Hierbij 
     \includegraphics[width=\textwidth]{images/coarsevsfine1.png}
     \includegraphics[width=\textwidth]{images/coarsevsfine2.png}
 \end{figure}
-\subsection{Invloed van zendmasten}
+Een interessante vraag die voortkwam uit de experimenten, was hoe de obfuscatie van Android precies werkt. Om dit te onderzoeken, werden de coarse location-gegevens van eerdere tests naast elkaar gelegd. Zoals te zien is in Figuur~\ref{fig:coarse_1_phone}, leveren verschillende dagen en traces steeds dezelfde coördinaten op. Dit wijst erop dat Android een soort privacycirkels implementeert, vergelijkbaar met eerder besproken algoritmen, om aanvallen te voorkomen waarbij gemiddelden over lange periodes worden gebruikt om plaatsen van interesse te identificeren.
+
+Een vervolgonderzoek richtte zich op de consistentie van dit algoritme. De vraag was of de geobfusceerde locaties consistent worden berekend op basis van nabijgelegen telefoonmasten, zodat dezelfde locaties op verschillende apparaten identiek zouden zijn. Uit de resultaten, weergegeven in Figuur~\ref{fig:coarse_3_phones}, blijkt echter dat dit niet het geval is. Dit suggereert dat Android's obfuscatie-algoritme niet uitsluitend gebaseerd is op vaste berekeningen van telefoonmastlocaties, maar mogelijk andere factoren in overweging neemt.
+\begin{figure}[h]
+    \centering
+    \caption{Vergelijking coarse permissie op één apparaat}
+    \label{fig:coarse_1_phone}
+    \includegraphics[width=0.24\textwidth]{images/coarse-10-04.png}
+    \includegraphics[width=0.24\textwidth]{images/coarse-10-05.png}
+    \includegraphics[width=0.24\textwidth]{images/coarse-10-06.png}
+    \includegraphics[width=0.24\textwidth]{images/coarse-10-07.png}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \caption{Vergelijking coarse permissie op meerdere apparaten}
+    \label{fig:coarse_3_phones}
+    \includegraphics[width=0.32\textwidth]{images/coarse-b76cb5235efc9519.png}
+    \includegraphics[width=0.32\textwidth]{images/coarse-df4294d41666d9a7.png}
+    \includegraphics[width=0.32\textwidth]{images/coarse-e41a59c48d43c93e.png}
+\end{figure}
 Uit de verzamelde data van eerdere experimenten bleek dat de gegenereerde locaties met coarse location-permissies op verschillende apparaten identieke resultaten opleverden. Dit riep de vraag op of deze locaties werden berekend op basis van telefoonmasten. Om dit te onderzoeken, werden alle telefoonmasten in Vlaanderen in kaart gebracht en vergeleken met de verzamelde locatiegegevens. Hoewel dit een interessante invalshoek biedt, valt verder onderzoek naar dit onderwerp buiten de scope van deze thesis.
  

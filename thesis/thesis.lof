@@ -4,11 +4,13 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Activity lifecycle Android}}{4}{figure.caption.6}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Android WorkManager}}{6}{figure.caption.10}%
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Vergelijking coarse permissies en fine permissies}}{10}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Vergelijking coarse permissie op één apparaat}}{10}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Vergelijking coarse permissie op meerdere apparaten}}{11}{figure.caption.13}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Flow diagram van continue locatieverzameling}}{13}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Flow diagram van continue locatieverzameling}}{15}{figure.caption.14}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Klasse diagram van de library}}{16}{figure.caption.13}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Flow diagram van het obfuscatie algoritme}}{19}{figure.caption.17}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Klasse diagram van de library}}{18}{figure.caption.15}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Flow diagram van het obfuscatie algoritme}}{21}{figure.caption.19}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

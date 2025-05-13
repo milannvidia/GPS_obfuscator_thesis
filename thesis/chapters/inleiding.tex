@@ -2,9 +2,14 @@
 \chapter{Inleiding}
 % locaties  verzameling...
 % probleemstelling
-Veel moderne applicaties verzamelen de locatiegegevens van hun gebruikers, deze locatiegegevens kunnen dan gebruikt worden voor crowd-insights dat nuttig is voor verscheidene onderzoeken, zoals mobiliteitsstudies en stadsplanning. Echter, de hoge nauwkeurigheid en frequentie van deze gegevens brengen aanzienlijke privacyrisico’s met zich mee. In verkeerde handen kunnen locatiegegevens leiden tot sociale profilering of zelfs spionage, wat de persoonlijke veiligheid van gebruikers in gevaar kan brengen.
+Veel moderne applicaties verzamelen de locatiegegevens van hun gebruikers, deze locatiegegevens kunnen dan gebruikt worden voor crowd-insights dat nuttig is voor verscheidene onderzoeken, zoals mobiliteitsstudies en stadsplanning. Echter, de hoge nauwkeurigheid en frequentie van deze gegevens brengen aanzienlijke privacyrisico’s met zich mee. 
+In verkeerde handen kunnen locatiegegevens leiden tot sociale profilering of zelfs spionage, wat de persoonlijke veiligheid van gebruikers in gevaar kan brengen.
 \section{probleemstelling}
 % probleem is manier waarop
+Het probleem ligt in het feit dat de werkelijke locatie van een gebruiker wordt doorgestuurd naar de server en vervolgens zonder enige vorm van obfuscatie wordt opgeslagen. Dit betekent dat de locatiegegevens in hun oorspronkelijke, niet-versluierde vorm beschikbaar blijven. Bovendien worden deze gegevens vaak doorverkocht aan data brokers, wederom zonder enige vorm van filtering of obfuscatie. 
+
+Om te kunnen garanderen dat de locatiegegevens van een gebruiker niet ongewenst lekken, moeten verschillende voorwaarden worden vervuld. Ten eerste mag er geen sprake zijn van diefstal van gegevens tijdens de communicatie met de server. Ten tweede moet de server volledig beveiligd zijn tegen datalekken. Daarnaast moet erop vertrouwd kunnen worden dat de opgeslagen gegevens op een geobfusceerde manier worden bewaard. Indien de gegevens worden doorverkocht, moet dit eveneens gebeuren in een geobfusceerde vorm. Tot slot is het van belang dat er een grondige screening plaatsvindt van de partijen die deze gegevens aankopen, om misbruik te voorkomen.
+
 \section{onderzoeksvragen}
 % Is het mogelijk om uit te rollen => belangrijk op device zelf, data broker ziet nooit originele data
 %afbakening

@@ -38,10 +38,10 @@ permissies zijn verdeeld in 2 categorieën. Degene die in de manifest van de And
 
 De andere moet ook in de manifest vermeld worden maar moet ook vanuit de hoofdactiviteit opgevraagd worden met de functie RequestPermission waarbij Android dan visueel de permissie vragen afhandelt. Het is echter belangrijk op te merken dat deze functie pas kan worden aangeroepen nadat de activity is gecreëerd.
 Voor deze applicatie zijn de permissies als volgt:
-\begin{listing}
+\begin{itemize}
     \item Enkel manifest: ACCESS\_BACKGROUND\_LOCATION, FOREGROUND\_SERVICE en FOREGROUND\_SERVICE\_LOCATION
     \item Met RequestPermission: ACCESS\_COARSE\_LOCATION en ACCESS\_FINE\_LOCATION
-\end{listing}
+\end{itemize}
 
 \subsection{Obfuscatie}
 Wanneer de Worker de callback van de \texttt{LocationManager} aanroept met het locatie-resultaat van de \texttt{FusedLocationProvider}, worden de coördinaten en de timestamp uit dit resultaat geëxtraheerd.
