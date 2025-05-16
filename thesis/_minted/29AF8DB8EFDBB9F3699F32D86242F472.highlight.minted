@@ -1,0 +1,10 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }\PYG{k+kd}{class} \PYG{n+nc}{MainActivity}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{ComponentActivity}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{locationManager}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{LocationManager}\PYG{p}{.}\PYG{n+na}{getInstance}\PYG{p}{(}\PYG{k}{this}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{init}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{locationManager}\PYG{p}{.}\PYG{n+na}{locationObfuscator}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{LocationObfuscatorV1}\PYG{p}{.}\PYG{n+na}{getInstance}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{            }\PYG{n}{locationManager}\PYG{p}{.}\PYG{n+na}{callback}\PYG{+w}{ }\PYG{o}{=}
+\PYG{+w}{                }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n}{location}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{sendLocationToServer}\PYG{p}{(}\PYG{n}{location}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

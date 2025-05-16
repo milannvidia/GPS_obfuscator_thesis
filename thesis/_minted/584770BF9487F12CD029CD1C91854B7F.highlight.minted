@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{android.location.Location}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{be.kuleuven.milanschollier.safegps.LatLonTs}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{be.kuleuven.milanschollier.safegps.LocationObfuscator}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{java.io.File}
+\PYG{k+kd}{class} \PYG{n+nc}{ImplementationExample}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n+nf}{constructor}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{:}\PYG{n}{LocationObfuscator}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{override}\PYG{+w}{ }\PYG{n}{fun}\PYG{+w}{ }\PYG{n+nf}{obfuscateLocation}\PYG{p}{(}\PYG{n}{location}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{Location}\PYG{p}{)}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{LatLonTs}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{LatLonTs}\PYG{p}{(}\PYG{n}{location}\PYG{p}{.}\PYG{n+na}{latitude}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{location}\PYG{p}{.}\PYG{n+na}{longitude}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{location}\PYG{p}{.}\PYG{n+na}{time}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{override}\PYG{+w}{ }\PYG{n}{fun}\PYG{+w}{ }\PYG{n+nf}{load}\PYG{p}{(}\PYG{n}{filesDir}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{File}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{k}{return}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{override}\PYG{+w}{ }\PYG{n}{fun}\PYG{+w}{ }\PYG{n+nf}{store}\PYG{p}{(}\PYG{n}{filesDir}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{File}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{k}{return}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{override}\PYG{+w}{ }\PYG{n}{fun}\PYG{+w}{ }\PYG{n+nf}{clearStorage}\PYG{p}{(}\PYG{n}{filesDir}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{File}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{k}{return}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

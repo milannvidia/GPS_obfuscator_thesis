@@ -1,5 +1,6 @@
 \chapter{Evaluatie en discussie} \label{chap:evaluatie}
 \section{Evaluatie van het systeem}
+
 % requirements afchecken
 \subsection{beperkingen}
 In de huidige versie van de library is slechts beperkt onderzoek verricht naar de langdurige stabiliteit van locatieverzameling in de achtergrond en naar mogelijke onbekende beperkingen die verder reiken dan de maximale threadtijd van 10 minuten per 15 minuten. Om dit grondig te testen, zouden meerdere langdurige runtimes moeten worden voorzien.
@@ -9,5 +10,49 @@ Voor de testapplicatie is een fallbackmechanisme geïmplementeerd voor mislukte 
 % evaluatie van de privacy
 % quantitatief en qualitatief
 \section{Gebruik van de library}
+\subsection{initialisatie}
 % Manual gebruik van library, stap voor stap
+Het gebruik van de library verloopt in enkele duidelijke stappen. Eerst wordt een instantie van de \texttt{LocationManager} aangemaakt, waarbij de \texttt{MainActivity} als parameter wordt meegegeven. Dit is noodzakelijk om een observer te kunnen koppelen aan de lifecycle van de \texttt{MainActivity}. Vervolgens wordt een \texttt{LocationObfuscator} ingesteld; dit kan zowel de standaardimplementatie zijn als een door de ontwikkelaar zelf geïmplementeerde klasse. Ten slotte wordt een callbackfunctie geregistreerd, die door de library wordt aangeroepen zodra er een nieuwe locatie beschikbaar is.
+\begin{minted}{java}
+    class MainActivity : ComponentActivity() {
+        private val locationManager = LocationManager.getInstance(this)
+        init {
+            locationManager.locationObfuscator = LocationObfuscatorV1.getInstance()
+            locationManager.callback =
+                { location -> sendLocationToServer(location) }
+        }
+    }
+\end{minted}
+\subsection{LocationObfuscator zelf implementeren}
+Om een eigen locatie-obfuscator te implementeren, kan men onderstaande aanpak volgen. De eenvoudigste implementatie bestaat erin dat de locatie verkregen via de FusedLocationProvider als argument wordt doorgegeven aan de \texttt{obfuscateLocation}-functie, die vervolgens een tuple van coördinaten en tijdstempel retourneert. De overige drie functies (\texttt{load}, \texttt{store} en \texttt{clearStorage}) zijn bedoeld voor het beheren van permanente opslag. Indien nodig kunnen variabelen via de constructor worden meegegeven. Het \texttt{filesDir}-object dat aan deze functies wordt doorgegeven, biedt toegang tot de opslagruimte van de applicatie.
+\begin{minted}{java}
+import android.location.Location
+import be.kuleuven.milanschollier.safegps.LatLonTs
+import be.kuleuven.milanschollier.safegps.LocationObfuscator
+import java.io.File
+class ImplementationExample private constructor() :LocationObfuscator {
+    override fun obfuscateLocation(location: Location): LatLonTs {
+        return LatLonTs(location.latitude, location.longitude, location.time)
+    }
+    override fun load(filesDir: File) {return}
+    override fun store(filesDir: File) {return}
+    override fun clearStorage(filesDir: File) {return}
+}
+\end{minted}
+\subsection{Live data}
+De developer kan gebruik maken van live data in de library. Zo is finePermission, coarsepermission en running live data dat de applicatie intuitief kan laten reageren op de werking van de library.
+\begin{minted}{java}
+val finePermission = locationManager.finePermission.observeAsState()
+Button(
+    onClick = {
+        locationManager.getFinePermission(true)
+    },
+    modifier = Modifier
+        .weight(1f)
+        .fillMaxSize(),
+    enabled = finePermission.value == false
+) {
+    Text(text = if (finePermission.value == true) "Fine permission granted" else "Ask Fine Permission")
+}
+\end{minted}
 \section{Conclusie}

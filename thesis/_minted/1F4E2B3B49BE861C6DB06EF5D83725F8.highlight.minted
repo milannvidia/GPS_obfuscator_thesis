@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{val}\PYG{+w}{ }\PYG{n}{finePermission}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{locationManager}\PYG{p}{.}\PYG{n+na}{finePermission}\PYG{p}{.}\PYG{n+na}{observeAsState}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{Button}\PYG{p}{(}
+\PYG{+w}{    }\PYG{n}{onClick}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{locationManager}\PYG{p}{.}\PYG{n+na}{getFinePermission}\PYG{p}{(}\PYG{k+kc}{true}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{modifier}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Modifier}
+\PYG{+w}{        }\PYG{p}{.}\PYG{n+na}{weight}\PYG{p}{(}\PYG{l+m+mf}{1f}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{.}\PYG{n+na}{fillMaxSize}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{enabled}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{finePermission}\PYG{p}{.}\PYG{n+na}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{false}
+\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{Text}\PYG{p}{(}\PYG{n}{text}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{finePermission}\PYG{p}{.}\PYG{n+na}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{)}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Fine permission granted}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Ask Fine Permission}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}
