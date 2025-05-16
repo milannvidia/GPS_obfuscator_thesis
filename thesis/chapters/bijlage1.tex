@@ -1,2 +1,62 @@
-\chapter{Een aanhangsel}
-sdfsffqsfsf
+\chapter{Code van het obfuscatie algoritme}
+\begin{minted}{java}
+override fun obfuscateLocation(location: Location): LatLonTs? {
+    val lat = location.latitude
+    val lon = location.longitude
+    val ts: Long = location.time
+
+    val matchedReports = historyBlobs.filter { report ->
+        Geodesic.WGS84.Inverse(
+            report.first,
+            report.second,
+            lat,
+            lon,
+            GeodesicMask.DISTANCE
+        ).s12 < report.third
+    }
+
+    val blob: PrivacyBlob
+    if (matchedReports.isEmpty()) {
+        val sampledRadius = radiusSampler()
+        val sampledAngle = Math.toDegrees(angleSampler())
+        val res = Geodesic.WGS84.Direct(lat, lon, sampledAngle, sampledRadius)
+        blob = PrivacyBlob(res.lat2, res.lon2, _blobRadius)
+        println("Generated new privacy blob: $blob")
+        historyBlobs.add(blob)
+    } else {
+        blob = matchedReports.minBy { report ->
+            Geodesic.WGS84.Inverse(
+                report.first,
+                report.second,
+                lat,
+                lon,
+                GeodesicMask.DISTANCE
+            ).s12
+        }
+    }
+
+    val lastLocation = perturbedLocationCache.lastOrNull() ?: LatLonTs(0.0, 0.0, 0)
+
+    if (ts - lastLocation.third < _deltaTime * 1000) {
+        return null
+    }
+    //Voor jitter tegen te gaan als in de buurt van vorige locatie die 
+    //privacy blob doorsturen ongeacht andere dichter is
+    val res: LatLonTs = if (Geodesic.WGS84.Inverse(
+            lastLocation.first,
+            lastLocation.second,
+            lat,
+            lon,
+            GeodesicMask.DISTANCE
+        ).s12 < _blobRadius
+    ) {
+        LatLonTs(lastLocation.first, lastLocation.second, ts)
+    } else {
+        LatLonTs(blob.first, blob.second, ts)
+    }
+
+    perturbedLocationCache.add(res)
+    if (perturbedLocationCache.size > 5) perturbedLocationCache.removeAt(0)
+    return res
+}
+\end{minted}

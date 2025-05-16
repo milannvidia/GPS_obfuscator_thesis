@@ -1,5 +1,5 @@
-\chapter{Design} %2 paginas
-hier nog tekst voor het algemene
+\chapter{Design} \label{chap:design}
+Vooraleer de implementatie van de library kan starten, is een grondig ontwerp noodzakelijk. Dit ontwerp wordt in belangrijke mate bepaald door de beperkingen en mogelijkheden van het Android-platform. Daarnaast zijn de functionele vereisten en onderliggende veronderstellingen essentieel voor het uiteindelijke ontwerp.
 \section{Vereisten}
 % dit aanpassen zeggen dat dit de hoofd doelen zijn.
 De doelstellingen van dit onderzoek zijn als volgt geformuleerd:
@@ -29,9 +29,9 @@ Het ontwerp van de library is gebaseerd op het principe van een facade, waarbij 
 Met bovenstaande ontwerpprincipes in gedachten illustreert Figuur \ref{fig:flow_diagram_locatie_verzameling} hoe één enkele functie het verzamelen van locatiegegevens kan starten. Het is belangrijk op te merken dat deze implementatie de functie \texttt{RequestPermission} niet omvat, aangezien deze expliciet door de ontwikkelaar moet worden geïmplementeerd.
 \begin{figure}
     \centering
+    \includesvg[width=0.75\textwidth]{images/sequence_diagram.svg}
     \caption{Flow diagram van continue locatieverzameling}
     \label{fig:flow_diagram_locatie_verzameling}
-    \includesvg[width=0.75\textwidth]{images/sequence_diagram.svg}
 \end{figure}
 
 Verder is de LocationManager een Singleton gemaakt. Singletons zorgen ervoor dat er slechts één instantie van een klasse bestaat binnen de applicatie. Dit is er voor gekozen zodat als de developer twee-maal de LocationManager probeert te initialiseren de applicatie niet eventueel crashed doordat beide instanties locaties opvragen en het limiet overschrijden.

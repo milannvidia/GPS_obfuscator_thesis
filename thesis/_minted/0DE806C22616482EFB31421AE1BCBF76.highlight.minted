@@ -1,0 +1,61 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{override}\PYG{+w}{ }\PYG{n}{fun}\PYG{+w}{ }\PYG{n+nf}{obfuscateLocation}\PYG{p}{(}\PYG{n}{location}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{Location}\PYG{p}{)}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{LatLonTs}\PYG{o}{?}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{lat}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{location}\PYG{p}{.}\PYG{n+na}{latitude}
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{lon}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{location}\PYG{p}{.}\PYG{n+na}{longitude}
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{ts}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{Long}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{location}\PYG{p}{.}\PYG{n+na}{time}
+
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{matchedReports}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{historyBlobs}\PYG{p}{.}\PYG{n+na}{filter}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n}{report}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}}
+\PYG{+w}{        }\PYG{n}{Geodesic}\PYG{p}{.}\PYG{n+na}{WGS84}\PYG{p}{.}\PYG{n+na}{Inverse}\PYG{p}{(}
+\PYG{+w}{            }\PYG{n}{report}\PYG{p}{.}\PYG{n+na}{first}\PYG{p}{,}
+\PYG{+w}{            }\PYG{n}{report}\PYG{p}{.}\PYG{n+na}{second}\PYG{p}{,}
+\PYG{+w}{            }\PYG{n}{lat}\PYG{p}{,}
+\PYG{+w}{            }\PYG{n}{lon}\PYG{p}{,}
+\PYG{+w}{            }\PYG{n}{GeodesicMask}\PYG{p}{.}\PYG{n+na}{DISTANCE}
+\PYG{+w}{        }\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{s12}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{report}\PYG{p}{.}\PYG{n+na}{third}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{blob}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{PrivacyBlob}
+\PYG{+w}{    }\PYG{n+nf}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{matchedReports}\PYG{p}{.}\PYG{n+na}{isEmpty}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{sampledRadius}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{radiusSampler}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{sampledAngle}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Math}\PYG{p}{.}\PYG{n+na}{toDegrees}\PYG{p}{(}\PYG{n}{angleSampler}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{res}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Geodesic}\PYG{p}{.}\PYG{n+na}{WGS84}\PYG{p}{.}\PYG{n+na}{Direct}\PYG{p}{(}\PYG{n}{lat}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lon}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sampledAngle}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sampledRadius}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{blob}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{PrivacyBlob}\PYG{p}{(}\PYG{n}{res}\PYG{p}{.}\PYG{n+na}{lat2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{res}\PYG{p}{.}\PYG{n+na}{lon2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{\PYGZus{}blobRadius}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Generated new privacy blob: \PYGZdl{}blob}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{historyBlobs}\PYG{p}{.}\PYG{n+na}{add}\PYG{p}{(}\PYG{n}{blob}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{blob}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{matchedReports}\PYG{p}{.}\PYG{n+na}{minBy}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n}{report}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}}
+\PYG{+w}{            }\PYG{n}{Geodesic}\PYG{p}{.}\PYG{n+na}{WGS84}\PYG{p}{.}\PYG{n+na}{Inverse}\PYG{p}{(}
+\PYG{+w}{                }\PYG{n}{report}\PYG{p}{.}\PYG{n+na}{first}\PYG{p}{,}
+\PYG{+w}{                }\PYG{n}{report}\PYG{p}{.}\PYG{n+na}{second}\PYG{p}{,}
+\PYG{+w}{                }\PYG{n}{lat}\PYG{p}{,}
+\PYG{+w}{                }\PYG{n}{lon}\PYG{p}{,}
+\PYG{+w}{                }\PYG{n}{GeodesicMask}\PYG{p}{.}\PYG{n+na}{DISTANCE}
+\PYG{+w}{            }\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{s12}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{lastLocation}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{perturbedLocationCache}\PYG{p}{.}\PYG{n+na}{lastOrNull}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{?}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{LatLonTs}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{0.0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}
+
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{ts}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{lastLocation}\PYG{p}{.}\PYG{n+na}{third}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{\PYGZus{}deltaTime}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{1000}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{c+c1}{//Voor jitter tegen te gaan als in de buurt van vorige locatie die}
+\PYG{+w}{    }\PYG{c+c1}{//privacy blob doorsturen ongeacht andere dichter is}
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{res}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{LatLonTs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Geodesic}\PYG{p}{.}\PYG{n+na}{WGS84}\PYG{p}{.}\PYG{n+na}{Inverse}\PYG{p}{(}
+\PYG{+w}{            }\PYG{n}{lastLocation}\PYG{p}{.}\PYG{n+na}{first}\PYG{p}{,}
+\PYG{+w}{            }\PYG{n}{lastLocation}\PYG{p}{.}\PYG{n+na}{second}\PYG{p}{,}
+\PYG{+w}{            }\PYG{n}{lat}\PYG{p}{,}
+\PYG{+w}{            }\PYG{n}{lon}\PYG{p}{,}
+\PYG{+w}{            }\PYG{n}{GeodesicMask}\PYG{p}{.}\PYG{n+na}{DISTANCE}
+\PYG{+w}{        }\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{s12}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{\PYGZus{}blobRadius}
+\PYG{+w}{    }\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{LatLonTs}\PYG{p}{(}\PYG{n}{lastLocation}\PYG{p}{.}\PYG{n+na}{first}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{lastLocation}\PYG{p}{.}\PYG{n+na}{second}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ts}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{LatLonTs}\PYG{p}{(}\PYG{n}{blob}\PYG{p}{.}\PYG{n+na}{first}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{blob}\PYG{p}{.}\PYG{n+na}{second}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ts}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n}{perturbedLocationCache}\PYG{p}{.}\PYG{n+na}{add}\PYG{p}{(}\PYG{n}{res}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{perturbedLocationCache}\PYG{p}{.}\PYG{n+na}{size}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{perturbedLocationCache}\PYG{p}{.}\PYG{n+na}{removeAt}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{res}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

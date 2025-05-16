@@ -1,21 +1,39 @@
 %aanleiding
-\chapter{Inleiding}
+\chapter{Inleiding} \label{chap:inleiding}
 % locaties  verzameling...
 % probleemstelling
-Veel moderne applicaties verzamelen de locatiegegevens van hun gebruikers, deze locatiegegevens kunnen dan gebruikt worden voor crowd-insights dat nuttig is voor verscheidene onderzoeken, zoals mobiliteitsstudies en stadsplanning. Echter, de hoge nauwkeurigheid en frequentie van deze gegevens brengen aanzienlijke privacyrisico’s met zich mee. 
+Veel moderne applicaties verzamelen de locatiegegevens van hun gebruikers, deze locatiegegevens kunnen dan gebruikt worden voor crowd-insights dat nuttig is voor verscheidene onderzoeken, zoals mobiliteitsstudies en stadsplanning. Echter, de hoge nauwkeurigheid en frequentie van deze gegevens brengen aanzienlijke privacyrisico’s met zich mee.
 In verkeerde handen kunnen locatiegegevens leiden tot sociale profilering of zelfs spionage, wat de persoonlijke veiligheid van gebruikers in gevaar kan brengen.
-\section{probleemstelling}
-% probleem is manier waarop
-Het probleem ligt in het feit dat de werkelijke locatie van een gebruiker wordt doorgestuurd naar de server en vervolgens zonder enige vorm van obfuscatie wordt opgeslagen. Dit betekent dat de locatiegegevens in hun oorspronkelijke, niet-versluierde vorm beschikbaar blijven. Bovendien worden deze gegevens vaak doorverkocht aan data brokers, wederom zonder enige vorm van filtering of obfuscatie. 
 
-Om te kunnen garanderen dat de locatiegegevens van een gebruiker niet ongewenst lekken, moeten verschillende voorwaarden worden vervuld. Ten eerste mag er geen sprake zijn van diefstal van gegevens tijdens de communicatie met de server. Ten tweede moet de server volledig beveiligd zijn tegen datalekken. Daarnaast moet erop vertrouwd kunnen worden dat de opgeslagen gegevens op een geobfusceerde manier worden bewaard. Indien de gegevens worden doorverkocht, moet dit eveneens gebeuren in een geobfusceerde vorm. Tot slot is het van belang dat er een grondige screening plaatsvindt van de partijen die deze gegevens aankopen, om misbruik te voorkomen.
+Met deze thesis wordt een bijdrage geleverd aan de ontwikkeling van privacyvriendelijke technologieën voor mobiele toepassingen. De voorgestelde oplossing verlaagt de instapdrempel voor ontwikkelaars en bevordert het veilig gebruik van locatiegegevens in een wereld waarin data steeds waardevoller — en kwetsbaarder — wordt.
+\section{probleemstelling}
+Het centrale probleem is dat de werkelijke locatie van een gebruiker doorgaans rechtstreeks naar de server wordt verzonden en daar zonder enige vorm van obfuscatie wordt opgeslagen. Hierdoor blijven locatiegegevens in hun oorspronkelijke, niet-versluierde vorm beschikbaar, wat aanzienlijke privacyrisico’s met zich meebrengt. Bovendien worden deze gegevens vaak zonder verdere bewerking doorverkocht aan data brokers.
+
+Om de privacy van gebruikers te waarborgen, moeten verschillende voorwaarden worden vervuld. Ten eerste moet de overdracht van gegevens naar de server beveiligd zijn tegen onderschepping. Ten tweede dient de server zelf adequaat beschermd te zijn tegen datalekken. Daarnaast is het essentieel dat opgeslagen locatiegegevens op een geobfusceerde manier worden bewaard en dat eventuele doorverkoop van deze gegevens eveneens uitsluitend in geobfusceerde vorm plaatsvindt. Tot slot is een strikte controle op de partijen die toegang krijgen tot deze gegevens noodzakelijk om misbruik te voorkomen.
+
+De aanwezigheid van deze potentiële kwetsbaarheden bemoeilijkt het voor gebruikers om vertrouwen te hebben in de huidige verwerking van locatiegegevens. 
+
+Bovendien vormt de steile leercurve van de relevante Android-technologieën een bijkomende uitdaging. Dit kan, zeker bij beperkte ervaring of strakke deadlines, leiden tot fouten of beveiligingslacunes in de implementatie. Een goed ontworpen bibliotheek die de complexiteit voor ontwikkelaars verlaagt en standaard voorziet in robuuste beveiligingsmaatregelen, kan deze risico’s aanzienlijk beperken.
+
+Dus deze problemen maken een mooie grondlegging als thesisonderwerp.
 
 \section{onderzoeksvragen}
 % Is het mogelijk om uit te rollen => belangrijk op device zelf, data broker ziet nooit originele data
+Het onderzoek beantwoordt drie kernvragen: (1) Hoe kan een Android-bibliotheek worden ontworpen die locatiegegevens lokaal en gebruiksvriendelijk obfusceert? (2) In hoeverre behoudt de geobfusceerde data haar nut voor analyses? (3) Welke technische beperkingen ontstaan bij het lokaal verwerken van locatiegegevens op Android-apparaten? Daarnaast wordt de effectiviteit van de bibliotheek geëvalueerd tegenover Android 12’s Approximate Location-functie, om inzicht te bieden in de vooruitgang van mobiele privacymechanismen.
 %afbakening
 \section{Doelen en scope}
-Het doel van deze thesis is om een data stream obfuscator te implementeren als een Android-bibliotheek. Deze obfuscator voegt ruis toe aan zowel de locatie- als tijdgegevens, zodat individuele bewegingspatronen niet meer naar specifieke personen kunnen worden herleid. Hiermee wordt het risico op het lekken van gevoelige informatie verminderd. Daarnaast worden de prestaties van deze obfuscator geëvalueerd en vergeleken met de "Approximate location"-functie die sinds Android 12 beschikbaar is. Op deze manier kan de effectiviteit van bestaande en nieuwe privacymaatregelen voor mobiele apparaten worden onderzocht.
-% eindigend op doel van de thesis => verzamelen op privacy vriendelijke manier
-% De ontwikkeling van deze bibliotheek zou de obfuscatie berekening van de server naar de client verhuizen. Waardoor gevoelige informatie (bv. een privacy bubbel) lokaal op het apparaat blijven en enkel geobfusceerde locaties worden doorgestuurd en zo data lekken minder schadelijk zijn.
+Het doel van deze thesis is om een data stream obfuscator te implementeren als een Android-bibliotheek. 
+Deze obfuscator voegt ruis toe aan zowel de locatie- als tijdgegevens, zodat individuele bewegingspatronen niet meer naar specifieke personen kunnen worden herleid.
+De ontwikkeling van deze bibliotheek zou de obfuscatie berekening van de server naar de client verhuizen. Waardoor gevoelige informatie (bv. een privacy bubbel) lokaal op het apparaat blijven en enkel geobfusceerde locaties worden doorgestuurd en zo data lekken minder schadelijk zijn.
+
+In deze thesis wordt de focus uitsluitend gelegd op het lokaal verzamelen en obfusceren van locatie- en tijdgegevens op Android-apparaten.
+Aspecten zoals server-side beveiliging, netwerkbeveiliging en bredere privacyvraagstukken, waaronder identiteitsbeheer en gebruikersconsent, worden buiten beschouwing gelaten. De implementatie is beperkt tot het Android-platform; andere mobiele besturingssystemen, zoals iOS, vallen buiten de scope van dit onderzoek.
 \section{Overzicht van de thesis}
-% paragraaf per sectie wat er volgt
+Het verloop van thesis is als volgt:
+\paragraph{Hoofdstuk \ref{chap:state_of_the_art} State of the art:} In dit hoofdstuk wordt een overzicht gegeven van de relevante aspecten van het Android besturingssysteem die van belang zijn voor deze thesis. Daarnaast wordt de huidige stand van zaken omtrent locatieverzameling en obfuscatie besproken. Ook worden enkele preliminaire experimenten toegelicht die bijdragen aan een beter begrip van de implementatie in Android, wat de basis vormt voor de keuzes die in Hoofdstuk \ref{chap:implementatie} worden gemaakt.
+\paragraph{Hoofdstuk \ref{chap:design} Design:} In dit hoofdstuk worden de vereisten en veronderstellingen van de bibliotheek besproken. Daarnaast worden de belangrijkste ontwerpkeuzes en architecturale beslissingen toegelicht die aan de basis liggen van de implementatie.
+\paragraph{Hoofdsuk \ref{chap:implementatie} Implementatie:} In dit hoofdstuk wordt de volledige werkwijze van implementatie toegelicht. 
+\paragraph{Hoofdsuk \ref{chap:resultaten} Resultaten:} In dit hoofdstuk wordt visueel en numeriek de resultaten van de gemaakte library toegelicht.
+\paragraph{Hoofdsuk \ref{chap:evaluatie} Evaluatie en discussie:} Evaluatie of de bibliotheek aan de vereisten voldoet, mogelijke uitbreidingen en mogelijke verbeteringen
+
+

@@ -1,14 +1,14 @@
 % Zeker nog library voor afstand nog
-\chapter{Implementatie}
+\chapter{Implementatie} \label{chap:implementatie}
 % dit als intro
 De eerste stap in deze thesis was het onderzoeken van hoe Android omgaat met locatiegegevens en het implementeren van deze functionaliteit in een testapplicatie. Zodra deze applicatie functioneel was, werden de eerste tests uitgevoerd en werd de nuttige code afgesplitst om de basis te vormen van de Android-library.
 \section{Overzicht library}
 De structuur van de library is weergegeven in Figuur~\ref{fig:uml_library}. Het merendeel van de functionaliteit is ondergebracht in de klasse \texttt{LocationManager}, die fungeert als het centrale beheerpunt voor locatieverzameling. De klasse \texttt{LocationWorker} vormt de implementatie die vereist is om de WorkManager te benutten voor achtergrondtaken. Daarnaast biedt de interface \texttt{LocationObfuscator} een abstractielaag waarmee ontwikkelaars eigen obfuscatiealgoritmen kunnen implementeren.
 \begin{figure}
     \centering
+    \includesvg[width=0.75\textwidth]{images/uml.svg}
     \caption{Klasse diagram van de library}
     \label{fig:uml_library}
-    \includesvg[width=0.75\textwidth]{images/uml.svg}
 \end{figure}
 \subsection{Locatie tracking}
 Het centrale onderdeel van de library, namelijk de locatieverzameling, wordt beheerd door de \texttt{LocationManager}, die fungeert als het centrale aanspreekpunt. Deze klasse beheert alle benodigde variabelen voor locatieverzameling en biedt setters met ingebouwde validaties om de consistentie te waarborgen. Variabelen die specifiek zijn voor obfuscatie worden echter beheerd door de obfuscator zelf, aangezien deze buiten de verantwoordelijkheid van de \texttt{LocationManager} vallen.
@@ -59,9 +59,9 @@ Daarnaast bevat het algoritme een mechanisme om te voorkomen dat locaties te fre
 Om jitter te vermijden—waarbij de obfuscator blijft schakelen tussen twee overlappende privacycirkels en daardoor een nauwkeurigere locatie prijsgeeft—wordt een extra controle uitgevoerd. Indien de gebruiker zich nog steeds binnen de laatst gebruikte privacycirkel bevindt, wordt deze cirkel opnieuw gebruikt voor de obfuscering. Dit mechanisme draagt bij aan een consistente en veilige verwerking van locatiegegevens.
 \begin{figure}
     \centering
+    \includegraphics[width=0.75\textwidth]{images/obfuscatie_flow.png}
     \caption{Flow diagram van het obfuscatie algoritme}
     \label{fig:flow_obfuscatie_algoritmen}
-    \includegraphics[width=0.75\textwidth]{images/obfuscatie_flow.png}
 \end{figure}
 \subsection{Opslag}
 Omdat veel obfuscatiealgoritmen permanente opslag nodig heeft moet iedere obfuscatieklasse ook een load en store functie implementeren. Dit heeft als argument de filesDir van de hoofdactiviteit. In de standaardimplementatie wordt dit gebruikt om voorgaande privacy cirkels op te slaan in een file afgesloten voor andere applicaties.

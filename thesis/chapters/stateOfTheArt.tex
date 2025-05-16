@@ -1,4 +1,4 @@
-\chapter{State of the art}
+\chapter{State of the art} \label{chap:state_of_the_art}
 Voor de achtergrond te kaderen voor het werk van deze thesis te kunnen bespreken zijn er 2 grote stromingen: Android besturingssysteem en locatieverzameling/-obfuscatie. Ook is er een extra sectie voorzien voor het onderzoek naar hoe de standaardimplementatie van obfuscatie werkt in Android.
 \section{Android besturingssysteem}
 \subsection{library}
@@ -7,9 +7,9 @@ In tegenstelling tot een standaardapplicatie, die wordt gecompileerd naar een \g
 \subsection{activity}
 \begin{figure}[h]
     \centering
+    \includegraphics[width=0.75\textwidth]{images/activity_lifecycle.png}
     \caption{Activity lifecycle Android}
     \label{fig:android_lifecycle}
-    \includegraphics[width=0.75\textwidth]{images/activity_lifecycle.png}
 \end{figure}
 Een activity in Android is een enkele, gefocuste taak die een gebruiker kan uitvoeren. Het vormt een van de fundamentele bouwstenen van een Android-applicatie. Elke activity heeft een eigen lifecycle, die wordt beheerd door het Android-systeem. Deze lifecycle bestaat uit verschillende states, zoals onCreate, onStart, onResume, onPause, onStop en onDestroy. 
 
@@ -28,14 +28,14 @@ Coroutines kunnen worden gezien als een lichtgewicht alternatief voor threads. Z
 \paragraph{WorkManager}
 \begin{figure}[h]
     \centering
+    \includesvg[width=0.75\textwidth]{images/workmanager_main.svg}
     \caption{Android WorkManager}
     \label{fig:workmanager}
-    \includesvg[width=0.75\textwidth]{images/workmanager_main.svg}
 \end{figure}
 De WorkManager is een krachtig en flexibel API voor het uitvoeren van achtergrondtaken. Het biedt ondersteuning voor zowel eenmalige (one-time) als periodieke (periodic) taken. Voor achtergrondtaken die regelmatig moeten worden uitgevoerd, zoals het verzamelen van locatiegegevens, is de periodieke versie geschikt. Hierbij kan een taak bijvoorbeeld elke 15 minuten worden uitgevoerd, met een maximale duur van 10 minuten per taak. Voor taken die slechts één keer hoeven te worden uitgevoerd, zoals een langdurige upload, kan de eenmalige versie worden gebruikt. Het is echter belangrijk op te merken dat langdurige taken in de foreground een permanente notificatie in het besturingssysteem vereisen, wat de gebruiker kan storen.
 
 \section{Locatie obfuscatie}
-In de studie van obfuscatie heb je 2 paden: hoe android het aanpakt en voorgaand onderzoek losstaand van Android.
+In de studie van obfuscatie heb je 2 paden: hoe Android het aanpakt en voorgaand onderzoek losstaand van Android.
 \subsection{Android's oplossing}
 Voordat er dieper wordt ingegaan op locatie-obfuscatie in Android, is het belangrijk om de werking van de locatievoorzieningen in Android te bespreken. Android biedt twee primaire opties om locatiegegevens op te vragen: de standaard open-source implementatie en de Google Play Services-implementatie.
 
@@ -77,30 +77,30 @@ Om de coarse location-functionaliteit te onderzoeken, werd de applicatie tweemaa
 Als resultaat vinden we de volgende visualisatie\ref{fig:coarsevsfine}. Hierbij is rood de trace met fine probleem en blauw coarse permissies. Waaruit we kunnen concluderen dat bovenop de inherente onnauwkeurigheid ook nog extra obfuscatie gebeurd.
 \begin{figure}[h]
     \centering
-    \caption{Vergelijking coarse permissies en fine permissies}
-    \label{fig:coarsevsfine}
     \includegraphics[width=\textwidth]{images/coarsevsfine1.png}
     \includegraphics[width=\textwidth]{images/coarsevsfine2.png}
+    \caption{Vergelijking coarse permissies en fine permissies}
+    \label{fig:coarsevsfine}
 \end{figure}
 Een interessante vraag die voortkwam uit de experimenten, was hoe de obfuscatie van Android precies werkt. Om dit te onderzoeken, werden de coarse location-gegevens van eerdere tests naast elkaar gelegd. Zoals te zien is in Figuur~\ref{fig:coarse_1_phone}, leveren verschillende dagen en traces steeds dezelfde coördinaten op. Dit wijst erop dat Android een soort privacycirkels implementeert, vergelijkbaar met eerder besproken algoritmen, om aanvallen te voorkomen waarbij gemiddelden over lange periodes worden gebruikt om plaatsen van interesse te identificeren.
 
 Een vervolgonderzoek richtte zich op de consistentie van dit algoritme. De vraag was of de geobfusceerde locaties consistent worden berekend op basis van nabijgelegen telefoonmasten, zodat dezelfde locaties op verschillende apparaten identiek zouden zijn. Uit de resultaten, weergegeven in Figuur~\ref{fig:coarse_3_phones}, blijkt echter dat dit niet het geval is. Dit suggereert dat Android's obfuscatie-algoritme niet uitsluitend gebaseerd is op vaste berekeningen van telefoonmastlocaties, maar mogelijk andere factoren in overweging neemt.
 \begin{figure}[h]
     \centering
-    \caption{Vergelijking coarse permissie op één apparaat}
-    \label{fig:coarse_1_phone}
     \includegraphics[width=0.24\textwidth]{images/coarse-10-04.png}
     \includegraphics[width=0.24\textwidth]{images/coarse-10-05.png}
     \includegraphics[width=0.24\textwidth]{images/coarse-10-06.png}
     \includegraphics[width=0.24\textwidth]{images/coarse-10-07.png}
+    \caption{Vergelijking coarse permissie op één apparaat}
+    \label{fig:coarse_1_phone}
 \end{figure}
 \begin{figure}[h]
     \centering
-    \caption{Vergelijking coarse permissie op meerdere apparaten}
-    \label{fig:coarse_3_phones}
     \includegraphics[width=0.32\textwidth]{images/coarse-b76cb5235efc9519.png}
     \includegraphics[width=0.32\textwidth]{images/coarse-df4294d41666d9a7.png}
     \includegraphics[width=0.32\textwidth]{images/coarse-e41a59c48d43c93e.png}
+    \caption{Vergelijking coarse permissie op meerdere apparaten}
+    \label{fig:coarse_3_phones}
 \end{figure}
 Uit de verzamelde data van eerdere experimenten bleek dat de gegenereerde locaties met coarse location-permissies op verschillende apparaten identieke resultaten opleverden. Dit riep de vraag op of deze locaties werden berekend op basis van telefoonmasten. Om dit te onderzoeken, werden alle telefoonmasten in Vlaanderen in kaart gebracht en vergeleken met de verzamelde locatiegegevens. Hoewel dit een interessante invalshoek biedt, valt verder onderzoek naar dit onderwerp buiten de scope van deze thesis.
  

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.4)  13 MAY 2025 16:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.4)  16 MAY 2025 16:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1369,8 +1369,7 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
-
-No file thesis.aux.
+ (./thesis.aux)
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 132.
@@ -1391,6 +1390,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 132.
 LaTeX Font Info:    ... okay on input line 132.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 132.
 LaTeX Font Info:    ... okay on input line 132.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1607,11 +1607,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [7
 
 ]
-LaTeX Font Info:    Trying to load font information for OML+cmbrm on input line 25.
+LaTeX Font Info:    Trying to load font information for OML+cmbrm on input line 27.
  (c:/texlive/2025/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
 File: omlcmbrm.fd 2005/04/13 v8.1 (WaS)
 )
-LaTeX Font Info:    Trying to load font information for OMS+cmbrs on input line 25.
+LaTeX Font Info:    Trying to load font information for OMS+cmbrs on input line 27.
  (c:/texlive/2025/texmf-dist/tex/latex/cmbright/omscmbrs.fd
 File: omscmbrs.fd 2005/04/13 v8.1 (WaS)
 ))
@@ -1663,46 +1663,74 @@ Overfull \hbox (15.5254pt too wide) in paragraph at lines 5--7
  []
 
 LaTeX Font Info:    Font shape `OT1/cmbr/b/n' in size <14.4> not available
-(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 7.
+(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 9.
 
 
 [1
 
 
-{c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}]) (./chapters/stateOfTheArt.tex
+{c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+Underfull \vbox (badness 8151) has occurred while \output is active []
+
+
+
+Package cleveref Info: loaded `english' language definitions on input line 33.
+[2]
+LaTeX Font Info:    Font shape `OT1/cmbr/b/n' in size <10.95> not available
+(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 33.
+
+
+LaTeX Warning: Reference `chap:state_of_the_art' on page 3 undefined on input line 33.
+
+
+LaTeX Warning: Reference `chap:implementatie' on page 3 undefined on input line 33.
+
+
+LaTeX Warning: Reference `chap:design' on page 3 undefined on input line 34.
+
+
+LaTeX Warning: Reference `chap:implementatie' on page 3 undefined on input line 35.
+
+
+LaTeX Warning: Reference `chap:resultaten' on page 3 undefined on input line 36.
+
+
+LaTeX Warning: Reference `chap:evaluatie' on page 3 undefined on input line 37.
+
+) (./chapters/stateOfTheArt.tex
 
 Package cleveref Info: loaded `english' language definitions on input line 1.
-[2]
+[3]
+
+[4
+
+]
 Chapter 2.
 LaTeX Font Info:    Font shape `OT1/cmbr/b/n' in size <12> not available
 (Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 4.
-LaTeX Font Info:    Font shape `OT1/cmbr/b/n' in size <10> not available
-(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 10.
-<images/activity_lifecycle.png, id=138, 514.92375pt x 665.48625pt>
+<images/activity_lifecycle.png, id=152, 514.92375pt x 665.48625pt>
 File: images/activity_lifecycle.png Graphic file (type png)
 <use images/activity_lifecycle.png>
-Package pdftex.def Info: images/activity_lifecycle.png  used on input line 12.
+Package pdftex.def Info: images/activity_lifecycle.png  used on input line 10.
 (pdftex.def)             Requested size: 320.0935pt x 413.6939pt.
+LaTeX Font Info:    Font shape `OT1/cmbr/b/n' in size <10> not available
+(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 11.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[3
-
-]
+[5]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 Package cleveref Info: loaded `english' language definitions on input line 19.
-[4 <./images/activity_lifecycle.png>]
-LaTeX Font Info:    Font shape `OT1/cmbr/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmbr/bx/n' tried instead on input line 23.
-<./svg-inkscape/workmanager_main_svg-raw.pdf, id=157, 722.7pt x 406.51875pt>
+[6 <./images/activity_lifecycle.png>]
+<./svg-inkscape/workmanager_main_svg-raw.pdf, id=171, 722.7pt x 406.51875pt>
 File: ./svg-inkscape/workmanager_main_svg-raw.pdf Graphic file (type pdf)
 <use ./svg-inkscape/workmanager_main_svg-raw.pdf>
-Package pdftex.def Info: ./svg-inkscape/workmanager_main_svg-raw.pdf  used on input line 33.
+Package pdftex.def Info: ./svg-inkscape/workmanager_main_svg-raw.pdf  used on input line 31.
 (pdftex.def)             Requested size: 722.69823pt x 406.51775pt.
 
 
@@ -1714,34 +1742,34 @@ Underfull \vbox (badness 1688) has occurred while \output is active []
 
 
 Package cleveref Info: loaded `english' language definitions on input line 39.
-[5]
+[7]
 
 Package cleveref Info: loaded `english' language definitions on input line 47.
-[6 <./svg-inkscape/workmanager_main_svg-raw.pdf>]
+[8 <./svg-inkscape/workmanager_main_svg-raw.pdf>]
 Underfull \vbox (badness 6461) has occurred while \output is active []
 
 
 
 Package cleveref Info: loaded `english' language definitions on input line 66.
-[7]
+[9]
 LaTeX Font Info:    Font shape `OT1/cmbr/m/it' in size <10.95> not available
 (Font)              Font shape `OT1/cmbr/m/sl' tried instead on input line 72.
 
 
-LaTeX Warning: Reference `fig:coarsevsfine' on page 8 undefined on input line 77.
+LaTeX Warning: Reference `fig:coarsevsfine' on page 10 undefined on input line 77.
 
-<images/coarsevsfine1.png, id=185, 1606.0pt x 941.5175pt>
+<images/coarsevsfine1.png, id=198, 1606.0pt x 941.5175pt>
 File: images/coarsevsfine1.png Graphic file (type png)
 <use images/coarsevsfine1.png>
-Package pdftex.def Info: images/coarsevsfine1.png  used on input line 82.
+Package pdftex.def Info: images/coarsevsfine1.png  used on input line 80.
 (pdftex.def)             Requested size: 426.79135pt x 250.2049pt.
-<images/coarsevsfine2.png, id=186, 1606.0pt x 941.5175pt>
+<images/coarsevsfine2.png, id=199, 1606.0pt x 941.5175pt>
 File: images/coarsevsfine2.png Graphic file (type png)
 <use images/coarsevsfine2.png>
-Package pdftex.def Info: images/coarsevsfine2.png  used on input line 83.
+Package pdftex.def Info: images/coarsevsfine2.png  used on input line 81.
 (pdftex.def)             Requested size: 426.79135pt x 250.2049pt.
 
-LaTeX Warning: Reference `fig:coarse_1_phone' on page 8 undefined on input line 85.
+LaTeX Warning: Reference `fig:coarse_1_phone' on page 10 undefined on input line 85.
 
 
 Overfull \hbox (7.07574pt too wide) in paragraph at lines 76--86
@@ -1751,47 +1779,47 @@ Overfull \hbox (7.07574pt too wide) in paragraph at lines 76--86
 
 
 Package cleveref Info: loaded `english' language definitions on input line 86.
-[8]
+[10]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Reference `fig:coarse_3_phones' on page 9 undefined on input line 87.
+LaTeX Warning: Reference `fig:coarse_3_phones' on page 11 undefined on input line 87.
 
-<images/coarse-10-04.png, id=194, 438.13687pt x 357.58594pt>
+<images/coarse-10-04.png, id=207, 438.13687pt x 357.58594pt>
 File: images/coarse-10-04.png Graphic file (type png)
 <use images/coarse-10-04.png>
-Package pdftex.def Info: images/coarse-10-04.png  used on input line 92.
+Package pdftex.def Info: images/coarse-10-04.png  used on input line 90.
 (pdftex.def)             Requested size: 102.43227pt x 83.59619pt.
-<images/coarse-10-05.png, id=195, 438.13687pt x 363.60844pt>
+<images/coarse-10-05.png, id=208, 438.13687pt x 363.60844pt>
 File: images/coarse-10-05.png Graphic file (type png)
 <use images/coarse-10-05.png>
-Package pdftex.def Info: images/coarse-10-05.png  used on input line 93.
+Package pdftex.def Info: images/coarse-10-05.png  used on input line 91.
 (pdftex.def)             Requested size: 102.43227pt x 85.00414pt.
-<images/coarse-10-06.png, id=196, 438.13687pt x 362.10281pt>
+<images/coarse-10-06.png, id=209, 438.13687pt x 362.10281pt>
 File: images/coarse-10-06.png Graphic file (type png)
 <use images/coarse-10-06.png>
-Package pdftex.def Info: images/coarse-10-06.png  used on input line 94.
+Package pdftex.def Info: images/coarse-10-06.png  used on input line 92.
 (pdftex.def)             Requested size: 102.43227pt x 84.65215pt.
-<images/coarse-10-07.png, id=197, 440.39531pt x 357.58594pt>
+<images/coarse-10-07.png, id=210, 440.39531pt x 357.58594pt>
 File: images/coarse-10-07.png Graphic file (type png)
 <use images/coarse-10-07.png>
-Package pdftex.def Info: images/coarse-10-07.png  used on input line 95.
+Package pdftex.def Info: images/coarse-10-07.png  used on input line 93.
 (pdftex.def)             Requested size: 102.43227pt x 83.1706pt.
-<images/coarse-b76cb5235efc9519.png, id=198, 545.03625pt x 526.21594pt>
+<images/coarse-b76cb5235efc9519.png, id=211, 545.03625pt x 526.21594pt>
 File: images/coarse-b76cb5235efc9519.png Graphic file (type png)
 <use images/coarse-b76cb5235efc9519.png>
-Package pdftex.def Info: images/coarse-b76cb5235efc9519.png  used on input line 101.
+Package pdftex.def Info: images/coarse-b76cb5235efc9519.png  used on input line 99.
 (pdftex.def)             Requested size: 136.57635pt x 131.85878pt.
-<images/coarse-df4294d41666d9a7.png, id=199, 548.80031pt x 529.22719pt>
+<images/coarse-df4294d41666d9a7.png, id=212, 548.80031pt x 529.22719pt>
 File: images/coarse-df4294d41666d9a7.png Graphic file (type png)
 <use images/coarse-df4294d41666d9a7.png>
-Package pdftex.def Info: images/coarse-df4294d41666d9a7.png  used on input line 102.
+Package pdftex.def Info: images/coarse-df4294d41666d9a7.png  used on input line 100.
 (pdftex.def)             Requested size: 136.57635pt x 131.70082pt.
-<images/coarse-e41a59c48d43c93e.png, id=200, 545.78906pt x 527.72156pt>
+<images/coarse-e41a59c48d43c93e.png, id=213, 545.78906pt x 527.72156pt>
 File: images/coarse-e41a59c48d43c93e.png Graphic file (type png)
 <use images/coarse-e41a59c48d43c93e.png>
-Package pdftex.def Info: images/coarse-e41a59c48d43c93e.png  used on input line 103.
+Package pdftex.def Info: images/coarse-e41a59c48d43c93e.png  used on input line 101.
 (pdftex.def)             Requested size: 136.57635pt x 132.05084pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1802,46 +1830,46 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 ) (./chapters/design.tex
 
 Package cleveref Info: loaded `english' language definitions on input line 1.
-[9]
+[11]
 
 Package cleveref Info: loaded `english' language definitions on input line 1.
-[10 <./images/coarsevsfine1.png> <./images/coarsevsfine2.png> <./images/coarse-10-04.png> <./images/coarse-10-05.png> <./images/coarse-10-06.png> <./images/coarse-10-07.png>]
+[12 <./images/coarsevsfine1.png> <./images/coarsevsfine2.png> <./images/coarse-10-04.png> <./images/coarse-10-05.png> <./images/coarse-10-06.png> <./images/coarse-10-07.png>]
 
 Package cleveref Info: loaded `english' language definitions on input line 1.
-[11 <./images/coarse-b76cb5235efc9519.png> <./images/coarse-df4294d41666d9a7.png> <./images/coarse-e41a59c48d43c93e.png>]
+[13 <./images/coarse-b76cb5235efc9519.png> <./images/coarse-df4294d41666d9a7.png> <./images/coarse-e41a59c48d43c93e.png>]
 
-[12
+[14
 
 ]
 Chapter 3.
 
 
-[13]
+[15]
 Overfull \hbox (9.7879pt too wide) in paragraph at lines 23--24
 []\OT1/cmbr/bx/n/10.95 Integriteit van het Android-systeem\OT1/cmbr/m/n/10.95 : Het wordt veron-der-steld dat de Android-installatie
  []
 
 
-LaTeX Warning: Reference `fig:flow_diagram_locatie_verzameling' on page 14 undefined on input line 29.
+LaTeX Warning: Reference `fig:flow_diagram_locatie_verzameling' on page 16 undefined on input line 29.
 
 LaTeX Font Info:    Trying to load font information for OT1+cmtl on input line 29.
 (c:/texlive/2025/texmf-dist/tex/latex/cmbright/ot1cmtl.fd
 File: ot1cmtl.fd 2005/04/13 v8.1 (WaS)
 )
-<./svg-inkscape/sequence_diagram_svg-raw.pdf, id=236, 429.10312pt x 270.17146pt>
+<./svg-inkscape/sequence_diagram_svg-raw.pdf, id=249, 429.10312pt x 270.17146pt>
 File: ./svg-inkscape/sequence_diagram_svg-raw.pdf Graphic file (type pdf)
 <use ./svg-inkscape/sequence_diagram_svg-raw.pdf>
-Package pdftex.def Info: ./svg-inkscape/sequence_diagram_svg-raw.pdf  used on input line 34.
+Package pdftex.def Info: ./svg-inkscape/sequence_diagram_svg-raw.pdf  used on input line 32.
 (pdftex.def)             Requested size: 429.10207pt x 270.17079pt.
 
 
 Package cleveref Info: loaded `english' language definitions on input line 36.
-[14]) (./chapters/implementatie.tex
+[16]) (./chapters/implementatie.tex
 
 Package cleveref Info: loaded `english' language definitions on input line 2.
-[15 <./svg-inkscape/sequence_diagram_svg-raw.pdf>]
+[17 <./svg-inkscape/sequence_diagram_svg-raw.pdf>]
 
-[16
+[18
 
 ]
 Chapter 4.
@@ -1851,44 +1879,44 @@ Overfull \hbox (6.75085pt too wide) in paragraph at lines 4--5
  []
 
 
-LaTeX Warning: Reference `fig:uml_library' on page 17 undefined on input line 6.
+LaTeX Warning: Reference `fig:uml_library' on page 19 undefined on input line 6.
 
-<./svg-inkscape/uml_svg-raw.pdf, id=267, 306.39468pt x 250.63951pt>
+<./svg-inkscape/uml_svg-raw.pdf, id=281, 306.39468pt x 250.63951pt>
 File: ./svg-inkscape/uml_svg-raw.pdf Graphic file (type pdf)
 <use ./svg-inkscape/uml_svg-raw.pdf>
-Package pdftex.def Info: ./svg-inkscape/uml_svg-raw.pdf  used on input line 11.
+Package pdftex.def Info: ./svg-inkscape/uml_svg-raw.pdf  used on input line 9.
 (pdftex.def)             Requested size: 306.39394pt x 250.63889pt.
 
 
-[17]
+[19]
 
 Package cleveref Info: loaded `english' language definitions on input line 25.
-[18 <./svg-inkscape/uml_svg-raw.pdf>]
+[20 <./svg-inkscape/uml_svg-raw.pdf>]
 
 Package cleveref Info: loaded `english' language definitions on input line 42.
-[19]
+[21]
 Overfull \hbox (10.67279pt too wide) in paragraph at lines 43--44
 []\OT1/cmbr/m/n/10.95 Met Re-quest-Per-mis-sion: AC-CESS[]COARSE[]LOCATION en AC-CESS[]FINE[]LOCATION 
  []
 
 
-LaTeX Warning: Reference `fig:flow_obfuscatie_algoritmen' on page 20 undefined on input line 53.
+LaTeX Warning: Reference `fig:flow_obfuscatie_algoritmen' on page 22 undefined on input line 53.
 
-<images/obfuscatie_flow.png, id=305, 657.95813pt x 411.78844pt>
+<images/obfuscatie_flow.png, id=318, 657.95813pt x 411.78844pt>
 File: images/obfuscatie_flow.png Graphic file (type png)
 <use images/obfuscatie_flow.png>
-Package pdftex.def Info: images/obfuscatie_flow.png  used on input line 64.
+Package pdftex.def Info: images/obfuscatie_flow.png  used on input line 62.
 (pdftex.def)             Requested size: 320.0935pt x 200.33292pt.
 
 
 Package cleveref Info: loaded `english' language definitions on input line 66.
-[20]
+[22]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 Package cleveref Info: loaded `english' language definitions on input line 74.
-[21 <./images/obfuscatie_flow.png>]
+[23 <./images/obfuscatie_flow.png>]
 Overfull \hbox (0.79488pt too wide) in paragraph at lines 74--75
 \OT1/cmbr/m/n/10.95 afkom-stig van de de-bug-call-back, samen met rel-e-vante con-fig-u-ratiepa-ram-e-ters. Deze gegevens
  []
@@ -1899,41 +1927,47 @@ Overfull \hbox (9.67091pt too wide) in paragraph at lines 78--79
  []
 
 
-LaTeX Warning: Reference `fig:coarsevsfine' on page 22 undefined on input line 80.
+LaTeX Warning: Reference `fig:coarsevsfine' on page 24 undefined on input line 80.
 
 
 
 Package cleveref Info: loaded `english' language definitions on input line 88.
-[22]) (./chapters/resultaten.tex
+[24]) (./chapters/resultaten.tex
 
 Package cleveref Info: loaded `english' language definitions on input line 1.
-[23]
-
-[24
-
-]
-Chapter 5.
-) (./chapters/conclusie.tex
-
 [25]
 
 [26
 
 ]
-Chapter 6.
+Chapter 5.
+
+LaTeX Warning: Reference `fig:Obfuscatiealgoritme_gevisualiseerd' on page 27 undefined on input line 4.
+
+<images/real.png, id=350, 276.28218pt x 276.28218pt>
+File: images/real.png Graphic file (type png)
+<use images/real.png>
+Package pdftex.def Info: images/real.png  used on input line 7.
+(pdftex.def)             Requested size: 136.57635pt x 136.5725pt.
+<images/blobs.png, id=351, 276.28218pt x 276.28218pt>
+File: images/blobs.png Graphic file (type png)
+<use images/blobs.png>
+Package pdftex.def Info: images/blobs.png  used on input line 8.
+(pdftex.def)             Requested size: 136.57635pt x 136.5725pt.
+<images/obfuscated.png, id=352, 276.28218pt x 276.28218pt>
+File: images/obfuscated.png Graphic file (type png)
+<use images/obfuscated.png>
+Package pdftex.def Info: images/obfuscated.png  used on input line 9.
+(pdftex.def)             Requested size: 136.57635pt x 136.5725pt.
 ) (./chapters/discussie.tex
 
-[27]
+[27 <./images/real.png> <./images/blobs.png> <./images/obfuscated.png>]
 
 [28
 
 ]
-Chapter 7.
-)
-
-LaTeX Warning: Empty bibliography on input line 148.
-
-(./chapters/bijlage1.tex
+Chapter 6.
+) (./chapters/conclusie.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1942,23 +1976,57 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 1.
 [30]
-Appendix A.
+Chapter 7.
 )
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [31
 
 ]
 
-[32
+LaTeX Warning: Empty bibliography on input line 148.
+
+(./chapters/bijlage1.tex
+
+Package cleveref Info: loaded `english' language definitions on input line 1.
+[32]
+Appendix A.
+\pydata@fh@0=\write10
+\openout10 = `_2EF71E68B4AD97F630480BCEBC1842FB.data.minted'.
+
+runsystem(latexminted config  --timestamp 20250516160002 2EF71E68B4AD97F630480BCEBC1842FB)...executed safely (allowed).
+
+(./_2EF71E68B4AD97F630480BCEBC1842FB.config.minted)
+runsystem(latexminted cleanconfig  --timestamp 20250516160002 2EF71E68B4AD97F630480BCEBC1842FB)...executed safely (allowed).
+
+ (./_minted/borland.style.minted) (./_minted/0DE806C22616482EFB31421AE1BCBF76.highlight.minted
+
+LaTeX Font Warning: Font shape `OT1/cmtl/b/n' undefined
+(Font)              using `OT1/cmtl/m/n' instead on input line 25.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[33
 
 ]
+LaTeX Font Info:    Font shape `OT1/cmtl/m/it' in size <10.95> not available
+(Font)              Font shape `OT1/cmtl/m/sl' tried instead on input line 42.
+))
+
+Package cleveref Info: loaded `english' language definitions on input line 158.
+[34]
 Appendix B.
-<article.pdf, id=381, 614.295pt x 794.97pt>
+<article.pdf, id=402, 614.295pt x 794.97pt>
 File: article.pdf Graphic file (type pdf)
 <use article.pdf>
 Package pdftex.def Info: article.pdf  used on input line 162.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-<article.pdf, id=383, page=1, 614.295pt x 794.97pt>
+<article.pdf, id=404, page=1, 614.295pt x 794.97pt>
 File: article.pdf Graphic file (type pdf)
 <use article.pdf, page 1>
 Package pdftex.def Info: article.pdf , page1 used on input line 162.
@@ -1967,69 +2035,71 @@ File: article.pdf Graphic file (type pdf)
 <use article.pdf, page 1>
 Package pdftex.def Info: article.pdf , page1 used on input line 162.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-[33]
-File: article.pdf Graphic file (type pdf)
-<use article.pdf, page 1>
-Package pdftex.def Info: article.pdf , page1 used on input line 162.
-(pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: article.pdf Graphic file (type pdf)
-<use article.pdf, page 1>
-Package pdftex.def Info: article.pdf , page1 used on input line 162.
-(pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: article.pdf Graphic file (type pdf)
-<use article.pdf, page 1>
-Package pdftex.def Info: article.pdf , page1 used on input line 162.
-(pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
-[34
-
- <./article.pdf>]
-Appendix C.
-<chapters/Poster_Milan_Schollier.pdf, id=430, 844.83629pt x 1195.34581pt>
-File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
-<use chapters/Poster_Milan_Schollier.pdf>
-Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf  used on input line 167.
-(pdftex.def)             Requested size: 844.83423pt x 1195.3429pt.
-<chapters/Poster_Milan_Schollier.pdf, id=432, page=1, 844.83629pt x 1195.34581pt>
-File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
-<use chapters/Poster_Milan_Schollier.pdf, page 1>
-Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf , page1 used on input line 167.
-(pdftex.def)             Requested size: 844.83423pt x 1195.3429pt.
-File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
-<use chapters/Poster_Milan_Schollier.pdf, page 1>
-Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf , page1 used on input line 167.
-(pdftex.def)             Requested size: 597.41443pt x 845.27245pt.
 
 
 [35
 
 ]
-File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
-<use chapters/Poster_Milan_Schollier.pdf, page 1>
-Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf , page1 used on input line 167.
-(pdftex.def)             Requested size: 597.41443pt x 845.27245pt.
-File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
-<use chapters/Poster_Milan_Schollier.pdf, page 1>
-Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf , page1 used on input line 167.
-(pdftex.def)             Requested size: 597.41443pt x 845.27245pt.
+File: article.pdf Graphic file (type pdf)
+<use article.pdf, page 1>
+Package pdftex.def Info: article.pdf , page1 used on input line 162.
+(pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: article.pdf Graphic file (type pdf)
+<use article.pdf, page 1>
+Package pdftex.def Info: article.pdf , page1 used on input line 162.
+(pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
-File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
-<use chapters/Poster_Milan_Schollier.pdf, page 1>
-Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf , page1 used on input line 167.
-(pdftex.def)             Requested size: 597.41443pt x 845.27245pt.
+File: article.pdf Graphic file (type pdf)
+<use article.pdf, page 1>
+Package pdftex.def Info: article.pdf , page1 used on input line 162.
+(pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [36
 
+ <./article.pdf>]
+Appendix C.
+<chapters/Poster_Milan_Schollier.pdf, id=453, 844.83629pt x 1195.34581pt>
+File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
+<use chapters/Poster_Milan_Schollier.pdf>
+Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf  used on input line 167.
+(pdftex.def)             Requested size: 844.83423pt x 1195.3429pt.
+<chapters/Poster_Milan_Schollier.pdf, id=455, page=1, 844.83629pt x 1195.34581pt>
+File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
+<use chapters/Poster_Milan_Schollier.pdf, page 1>
+Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf , page1 used on input line 167.
+(pdftex.def)             Requested size: 844.83423pt x 1195.3429pt.
+File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
+<use chapters/Poster_Milan_Schollier.pdf, page 1>
+Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf , page1 used on input line 167.
+(pdftex.def)             Requested size: 597.41443pt x 845.27245pt.
+
+
+[37
+
+]
+File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
+<use chapters/Poster_Milan_Schollier.pdf, page 1>
+Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf , page1 used on input line 167.
+(pdftex.def)             Requested size: 597.41443pt x 845.27245pt.
+File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
+<use chapters/Poster_Milan_Schollier.pdf, page 1>
+Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf , page1 used on input line 167.
+(pdftex.def)             Requested size: 597.41443pt x 845.27245pt.
+
+
+File: chapters/Poster_Milan_Schollier.pdf Graphic file (type pdf)
+<use chapters/Poster_Milan_Schollier.pdf, page 1>
+Package pdftex.def Info: chapters/Poster_Milan_Schollier.pdf , page1 used on input line 167.
+(pdftex.def)             Requested size: 597.41443pt x 845.27245pt.
+[38
+
  <./chapters/Poster_Milan_Schollier.pdf>]
-<covers/back_fiiw_gent.pdf, id=494, 597.55246pt x 845.07724pt>
+<covers/back_fiiw_gent.pdf, id=515, 597.55246pt x 845.07724pt>
 File: covers/back_fiiw_gent.pdf Graphic file (type pdf)
 <use covers/back_fiiw_gent.pdf>
 Package pdftex.def Info: covers/back_fiiw_gent.pdf  used on input line 170.
 (pdftex.def)             Requested size: 597.551pt x 845.07518pt.
-<covers/back_fiiw_gent.pdf, id=496, page=1, 597.55246pt x 845.07724pt>
+<covers/back_fiiw_gent.pdf, id=517, page=1, 597.55246pt x 845.07724pt>
 File: covers/back_fiiw_gent.pdf Graphic file (type pdf)
 <use covers/back_fiiw_gent.pdf, page 1>
 Package pdftex.def Info: covers/back_fiiw_gent.pdf , page1 used on input line 170.
@@ -2052,10 +2122,15 @@ File: covers/back_fiiw_gent.pdf Graphic file (type pdf)
 <use covers/back_fiiw_gent.pdf, page 1>
 Package pdftex.def Info: covers/back_fiiw_gent.pdf , page1 used on input line 170.
 (pdftex.def)             Requested size: 597.57834pt x 845.11386pt.
-[37
+[39
 
 
- <./covers/back_fiiw_gent.pdf>] (./thesis.aux
+ <./covers/back_fiiw_gent.pdf>]
+\openout10 = `_2EF71E68B4AD97F630480BCEBC1842FB.data.minted'.
+
+runsystem(latexminted clean  --timestamp 20250516160002 2EF71E68B4AD97F630480BCEBC1842FB)...executed safely (allowed).
+
+ (./thesis.aux
 Package cleveref Info: loaded `english' language definitions on input line 12.
 \g__glossaries_gls_ref_acronym_int=\count598
 )
@@ -2080,7 +2155,7 @@ Package rerunfilecheck Warning: File `thesis.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `thesis.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  3C0D3B7E446958E2758D7EB311B4E726;5751.
+(rerunfilecheck)             After:  4A0C77C043FEE80145FFA871E125964A;5855.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                thesis
@@ -2091,24 +2166,24 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 62726 strings out of 473190
- 1456330 string characters out of 5719980
- 2545118 words of memory out of 5000000
- 84990 multiletter control sequences out of 15000+600000
- 570020 words of font info for 72 fonts, out of 8000000 for 9000
+ 63084 strings out of 473190
+ 1464342 string characters out of 5719980
+ 2545109 words of memory out of 5000000
+ 85325 multiletter control sequences out of 15000+600000
+ 570189 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 95i,17n,101p,2457b,2072s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 95i,17n,101p,2457b,2086s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{glo:aar} has been referenced but does not exist, replaced by a fixed one
 
 
 pdfTeX warning (dest): name{glo:apk} has been referenced but does not exist, replaced by a fixed one
 
-<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrsl10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hftl10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on thesis.pdf (51 pages, 6425722 bytes).
+<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfbrsl10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hfsltl10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/hfbright/hftl10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on thesis.pdf (53 pages, 7264243 bytes).
 PDF statistics:
- 598 PDF objects out of 1000 (max. 8388607)
- 442 compressed objects within 5 object streams
- 118 named destinations out of 1000 (max. 500000)
- 148 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 624 PDF objects out of 1000 (max. 8388607)
+ 458 compressed objects within 5 object streams
+ 126 named destinations out of 1000 (max. 500000)
+ 163 words of extra memory for PDF output out of 10000 (max. 10000000)
 
