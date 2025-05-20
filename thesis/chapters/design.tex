@@ -3,12 +3,12 @@ Vooraleer de implementatie van de library kan starten, is een grondig ontwerp no
 \section{Vereisten}
 % dit aanpassen zeggen dat dit de hoofd doelen zijn.
 De doelstellingen van dit onderzoek zijn als volgt geformuleerd:
-1. Het ontwikkelen van een library met algemene bruikbaarheid: Het streven is om een library te creëren die in diverse applicaties kan worden toegepast. Deze library moet het proces van het aanvragen van permissies, initialisatie, gebruik en uitbreiding zo efficiënt mogelijk ondersteunen. Dit impliceert dat de library de volgende dingen moet zijn om in uiteenlopende soorten applicaties te kunnen werken.
+1. Het ontwikkelen van een library met algemene bruikbaarheid: Het streven is om een library te creëren die in diverse applicaties kan worden toegepast. Deze library moet het proces van het aanvragen van permissies, initialisatie, gebruik en uitbreiding zo efficiënt mogelijk ondersteunen. Dit impliceert dat de library aan onderstaande vereisten moet voldoen om in uiteenlopende soorten applicaties te kunnen werken.
 \begin{itemize}
     \item \textbf{Flexibel}: De library mag niet beperkt zijn tot de standaardinstellingen van de Android-implementatie en moet voldoende configuratiemogelijkheden bieden.
     \item \textbf{Modulair}: Gebruikers moeten in staat zijn om hun eigen obfuscatiealgoritmen te ontwikkelen en te integreren.
     \item \textbf{Eenvoudig te integreren}: De library moet functioneren met minimale setup en gebruiksvriendelijke integratiemogelijkheden bieden.
-    \item \textbf{Beginnersvriendelijk}: Een van de aannames is dat de ontwikkelaar mogelijk weinig tot geen kennis heeft van locatie services in Android. Daarom moeten de standaardinstellingen een solide basis bieden voor het veilig omgaan met locatiegegevens.
+    \item \textbf{Lage leercurve}: Een van de aannames is dat de ontwikkelaar mogelijk weinig tot geen kennis heeft van locatie services in Android. Daarom moeten de standaardinstellingen een solide basis bieden voor het veilig omgaan met locatiegegevens.
 \end{itemize}
 2. Op het vlak van privacy is de vereiste dat alle kwetsbare data het apparaat niet verlaat en dat de geobfusceerde locatie nog steeds bruikbaar is maar het niet toelaat een individu te traceren.
 Voor het aspect van obfuscatie vallen we terug op het werk van Toon Dehaene. Hierbij werd er gebruik gemaakt van ruis op de coördinaten en privacy cirkels. De cirkels zorgen er voor dat er geen gemiddelde kan genomen worden van de locaties om zo toch point of interest te kunnen verzamelen.
@@ -22,7 +22,8 @@ Om de werking van de library te kunnen garanderen, worden de volgende veronderst
     \item \textbf{Goede intenties van de ontwikkelaar}: Er wordt aangenomen dat de ontwikkelaar te goeder trouw handelt. De library kan immers aangepast of volledig omzeild worden, waardoor het mogelijk is om alsnog de echte locatie door te sturen.
     \item \textbf{Integriteit van het Android-systeem}: Het wordt verondersteld dat de Android-installatie waarop de applicatie draait niet gecompromitteerd is. Dit betekent dat er geen derde partij of de eigenaar roottoegang heeft, aangezien dit zou toelaten om privacygevoelige gegevens rechtstreeks uit te lezen.
     \item \textbf{Correct gebruik van onderzoeks- en debugmodus}: De applicatie zal een onderzoeks- en debugmodus bevatten. Het is essentieel dat deze modus niet in productieomgevingen wordt gebruikt, omdat dit zou kunnen leiden tot het versturen van de echte locatie samen met de geobfusceerde locatie.
-    \item \textbf{Gebruikersanonimiteit}: De permanente opslag van gegevens wordt gekoppeld aan de installatie van de applicatie in plaats van aan een specifieke gebruiker. Dit voorkomt dat locaties aan een gebruiker worden gelinkt en maakt het onmogelijk om door middel van herhaalde installaties en verwijderingen een gemiddelde van locaties te berekenen.
+    % \item \textbf{Gebruikersanonimiteit}: De permanente opslag van gegevens wordt gekoppeld aan de installatie van de applicatie in plaats van aan een specifieke gebruiker. Dit voorkomt dat locaties aan een gebruiker worden gelinkt en maakt het onmogelijk om door middel van herhaalde installaties en verwijderingen een gemiddelde van locaties te berekenen.
+    % TODO normaal gebruik van de gebruiker
 \end{itemize}
 \section{Ontwerp}
 Het ontwerp van de library is gebaseerd op het principe van een facade, waarbij de library fungeert als een vereenvoudigde interface voor de standaard Android-functionaliteiten. Dit betekent dat alle variabelen en functionaliteiten aanwezig moeten zijn alsof de ontwikkelaar rechtstreeks met de standaard Android-implementatie werkt, maar met de toegevoegde voordelen van de library.
@@ -34,7 +35,7 @@ Met bovenstaande ontwerpprincipes in gedachten illustreert Figuur \ref{fig:flow_
     \label{fig:flow_diagram_locatie_verzameling}
 \end{figure}
 
-Verder is de LocationManager een Singleton gemaakt. Singletons zorgen ervoor dat er slechts één instantie van een klasse bestaat binnen de applicatie. Dit is er voor gekozen zodat als de developer twee-maal de LocationManager probeert te initialiseren de applicatie niet eventueel crashed doordat beide instanties locaties opvragen en het limiet overschrijden.
+Verder is de LocationManager een Singleton gemaakt. Singletons zorgen ervoor dat er slechts één instantie van een klasse bestaat binnen de applicatie. Zodat wanneer de developer twee-maal de LocationManager probeert te initialiseren de applicatie niet eventueel crashed doordat beide instanties locaties opvragen en het limiet overschrijden.
 
-Daarnaast moeten alle standaardinstellingen en functionaliteiten van de library een solide basis bieden, zodat ontwikkelaars zonder uitgebreide kennis van Android-locatieservices de library direct kunnen gebruiken. Dit omvat het bieden van een goede standaardimplementatie die flexibel genoeg is om aanpasbaar te zijn voor meer geavanceerde toepassingen. Ook moeten de setters rekening houden met de grenzen van het Android systeem. Met als voorbeeld als de applicatie enkel coarse permissies heeft mag de app niet frequenter dan één keer om de 2 minuten een locatie vragen of de volledige FusedLocationProvider zal niet meer werken.
+Daarnaast moeten alle standaardinstellingen en functionaliteiten van de library een solide basis bieden, zodat ontwikkelaars zonder uitgebreide kennis van Android-locatieservices de library direct kunnen gebruiken. Dit omvat het bieden van een goede standaardimplementatie die flexibel genoeg is om aanpasbaar te zijn voor meer geavanceerde toepassingen. Ook moeten de setters rekening houden met de grenzen van het Android systeem. Bijvoorbeeld als de applicatie enkel coarse permissies heeft mag de app niet frequenter dan één keer om de 2 minuten een locatie vragen of de volledige FusedLocationProvider zal niet meer werken.
 

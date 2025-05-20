@@ -1,7 +1,38 @@
-\chapter{Resultaten} \label{chap:resultaten}
-Naast de resultaten van de testen in verband met de werking van Android besproken in de state of the art zijn dit de resultaten van de library en zijn standaardimplementatie van een obusactiealgoritme. 
+\chapter{Experimenten en resultaten} \label{chap:resultaten}
+Naast de resultaten van de testen in verband met de werking van Android besproken in de state of the art. Gaat dit hoofdstuk over de uiteindelijke resultaten waarover de thesis gaat.
 \section{Visuele representatie}
-In \ref{fig:Obfuscatiealgoritme_gevisualiseerd} zien we visueel de werking van de standaardimplementatie van het obfuscatiealgoritme. De gekozen variabelen voor deze visualisatie is een privacycirkel met een straal van 400 meter en een tijds interval van 5 minuten. 
+Voor de uiteindelijke library te testen hebben we een specifieke route uitgestippeld dat verschillende situaties vertoond om zo de obfuscatie op meerdere manieren te testen. De route dat gewandeld werd ging als volgt: Er werd gestart aan de Technologie campus Gent naar de korenmarkt gefietst. Daar werd er 2 uur lang op terras gezeten om langdurig op dezelfde plek te zitten te testen. Dan werd er met de fiets naar de bibliotheek de krook gegaan waar kortstondig werd binnen gegaan om een korte stop na te bootsen. Daarna werd met een omweg naar station Dampoort gegaan om dan met de trein naar Lokeren te gaan om zo een snel vervoer in een gesloten ruimte te testen.
+
+\subsection{Variabelen in kaart brengen}
+Dan wouden we de 2 parameters van het standaard obfuscatiealgoritme testen. Namelijk de radius van de privacycirkels en de tijdsinterval tussen verzonden punten. De variabelen werden samen met Toon Dehaene en Michiel Willocx zorgvuldig gekozen. 
+\begin{itemize}
+    \item \textbf{Radius(m):} 0, 50, 100, 200, 400, 800, 1600
+    \item \textbf{Tijdsinterval(s):} 0, 60, 300, 600, 1800, 3600
+\end{itemize}
+
+Deze variabelen geven in totaal 42 combinaties, dus deze route is dus 11 keer gedaan met 4 telefoons. In Figuur \ref{fig:blobs_comparison} kunnen we het verschil zien tussen een privacy radius van 0, 400 en 1600 meter. Aangezien het tijdsinterval geen invloed heeft op het maken van nieuwe privacy cirkels kunnen we deze variabele alleenstaands beoordelen.
+
+Dan in figuur \ref{fig:timedelta_comparison} kunnen we de vergelijking tussen verschillende tijdsintervallen zien. Deze afbeeldingen zijn gemaakt met een radius van de privacy cirkels op 0 meter. Dit zodat we enkel de invloed van het tijdsinterval kunnen bestuderen.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.32\textwidth]{images/blobs_0.png}
+    \includegraphics[width=0.32\textwidth]{images/blobs_400.png}
+    \includegraphics[width=0.32\textwidth]{images/blobs_1600.png}
+    \caption{Vergelijking grootte privacycirkel}\label{fig:blobs_comparison}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.32\textwidth]{images/timedelta_0.png}
+    \includegraphics[width=0.32\textwidth]{images/timedelta_60.png}
+    \includegraphics[width=0.32\textwidth]{images/timedelta_3600.png}
+    \caption{Vergelijking tijdsinterval locatiegegevens}\label{fig:timedelta_comparison}
+\end{figure}
+
+\subsection{Uiteindelijke resultaat}
+Dan voor alles samen te testen hebben we 1 trace genomen die het meest accuraat was naar de echte beweging van de route. Deze hebben we dan met het algoritme dat lokaal loopt in de library voor de 42 variabelen combinaties laten berekenen. Al deze combinaties zijn te veel voor op deze thesis maar zijn te vinden op \href{https://milannvidia.github.io/GPS_obfuscator_thesis/obfuscation/}{deze github page} om zo overzichtelijker te kunnen vergelijken.
+De gekozen visualisatie is te zien in deze figuur \ref{fig:Obfuscatiealgoritme_gevisualiseerd}. De gekozen variabelen voor deze visualisatie is een privacycirkel met een straal van 400 meter en een tijds interval van 5 minuten. 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.32\textwidth]{images/real.png}
@@ -10,4 +41,5 @@ In \ref{fig:Obfuscatiealgoritme_gevisualiseerd} zien we visueel de werking van d
     \caption{Obfuscatiealgoritme gevisualiseerd}
     \label{fig:Obfuscatiealgoritme_gevisualiseerd}
 \end{figure}
-
+% Waarom heb ik dat geschreven en waarom moet de lezer dat lezen
+% in de we vorm waar ik de lezer er door sleur

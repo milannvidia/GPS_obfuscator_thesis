@@ -1,60 +1,64 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {1}Inleiding}{3}{chapter.1}%
-\contentsline {section}{\numberline {1.1}probleemstelling}{3}{section.1.1}%
-\contentsline {section}{\numberline {1.2}onderzoeksvragen}{4}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Doelen en scope}{4}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Overzicht van de thesis}{4}{section.1.4}%
-\contentsline {paragraph}{Hoofdstuk \ref {chap:state_of_the_art} State of the art:}{5}{section*.8}%
-\contentsline {paragraph}{Hoofdstuk \ref {chap:design} Design:}{5}{section*.9}%
-\contentsline {paragraph}{Hoofdsuk \ref {chap:implementatie} Implementatie:}{5}{section*.10}%
-\contentsline {paragraph}{Hoofdsuk \ref {chap:resultaten} Resultaten:}{5}{section*.11}%
-\contentsline {paragraph}{Hoofdsuk \ref {chap:evaluatie} Evaluatie en discussie:}{5}{section*.12}%
-\contentsline {chapter}{\numberline {2}State of the art}{7}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Android besturingssysteem}{7}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}library}{7}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}activity}{7}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}services}{9}{subsection.2.1.3}%
-\contentsline {paragraph}{AlarmManager}{9}{section*.14}%
-\contentsline {paragraph}{Coroutines}{9}{section*.15}%
-\contentsline {paragraph}{WorkManager}{9}{figure.caption.17}%
-\contentsline {section}{\numberline {2.2}Locatie obfuscatie}{10}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Android's oplossing}{10}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Voorgaand onderzoek}{11}{subsection.2.2.2}%
-\contentsline {section}{\numberline {2.3}Preliminaire experimenten}{11}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Verschillende nauwkeurigheidsniveaus}{12}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Coarse location Android}{12}{subsection.2.3.2}%
-\contentsline {chapter}{\numberline {3}Design}{17}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Vereisten}{17}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Veronderstellingen}{18}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Ontwerp}{18}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Implementatie}{21}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Overzicht library}{21}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Locatie tracking}{21}{subsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.1.1}background en foreground services}{22}{subsubsection.4.1.1.1}%
-\contentsline {paragraph}{Foreground services}{22}{section*.23}%
-\contentsline {paragraph}{Background tasks}{23}{section*.24}%
-\contentsline {paragraph}{Integratie in de library}{23}{section*.25}%
-\contentsline {subsubsection}{\numberline {4.1.1.2}Permissies}{23}{subsubsection.4.1.1.2}%
-\contentsline {subsection}{\numberline {4.1.2}Obfuscatie}{24}{subsection.4.1.2}%
-\contentsline {subsubsection}{\numberline {4.1.2.1}Standaard obfuscatiealgoritme}{24}{subsubsection.4.1.2.1}%
-\contentsline {subsection}{\numberline {4.1.3}Opslag}{25}{subsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.1.4}Netwerk}{25}{subsection.4.1.4}%
-\contentsline {section}{\numberline {4.2}Dataverwerking}{26}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Verzameling}{26}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}verwerking}{26}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Conclusie}{26}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Resultaten}{29}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Visuele representatie}{29}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Evaluatie en discussie}{31}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Evaluatie van het systeem}{31}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}beperkingen}{31}{subsection.6.1.1}%
-\contentsline {section}{\numberline {6.2}privacy}{32}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Gebruik van de library}{32}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}initialisatie}{32}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}LocationObfuscator zelf implementeren}{32}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}Live data}{33}{subsection.6.3.3}%
-\contentsline {section}{\numberline {6.4}Conclusie}{33}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Conclusie}{35}{chapter.7}%
-\contentsline {chapter}{\numberline {A}Code van het obfuscatie algoritme}{37}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Beschrijving van deze masterproef in de vorm van een wetenschappelijk artikel}{39}{appendix.B}%
-\contentsline {chapter}{\numberline {C}Poster}{41}{appendix.C}%
+\contentsline {section}{\numberline {0.1}Abstract}{vii}{section.0.1}%
+\contentsline {section}{\numberline {0.2}Samenvatting}{vii}{section.0.2}%
+\contentsline {section}{\numberline {0.3}Probleemstelling}{1}{section.0.3}%
+\contentsline {section}{\numberline {0.4}Onderzoeksvragen}{2}{section.0.4}%
+\contentsline {section}{\numberline {0.5}Doelen en scope}{3}{section.0.5}%
+\contentsline {section}{\numberline {0.6}Overzicht van de thesis}{3}{section.0.6}%
+\contentsline {paragraph}{Hoofdstuk \ref {chap:state_of_the_art}\gls {api} State of the art:}{3}{section*.6}%
+\contentsline {paragraph}{Hoofdstuk \ref {chap:design} Design:}{3}{section*.7}%
+\contentsline {paragraph}{Hoofdsuk \ref {chap:implementatie} Implementatie:}{3}{section*.8}%
+\contentsline {paragraph}{Hoofdsuk \ref {chap:resultaten} Resultaten:}{3}{section*.9}%
+\contentsline {paragraph}{Hoofdsuk \ref {chap:evaluatie} Evaluatie en discussie:}{3}{section*.10}%
+\contentsline {chapter}{\numberline {1}State of the art}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Android besturingssysteem}{5}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Library}{5}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Activity}{6}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Achtergrond werk }{7}{subsection.1.1.3}%
+\contentsline {paragraph}{AlarmManager}{7}{section*.13}%
+\contentsline {paragraph}{WorkManager}{7}{section*.14}%
+\contentsline {paragraph}{Coroutines}{8}{section*.16}%
+\contentsline {section}{\numberline {1.2}Locatie obfuscatie}{8}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Android's oplossing}{8}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Voorgaand onderzoek}{9}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Preliminaire experimenten}{10}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Verschillende nauwkeurigheidsniveaus}{10}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Coarse location Android}{11}{subsection.1.3.2}%
+\contentsline {chapter}{\numberline {2}Design}{15}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Vereisten}{15}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Veronderstellingen}{16}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Ontwerp}{16}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Implementatie}{19}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Overzicht library}{19}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Locatie tracking}{19}{subsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.1}Background en foreground services}{20}{subsubsection.3.1.1.1}%
+\contentsline {paragraph}{Foreground services}{20}{section*.22}%
+\contentsline {paragraph}{Background tasks}{21}{section*.23}%
+\contentsline {paragraph}{Integratie in de library}{21}{section*.24}%
+\contentsline {subsubsection}{\numberline {3.1.1.2}Permissies}{21}{subsubsection.3.1.1.2}%
+\contentsline {subsection}{\numberline {3.1.2}Obfuscatie}{22}{subsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}Standaard obfuscatiealgoritme}{22}{subsubsection.3.1.2.1}%
+\contentsline {subsection}{\numberline {3.1.3}Opslag}{23}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Netwerk}{23}{subsection.3.1.4}%
+\contentsline {section}{\numberline {3.2}Applicatie}{24}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Dataverwerking}{24}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Verzameling}{24}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Verwerking}{25}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Conclusie}{25}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Experimenten en resultaten}{27}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Visuele representatie}{27}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Variabelen in kaart brengen}{27}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Uiteindelijke resultaat}{28}{subsection.4.1.2}%
+\contentsline {chapter}{\numberline {5}Evaluatie en discussie}{31}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Evaluatie van het systeem}{31}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Beperkingen}{31}{subsection.5.1.1}%
+\contentsline {section}{\numberline {5.2}Privacy}{32}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Gebruik van de library}{32}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Initialisatie}{32}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}LocationObfuscator zelf implementeren}{32}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Live data}{33}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Conclusie}{33}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Conclusie}{35}{chapter.6}%
+\contentsline {chapter}{\numberline {A}Code van het obfuscatie algoritme}{39}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Beschrijving van deze masterproef in de vorm van een wetenschappelijk artikel}{41}{appendix.B}%
+\contentsline {chapter}{\numberline {C}Poster}{43}{appendix.C}%

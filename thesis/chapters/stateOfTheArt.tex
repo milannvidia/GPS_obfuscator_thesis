@@ -1,39 +1,59 @@
 \chapter{State of the art} \label{chap:state_of_the_art}
-Voor de achtergrond te kaderen voor het werk van deze thesis te kunnen bespreken zijn er 2 grote stromingen: Android besturingssysteem en locatieverzameling/-obfuscatie. Ook is er een extra sectie voorzien voor het onderzoek naar hoe de standaardimplementatie van obfuscatie werkt in Android.
+Voor de achtergrond te kaderen voor het werk van deze thesis te kunnen bespreken zijn er 2 grote stromingen: het Android besturingssysteem en locatieverzameling/-obfuscatie. Ook is er een extra sectie voorzien voor het onderzoek naar hoe de standaardimplementatie van obfuscatie werkt in Android want de documentatie bespreekt sommige dingen niet.
 \section{Android besturingssysteem}
-\subsection{library}
-Voor de efficiënte implementatie van code door ontwikkelaars, zonder herhaaldelijk gebruik te maken van copy-paste, worden libraries gebruikt. Android-applicaties worden geprogrammeerd in Java of Kotlin, waarbij de build-tool Gradle wordt ingezet. Deze build-tool beheert de installatie van de benodigde libraries, zodat deze eenvoudig beschikbaar zijn voor integratie in de eigen code.
-In tegenstelling tot een standaardapplicatie, die wordt gecompileerd naar een \gls{apk}, wordt een library gecompileerd naar een \gls{aar}. Deze \gls{aar}-bestanden kunnen vervolgens worden gepubliceerd naar publieke Gradle-plugins, waardoor ze eenvoudig herbruikbaar zijn in andere projecten.
-\subsection{activity}
+\subsection{Library}
+Omdat ontwikkelaars een code efficiënt zouden kunnen implementeren zonder herhaaldelijk gebruik te maken van copy-paste, worden libraries gebruikt. Android-applicaties worden voornamelijk geprogrammeerd in Java of Kotlin, waarbij de build-tool Gradle wordt ingezet. Deze build-tool beheert de installatie van de benodigde libraries, zodat deze eenvoudig beschikbaar zijn voor integratie in de eigen code.
+In tegenstelling tot een standaard applicatie, die wordt gecompileerd naar een \gls{apk}, wordt een library voor Android gecompileerd naar een \gls{aar}.
+
+Deze \gls{aar}-bestanden kunnen vervolgens worden gepubliceerd naar publieke Gradle-plugins, waardoor ze eenvoudig herbruikbaar zijn in andere projecten door deze te implementeren.
+\subsection{Activity}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.75\textwidth]{images/activity_lifecycle.png}
-    \caption{Activity lifecycle Android}
+    \caption{Activity lifecycle Android\cite{android_activity}}
     \label{fig:android_lifecycle}
 \end{figure}
 Een activity in Android is een enkele, gefocuste taak die een gebruiker kan uitvoeren. Het vormt een van de fundamentele bouwstenen van een Android-applicatie. Elke activity heeft een eigen lifecycle, die wordt beheerd door het Android-systeem. Deze lifecycle bestaat uit verschillende states, zoals onCreate, onStart, onResume, onPause, onStop en onDestroy. 
 
+Elke state heeft ook een methode die de ontwikkelaar kan overschrijven om zo de overgang beter te kunnen afhandelen.
+
 Bij het ontwikkelen van een applicatie is het belangrijk om rekening te houden met deze lifecycle-methoden, omdat ze bepalen hoe de applicatie reageert op gebruikersinteracties en systeemgebeurtenissen. Bijvoorbeeld, in de onCreate-methode wordt de initiële setup van de activity uitgevoerd, zoals het instellen van de gebruikersinterface. De onPause- en onStop-methoden worden aangeroepen wanneer de activity naar de achtergrond gaat, en resources kunnen hier worden vrijgegeven om geheugen te besparen.
 
-De mogelijkheden binnen de thread van een activity zijn beperkt. Langdurige taken worden bijvoorbeeld abrupt beëindigd wanneer de activity naar de achtergrond verdwijnt. Om dit probleem te omzeilen, biedt Android alternatieve oplossingen, die verderop in deze thesis worden besproken. Daarnaast is het niet toegestaan om blocking calls, zoals een HTTP-request of het opvragen van locatiegegevens via de Location Provider, uit te voeren in de main thread. Dit is noodzakelijk om te voorkomen dat de gebruikersinterface vastloopt en de gebruikservaring negatief wordt beïnvloed. Zo crashed de applicatie als de main thread wordt geblocked voor 5 seconden.
-\subsection{services}
-Om de beperkingen van een activity, die slechts kort op de achtergrond actief kan blijven, te omzeilen, biedt Android verschillende tools die door de jaren heen zijn geëvolueerd. Deze tools maken het mogelijk om taken op de achtergrond uit te voeren, zelfs wanneer de applicatie niet actief is. De belangrijkste tools zijn de AlarmManager, coroutines en de WorkManager. Hieronder worden deze tools besproken, samen met hun voor- en nadelen.
+Zo heeft elke state bepaalde eigenschappen. Zo worden langdurige taken die in de states draaien, waarbij de activity naar de achtergrond gaat, abrupt gestopt als het systeem resources nodig heeft en is dus niet vertrouwbaar. Om dit probleem te omzeilen biedt Android alternatieve oplossingen zoals services(waarover volgende hoofdstuk meer).
+Daarnaast is het niet toegestaan om blocking calls, zoals een HTTP-request of het opvragen van locatiegegevens via de Location Provider, uit te voeren in de main thread. Dit is noodzakelijk om te voorkomen dat de gebruikersinterface vastloopt en de gebruikservaring negatief wordt beïnvloed. Zo crashed de applicatie als de main thread wordt geblocked voor 5 seconden.
 
-\paragraph{AlarmManager}
+\subsection{Achtergrond werk }
+\begin{figure}
+    \centering
+    \includesvg[width=0.75\textwidth]{images/event-tasks-flowchart.svg}
+    \caption{Keuze boom achtergrond werk voor event driven tasks \cite{android_background_work}}
+    \label{fig:android_background_work}
+\end{figure}
+Om de hierboven vermelde beperkingen van een activity, die slechts kort op de achtergrond actief kan blijven, te omzeilen. Biedt Android verschillende tools die door de jaren heen zijn geëvolueerd. Deze tools maken het mogelijk om taken los van de activity uit te voeren, zelfs wanneer de applicatie niet actief is.
+Maar elke \gls{api} is verschillend om zo elk probleem aan te pakken. Hier focussen we op de keuze boom gerelateerd voor het starten van een achtergrond taak gebaseerd op een event. Dit omdat de optie om een eenmalige locatie op te vragen in de applicatie kan afgehandeld worden door een simpele thread.
+
+Zoals te zien in figuur \ref{fig:android_background_work} is asynchrone werk niet van toepassing voor deze thesis. Dan heb je nog Task scheduling en Foreground services. Hierin zijn de belangrijkste tools zijn de AlarmManager en  de WorkManager. 
+\paragraph{AlarmManager}\cite{android_alarmmanager}
+Alarm manager is een implementatie van een task scheduling \gls{api}
 De AlarmManager is een mechanisme dat het apparaat uit de zogenaamde 'doze mode' of energiebesparende modus kan halen. Dit maakt het mogelijk om op specifieke tijdstippen een taak uit te voeren. Echter, de AlarmManager heeft enkele beperkingen. Zo kan het slechts één keer per uur een taak uitvoeren en is het niet geschikt voor langdurige taken. Dit maakt het minder geschikt voor toepassingen die continu of frequent achtergrondtaken moeten uitvoeren.
+AlarmManager wordt dikwijls gebruikt om persistent achtergrondwerk op te starten als de applicatie niet opgestart is.
 
-\paragraph{Coroutines}
-Coroutines kunnen worden gezien als een lichtgewicht alternatief voor threads. Ze bieden een efficiënte manier om asynchrone taken uit te voeren zonder de main thread te blokkeren. Echter, coroutines zijn gekoppeld aan de lifecycle van de aanroepende activity. Dit betekent dat wanneer de activity wordt gestopt, ook de coroutines worden beëindigd. Hierdoor zijn coroutines niet geschikt voor persistent werk dat moet blijven draaien, ongeacht de status van de activity.
-
-\paragraph{WorkManager}
+\paragraph{WorkManager}\cite{android_persistent}
 \begin{figure}[h]
     \centering
     \includesvg[width=0.75\textwidth]{images/workmanager_main.svg}
     \caption{Android WorkManager}
     \label{fig:workmanager}
 \end{figure}
-De WorkManager is een krachtig en flexibel API voor het uitvoeren van achtergrondtaken. Het biedt ondersteuning voor zowel eenmalige (one-time) als periodieke (periodic) taken. Voor achtergrondtaken die regelmatig moeten worden uitgevoerd, zoals het verzamelen van locatiegegevens, is de periodieke versie geschikt. Hierbij kan een taak bijvoorbeeld elke 15 minuten worden uitgevoerd, met een maximale duur van 10 minuten per taak. Voor taken die slechts één keer hoeven te worden uitgevoerd, zoals een langdurige upload, kan de eenmalige versie worden gebruikt. Het is echter belangrijk op te merken dat langdurige taken in de foreground een permanente notificatie in het besturingssysteem vereisen, wat de gebruiker kan storen.
+De WorkManager is een krachtig en flexibel \gls{api} voor het uitvoeren van taken die niet gekoppeld zijn aan een activity. 
+Het is zowel een oplossing voor foreground services als voor task scheduling. 
+Zo biedt ondersteuning voor zowel eenmalige langdurige (one-time) als periodieke (periodic) taken. Voor achtergrondtaken die regelmatig moeten worden uitgevoerd, zoals het verzamelen van locatiegegevens, is de periodieke versie geschikt. 
 
+Hierbij kan een taak bijvoorbeeld elke 15 minuten worden uitgevoerd, met een maximale duur van 10 minuten per taak. Voor taken die slechts één keer hoeven te worden uitgevoerd, zoals een langdurige upload, kan de eenmalige versie worden gebruikt. Het is echter een belangrijk punt om op te merken dat langdurige taken in de foreground een permanente notificatie in het besturingssysteem vereisen, wat de gebruiker kan storen.
+
+\paragraph{Coroutines}\cite{kotlin_coroutines}
+Coroutines vormen geen \gls{api} voor het aanbieden van persistente services, maar zijn wel de aangewezen oplossing voor het uitvoeren van zware of blocking taken buiten de hoofdthread van een activity. Coroutines kunnen worden beschouwd als lichtgewicht alternatieven voor threads en bieden een efficiënte manier om asynchrone taken uit te voeren zonder de gebruikersinterface te blokkeren. Ze zijn echter gekoppeld aan de lifecycle van de aanroepende component (zoals een activity of fragment). Dit betekent dat wanneer de activity wordt gestopt, ook de bijbehorende coroutines worden beëindigd. Hierdoor zijn coroutines niet geschikt voor persistent achtergrondwerk dat moet blijven draaien, ongeacht de status van de activity.
+Dit zou dus bedoeld zijn om een eenmalige locatie op te vragen.
 \section{Locatie obfuscatie}
 In de studie van obfuscatie heb je 2 paden: hoe Android het aanpakt en voorgaand onderzoek losstaand van Android.
 \subsection{Android's oplossing}
@@ -41,7 +61,7 @@ Voordat er dieper wordt ingegaan op locatie-obfuscatie in Android, is het belang
 
 De standaard open-source implementatie leest enkel de data uit van de sensoren en voert geen verdere berekeningen of obfuscatie-algoritmen uit. Deze aanpak biedt ontwikkelaars meer vrijheid, maar brengt ook enkele nadelen met zich mee. Zo worden applicaties die deze versie gebruiken vaker gemarkeerd als potentieel kwaadaardig, omdat ze minder geïntegreerd zijn in het Android-ecosysteem.
 
-De Google Play Services-implementatie, daarentegen, maakt gebruik van de Fused Location Provider. De Fused Location Provider combineert gegevens van verschillende sensoren, zoals GPS, wifi, mobiele netwerken en zelfs bewegingssensoren, om een zo nauwkeurig mogelijke locatie te berekenen. Dit proces wordt 'sensor fusion' genoemd. De Fused Location Provider biedt ontwikkelaars een eenvoudige API om locatiegegevens op te vragen, waarbij automatisch de meest geschikte bron wordt gekozen op basis van de context, zoals batterijverbruik, nauwkeurigheid en beschikbaarheid van sensoren. Bovendien ondersteunt de Fused Location Provider zowel real-time locatie-updates als eenmalige locatieverzoeken, wat het een flexibele oplossing maakt voor uiteenlopende toepassingen.
+De Google Play Services-implementatie, daarentegen, maakt gebruik van de Fused Location Provider. De Fused Location Provider combineert gegevens van verschillende sensoren, zoals GPS, wifi, mobiele netwerken en zelfs bewegingssensoren, om een zo nauwkeurig mogelijke locatie te berekenen. Dit proces wordt 'sensor fusion' genoemd. De Fused Location Provider biedt ontwikkelaars een eenvoudige \gls{api} om locatiegegevens op te vragen, waarbij automatisch de meest geschikte bron wordt gekozen op basis van de context, zoals batterijverbruik, nauwkeurigheid en beschikbaarheid van sensoren. Bovendien ondersteunt de Fused Location Provider zowel real-time locatie-updates als eenmalige locatieverzoeken, wat het een flexibele oplossing maakt voor uiteenlopende toepassingen.
 
 In de Fused Location Provider zijn er daarnaast verschillende methoden om locatiegegevens te verkrijgen. De meest nauwkeurige methode is via GPS-satellieten, maar alternatieve methoden zoals het gebruik van lokale telefoonmasten of wifi-netwerken bieden ook mogelijkheden. Deze alternatieve methoden introduceren een inherente vorm van obfuscatie, aangezien de nauwkeurigheid doorgaans lager is dan die van GPS. Echter, in dichtbevolkte stedelijke gebieden kan dit juist leiden tot een hogere nauwkeurigheid dan GPS, omdat gebouwen GPS-signalen kunnen blokkeren.
 
@@ -49,7 +69,7 @@ Sinds Android 12 hebben gebruikers de mogelijkheid gekregen om alleen toegang to
 De coarse location-functionaliteit in Android maakt geen gebruik van GPS-satellieten en voegt bovendien een extra laag van obfuscatie toe aan de locatiegegevens. Hoe deze obfuscatie precies wordt toegepast, is echter niet publiekelijk gedocumenteerd. 
 
 \subsection{Voorgaand onderzoek}
-In eerdere onderzoeken, uitgevoerd door Kevin De Boeck, werd aangetoond dat locatie-obfuscatie een dringende noodzaak is. Uit data-analyse op een dataset van locatiegegevens in Frankrijk, verzameld over een periode van zeven dagen, bleek dat gevoelige locaties eenvoudig konden worden geïdentificeerd. Daarnaast konden sociale netwerken worden gereconstrueerd en konden plaatsen van interesse voor individuen gemakkelijk in kaart worden gebracht.
+In eerdere onderzoeken, uitgevoerd door Kevin De Boeck, werd aangetoond dat locatie-obfuscatie een dringende noodzaak is. Uit data-analyse op een dataset van locatiegegevens in Frankrijk, verzameld over een periode van zeven dagen, bleek dat gevoelige locaties eenvoudig konden worden geïdentificeerd. Daarnaast konden sociale netwerken worden gereconstrueerd en konden belangrijke plaatsen voor individuen gemakkelijk in kaart worden gebracht.
 
 Voortbouwend op deze bevindingen heeft Toon Dehaene onderzoek gedaan naar methoden om GPS-locaties te obfusceren. Het voorgestelde algoritme introduceerde het concept van privacycirkels op locaties die niet eerder waren bezocht. Wanneer een gebruiker zich opnieuw binnen dezelfde cirkel bevindt, wordt altijd het middelpunt van deze cirkel geretourneerd. Dit proces voegt ruis toe aan de coördinaten. Bovendien werd er variatie toegevoegd aan de tijdstippen van locatiegegevens. Dit algoritme werd geïmplementeerd in Rust en toegepast aan de serverzijde om locatie-obfuscatie te realiseren. Het algoritme vormde tevens de basis voor de standaardimplementatie van obfuscatie in de Android-library wat verder wordt uitgelegd.
 
@@ -74,7 +94,8 @@ Naast de beschreven verschillen in nauwkeurigheid en energieverbruik, zijn er oo
 Tests met de prioriteiten \textit{low power} en \textit{passive} werden niet uitgevoerd. De \textit{low power}-instelling was niet relevant voor onderzoek naar gebruikerslocatie-traces, terwijl de \textit{passive}-instelling te veel externe variabelen bevatte, waardoor geen waardevolle resultaten konden worden verkregen.
 \subsection{Coarse location Android}
 Om de coarse location-functionaliteit te onderzoeken, werd de applicatie tweemaal geïnstalleerd op dezelfde telefoon: één keer met coarse location-permissies en één keer met fine location-permissies. Beide applicaties waren geconfigureerd met dezelfde prioriteitsinstellingen om een eerlijke vergelijking mogelijk te maken. Een van de onderzoeksvragen was of de instelling \textit{balanced power accuracy}, die geen gebruik maakt van satellieten, dezelfde resultaten zou opleveren als coarse location. Dit zou inzicht geven in de vraag of de obfuscatie uitsluitend voortkomt uit de inherente onnauwkeurigheid van de gebruikte technologieën, of dat Android actief een extra laag van obfuscatie toepast op de locatiegegevens.
-Als resultaat vinden we de volgende visualisatie\ref{fig:coarsevsfine}. Hierbij is rood de trace met fine probleem en blauw coarse permissies. Waaruit we kunnen concluderen dat bovenop de inherente onnauwkeurigheid ook nog extra obfuscatie gebeurd.
+Als resultaat vinden we de volgende visualisatie\ref{fig:coarsevsfine}. Hierbij is rood de trace met fine probleem en blauw coarse permissies. Hier zien we dat de coarse trace duidelijk minder punten heeft en verder van de echte trace dan de fine trace. 
+Waaruit we kunnen concluderen dat bovenop de inherente onnauwkeurigheid ook nog extra obfuscatie gebeurd.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{images/coarsevsfine1.png}
@@ -91,16 +112,13 @@ Een vervolgonderzoek richtte zich op de consistentie van dit algoritme. De vraag
     \includegraphics[width=0.24\textwidth]{images/coarse-10-05.png}
     \includegraphics[width=0.24\textwidth]{images/coarse-10-06.png}
     \includegraphics[width=0.24\textwidth]{images/coarse-10-07.png}
-    \caption{Vergelijking coarse permissie op één apparaat}
-    \label{fig:coarse_1_phone}
+    \caption{Vergelijking coarse permissie op één apparaat}\label{fig:coarse_1_phone}
 \end{figure}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.32\textwidth]{images/coarse-b76cb5235efc9519.png}
     \includegraphics[width=0.32\textwidth]{images/coarse-df4294d41666d9a7.png}
     \includegraphics[width=0.32\textwidth]{images/coarse-e41a59c48d43c93e.png}
-    \caption{Vergelijking coarse permissie op meerdere apparaten}
-    \label{fig:coarse_3_phones}
+    \caption{Vergelijking coarse permissie op meerdere apparaten}\label{fig:coarse_3_phones}
 \end{figure}
-Uit de verzamelde data van eerdere experimenten bleek dat de gegenereerde locaties met coarse location-permissies op verschillende apparaten identieke resultaten opleverden. Dit riep de vraag op of deze locaties werden berekend op basis van telefoonmasten. Om dit te onderzoeken, werden alle telefoonmasten in Vlaanderen in kaart gebracht en vergeleken met de verzamelde locatiegegevens. Hoewel dit een interessante invalshoek biedt, valt verder onderzoek naar dit onderwerp buiten de scope van deze thesis.
  

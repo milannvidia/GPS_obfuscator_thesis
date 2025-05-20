@@ -2,15 +2,15 @@
 \section{Evaluatie van het systeem}
 
 % requirements afchecken
-\subsection{beperkingen}
+\subsection{Beperkingen}
 In de huidige versie van de library is slechts beperkt onderzoek verricht naar de langdurige stabiliteit van locatieverzameling in de achtergrond en naar mogelijke onbekende beperkingen die verder reiken dan de maximale threadtijd van 10 minuten per 15 minuten. Om dit grondig te testen, zouden meerdere langdurige runtimes moeten worden voorzien.
 
 Voor de testapplicatie is een fallbackmechanisme geïmplementeerd voor mislukte HTTP-verzoeken, waarbij deze tijdelijk worden opgeslagen in de shared preferences van Android. Echter, shared preferences zijn niet geschikt voor het verwerken van grote hoeveelheden data, wat leidt tot vertragingen bij het lezen en schrijven, vooral wanneer er gedurende langere tijd geen netwerkverbinding beschikbaar is. Bovendien kan de plotselinge piek in internetverkeer bij het herstellen van een netwerkverbinding resulteren in crashes op Android. Verdere uitbreiding van de testapplicatie vereist daarom throttlingmechanismen en een robuustere permanente opslagoplossing, met name voor scenario's waarin testapparaten langdurig geen internetverbinding hebben.
-\section{privacy}
+\section{Privacy}
 % evaluatie van de privacy
 % quantitatief en qualitatief
 \section{Gebruik van de library}
-\subsection{initialisatie}
+\subsection{Initialisatie}
 % Manual gebruik van library, stap voor stap
 Het gebruik van de library verloopt in enkele duidelijke stappen. Eerst wordt een instantie van de \texttt{LocationManager} aangemaakt, waarbij de \texttt{MainActivity} als parameter wordt meegegeven. Dit is noodzakelijk om een observer te kunnen koppelen aan de lifecycle van de \texttt{MainActivity}. Vervolgens wordt een \texttt{LocationObfuscator} ingesteld; dit kan zowel de standaardimplementatie zijn als een door de ontwikkelaar zelf geïmplementeerde klasse. Ten slotte wordt een callbackfunctie geregistreerd, die door de library wordt aangeroepen zodra er een nieuwe locatie beschikbaar is.
 \begin{minted}{java}

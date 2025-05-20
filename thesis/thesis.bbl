@@ -1,0 +1,158 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{gravy_analytics}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=07eba227d803865041623a04a6207636}{%
+           family={Stiru},
+           familyi={S\bibinitperiod},
+           given={Andrei},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{07eba227d803865041623a04a6207636}
+      \strng{fullhash}{07eba227d803865041623a04a6207636}
+      \strng{fullhashraw}{07eba227d803865041623a04a6207636}
+      \strng{bibnamehash}{07eba227d803865041623a04a6207636}
+      \strng{authorbibnamehash}{07eba227d803865041623a04a6207636}
+      \strng{authornamehash}{07eba227d803865041623a04a6207636}
+      \strng{authorfullhash}{07eba227d803865041623a04a6207636}
+      \strng{authorfullhashraw}{07eba227d803865041623a04a6207636}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Hack bij locatiedatabroker Gravy Analytics treft miljoenen smartphonegebruikers}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://tweakers.net/nieuws/230770/hack-bij-locatiedatabroker-gravy-analytics-treft-miljoenen-smartphonegebruikers.html
+      \endverb
+      \verb{url}
+      \verb https://tweakers.net/nieuws/230770/hack-bij-locatiedatabroker-gravy-analytics-treft-miljoenen-smartphonegebruikers.html
+      \endverb
+    \endentry
+    \entry{bumble-triangulation}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=a0b01d53f68d49c8e31c51e189bdd9eb}{%
+           family={Bannister},
+           familyi={B\bibinitperiod},
+           given={Adam},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{a0b01d53f68d49c8e31c51e189bdd9eb}
+      \strng{fullhash}{a0b01d53f68d49c8e31c51e189bdd9eb}
+      \strng{fullhashraw}{a0b01d53f68d49c8e31c51e189bdd9eb}
+      \strng{bibnamehash}{a0b01d53f68d49c8e31c51e189bdd9eb}
+      \strng{authorbibnamehash}{a0b01d53f68d49c8e31c51e189bdd9eb}
+      \strng{authornamehash}{a0b01d53f68d49c8e31c51e189bdd9eb}
+      \strng{authorfullhash}{a0b01d53f68d49c8e31c51e189bdd9eb}
+      \strng{authorfullhashraw}{a0b01d53f68d49c8e31c51e189bdd9eb}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://portswigger.net/daily-swig/trilateration-vulnerability-in-dating-app-bumble-leaked-users-exact-location
+      \endverb
+      \verb{url}
+      \verb https://portswigger.net/daily-swig/trilateration-vulnerability-in-dating-app-bumble-leaked-users-exact-location
+      \endverb
+    \endentry
+    \entry{grindr_locatie}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d55011fb35aae5f07cc0600a00de8cab}{%
+           family={Newton},
+           familyi={N\bibinitperiod},
+           given={Casey},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{d55011fb35aae5f07cc0600a00de8cab}
+      \strng{fullhash}{d55011fb35aae5f07cc0600a00de8cab}
+      \strng{fullhashraw}{d55011fb35aae5f07cc0600a00de8cab}
+      \strng{bibnamehash}{d55011fb35aae5f07cc0600a00de8cab}
+      \strng{authorbibnamehash}{d55011fb35aae5f07cc0600a00de8cab}
+      \strng{authornamehash}{d55011fb35aae5f07cc0600a00de8cab}
+      \strng{authorfullhash}{d55011fb35aae5f07cc0600a00de8cab}
+      \strng{authorfullhashraw}{d55011fb35aae5f07cc0600a00de8cab}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://www.theverge.com/interface/2019/3/28/18285274/grindr-national-security-cfius-china-kunlun-military
+      \endverb
+      \verb{url}
+      \verb https://www.theverge.com/interface/2019/3/28/18285274/grindr-national-security-cfius-china-kunlun-military
+      \endverb
+    \endentry
+    \entry{android_activity}{manual}{}{}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \verb{urlraw}
+      \verb https://developer.android.com/guide/components/activities/activity-lifecycle
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/guide/components/activities/activity-lifecycle
+      \endverb
+    \endentry
+    \entry{android_background_work}{manual}{}{}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \verb{urlraw}
+      \verb https://developer.android.com/develop/background-work/background-tasks#user-initiated
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/develop/background-work/background-tasks#user-initiated
+      \endverb
+    \endentry
+    \entry{android_alarmmanager}{manual}{}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \verb{urlraw}
+      \verb https://developer.android.com/develop/background-work/services/alarms/schedule
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/develop/background-work/services/alarms/schedule
+      \endverb
+    \endentry
+    \entry{kotlin_coroutines}{manual}{}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \verb{urlraw}
+      \verb https://developer.android.com/kotlin/coroutines
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/kotlin/coroutines
+      \endverb
+    \endentry
+    \entry{android_persistent}{manual}{}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \verb{urlraw}
+      \verb https://developer.android.com/develop/background-work/background-tasks/persistent
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/develop/background-work/background-tasks/persistent
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
