@@ -132,6 +132,16 @@
       \verb https://developer.android.com/develop/background-work/services/alarms/schedule
       \endverb
     \endentry
+    \entry{android_persistent}{manual}{}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \verb{urlraw}
+      \verb https://developer.android.com/develop/background-work/background-tasks/persistent
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/develop/background-work/background-tasks/persistent
+      \endverb
+    \endentry
     \entry{kotlin_coroutines}{manual}{}{}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
@@ -142,14 +152,34 @@
       \verb https://developer.android.com/kotlin/coroutines
       \endverb
     \endentry
-    \entry{android_persistent}{manual}{}{}
+    \entry{location_battery}{manual}{}{}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \verb{urlraw}
-      \verb https://developer.android.com/develop/background-work/background-tasks/persistent
+      \verb https://developer.android.com/develop/sensors-and-location/location/battery
       \endverb
       \verb{url}
-      \verb https://developer.android.com/develop/background-work/background-tasks/persistent
+      \verb https://developer.android.com/develop/sensors-and-location/location/battery
+      \endverb
+    \endentry
+    \entry{singleton}{manual}{}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \verb{urlraw}
+      \verb https://refactoring.guru/design-patterns/singleton
+      \endverb
+      \verb{url}
+      \verb https://refactoring.guru/design-patterns/singleton
+      \endverb
+    \endentry
+    \entry{android_opslag}{manual}{}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \verb{urlraw}
+      \verb https://developer.android.com/training/data-storage/app-specific
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/training/data-storage/app-specific
       \endverb
     \endentry
   \enddatalist

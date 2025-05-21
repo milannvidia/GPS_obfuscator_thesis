@@ -1,21 +1,23 @@
 \babel@toc {english}{}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Activity lifecycle Android\blx@tocontentsinit {0}\cite {android_activity}}}{6}{figure.caption.11}%
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Keuze boom achtergrond werk voor event driven tasks \blx@tocontentsinit {0}\cite {android_background_work}}}{7}{figure.caption.12}%
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Android WorkManager}}{8}{figure.caption.15}%
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Vergelijking coarse permissies en fine permissies}}{12}{figure.caption.17}%
-\contentsline {figure}{\numberline {1.5}{\ignorespaces Vergelijking coarse permissie op één apparaat}}{12}{figure.caption.18}%
-\contentsline {figure}{\numberline {1.6}{\ignorespaces Vergelijking coarse permissie op meerdere apparaten}}{13}{figure.caption.19}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Activity lifecycle Android\blx@tocontentsinit {0}\cite {android_activity}}}{6}{figure.caption.13}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Keuze boom achtergrond werk voor event driven tasks \blx@tocontentsinit {0}\cite {android_background_work}}}{7}{figure.caption.14}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Android WorkManager}}{8}{figure.caption.17}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Vergelijking coarse permissies en fine permissies 1}}{13}{figure.caption.22}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Vergelijking coarse permissies en fine permissies 2}}{14}{figure.caption.23}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Vergelijking coarse permissie op één apparaat}}{14}{figure.caption.24}%
+\contentsline {figure}{\numberline {1.7}{\ignorespaces Vergelijking coarse permissie op meerdere apparaten}}{14}{figure.caption.25}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Flow diagram van continue locatieverzameling}}{17}{figure.caption.20}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Flow diagram van continue locatieverzameling}}{17}{figure.caption.28}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Klasse diagram van de library}}{20}{figure.caption.21}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Flow diagram van het obfuscatie algoritme}}{23}{figure.caption.25}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Visualisatie van de test applicatie}}{24}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Klasse diagram van de library}}{20}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Flow diagram van het obfuscatie algoritme}}{25}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Visualisatie van de test applicatie}}{27}{figure.caption.34}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Vergelijking grootte privacycirkel}}{28}{figure.caption.27}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Vergelijking tijdsinterval locatiegegevens}}{28}{figure.caption.28}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Obfuscatiealgoritme gevisualiseerd}}{29}{figure.caption.29}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Echte pad}}{30}{figure.caption.35}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Vergelijking grootte privacycirkel}}{31}{figure.caption.36}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Vergelijking tijdsinterval locatiegegevens}}{31}{figure.caption.37}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Obfuscatiealgoritme gevisualiseerd}}{32}{figure.caption.38}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

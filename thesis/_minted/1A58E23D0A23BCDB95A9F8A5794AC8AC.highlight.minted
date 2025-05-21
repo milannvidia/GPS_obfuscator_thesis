@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{val}\PYG{+w}{ }\PYG{n}{notification}\PYG{+w}{ }\PYG{o}{=}
+\PYG{+w}{    }\PYG{n}{NotificationCompat}\PYG{p}{.}\PYG{n+na}{Builder}\PYG{p}{(}\PYG{n}{applicationContext}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{locationTrackingChannel}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{.}\PYG{n+na}{setContentTitle}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Location Tracking}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{.}\PYG{n+na}{setTicker}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Location Tracking}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{.}\PYG{n+na}{setContentText}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Tracking your location in the background}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{.}\PYG{n+na}{setSmallIcon}\PYG{p}{(}\PYG{n}{R}\PYG{p}{.}\PYG{n+na}{drawable}\PYG{p}{.}\PYG{n+na}{ic\PYGZus{}launcher\PYGZus{}background}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{.}\PYG{n+na}{setOngoing}\PYG{p}{(}\PYG{k+kc}{true}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{.}\PYG{n+na}{build}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{n}{val}\PYG{+w}{ }\PYG{n}{foregroundInfo}\PYG{+w}{ }\PYG{o}{=}
+\PYG{+w}{    }\PYG{n}{ForegroundInfo}\PYG{p}{(}\PYG{l+m+mi}{1001}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{notification}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ServiceInfo}\PYG{p}{.}\PYG{n+na}{FOREGROUND\PYGZus{}SERVICE\PYGZus{}TYPE\PYGZus{}LOCATION}\PYG{p}{)}
+\PYG{n}{setForegroundAsync}\PYG{p}{(}\PYG{n}{foregroundInfo}\PYG{p}{)}
+\end{MintedVerbatim}

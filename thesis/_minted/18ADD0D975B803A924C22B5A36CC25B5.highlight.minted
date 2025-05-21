@@ -1,0 +1,16 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{fun}\PYG{+w}{ }\PYG{n+nf}{setupNotificationChannel}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{channelId}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{locationTrackingChannel}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{channelName}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Location Tracking}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{channelDescription}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Location tracking is active}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{notificationManager}\PYG{+w}{ }\PYG{o}{=}
+\PYG{+w}{        }\PYG{n}{activity}\PYG{p}{.}\PYG{n+na}{getSystemService}\PYG{p}{(}\PYG{n}{NOTIFICATION\PYGZus{}SERVICE}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{NotificationManager}
+
+\PYG{+w}{    }\PYG{c+c1}{// Create notification channel if not already created}
+\PYG{+w}{    }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{channel}\PYG{+w}{ }\PYG{o}{=}
+\PYG{+w}{        }\PYG{n}{NotificationChannel}\PYG{p}{(}\PYG{n}{channelId}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{channelName}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{NotificationManager}\PYG{p}{.}\PYG{n+na}{IMPORTANCE\PYGZus{}LOW}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{apply}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{description}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{channelDescription}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{notificationManager}\PYG{p}{.}\PYG{n+na}{createNotificationChannel}\PYG{p}{(}\PYG{n}{channel}\PYG{p}{)}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

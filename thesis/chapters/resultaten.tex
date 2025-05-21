@@ -1,7 +1,17 @@
 \chapter{Experimenten en resultaten} \label{chap:resultaten}
 Naast de resultaten van de testen in verband met de werking van Android besproken in de state of the art. Gaat dit hoofdstuk over de uiteindelijke resultaten waarover de thesis gaat.
 \section{Visuele representatie}
-Voor de uiteindelijke library te testen hebben we een specifieke route uitgestippeld dat verschillende situaties vertoond om zo de obfuscatie op meerdere manieren te testen. De route dat gewandeld werd ging als volgt: Er werd gestart aan de Technologie campus Gent naar de korenmarkt gefietst. Daar werd er 2 uur lang op terras gezeten om langdurig op dezelfde plek te zitten te testen. Dan werd er met de fiets naar de bibliotheek de krook gegaan waar kortstondig werd binnen gegaan om een korte stop na te bootsen. Daarna werd met een omweg naar station Dampoort gegaan om dan met de trein naar Lokeren te gaan om zo een snel vervoer in een gesloten ruimte te testen.
+Voor het testen van de uiteindelijke library hebben we een specifieke route uitgestippeld die verschillende situaties omvat om de obfuscatie op diverse manieren te evalueren. De gevolgde route startte aan de Technologiecampus Gent, waarna er naar de Korenmarkt werd gefietst. Daar werd gedurende twee uur op een terras gezeten om langdurig verblijf op één locatie te simuleren. Vervolgens werd er met de fiets naar de bibliotheek De Krook gereden, waar een korte stop werd ingelast om een kortstondig verblijf te testen. Daarna werd via een omweg naar station Dampoort gefietst, om vervolgens met de trein naar Lokeren te reizen en zo snel vervoer in een afgesloten ruimte te evalueren. Het resultaat van zo een trace is te zien in figuur~\ref{fig:real_trace}.
+
+In deze trace vallen enkele zaken op. Op locaties waar langere stops werden gemaakt, zoals op de campus, de Korenmarkt, De Krook en station Dampoort, ontstaat een cirkelvormig patroon door kleine variaties in de gemeten locatie. Bij het station is zelfs een uitschieter zichtbaar, vermoedelijk veroorzaakt door beweging onder het spoor waar het GPS-signaal minder duidelijk is. 
+
+Verder is het opvallend dat het gefietste traject zeer accuraat wordt weergegeven, terwijl het deel van de route per trein sterk afwijkt van het werkelijke traject. Dit kan te wijten zijn aan het kooi-van-Faraday-effect van de trein of aan de hogere snelheid waarmee wordt gereisd.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/real.png}
+    \caption{Echte pad}
+    \label{fig:real_trace}
+\end{figure}
 
 \subsection{Variabelen in kaart brengen}
 Dan wouden we de 2 parameters van het standaard obfuscatiealgoritme testen. Namelijk de radius van de privacycirkels en de tijdsinterval tussen verzonden punten. De variabelen werden samen met Toon Dehaene en Michiel Willocx zorgvuldig gekozen. 
@@ -10,11 +20,10 @@ Dan wouden we de 2 parameters van het standaard obfuscatiealgoritme testen. Name
     \item \textbf{Tijdsinterval(s):} 0, 60, 300, 600, 1800, 3600
 \end{itemize}
 
-Deze variabelen geven in totaal 42 combinaties, dus deze route is dus 11 keer gedaan met 4 telefoons. In Figuur \ref{fig:blobs_comparison} kunnen we het verschil zien tussen een privacy radius van 0, 400 en 1600 meter. Aangezien het tijdsinterval geen invloed heeft op het maken van nieuwe privacy cirkels kunnen we deze variabele alleenstaands beoordelen.
+Deze variabelen resulteren in 42 mogelijke combinaties. De beschreven route werd daarom 11 keer afgelegd met 4 verschillende telefoons. In Figuur~\ref{fig:blobs_comparison} wordt het effect van een privacyradius van 0, 400 en 1600 meter geïllustreerd. Omdat het tijdsinterval geen invloed heeft op het genereren van nieuwe privacycirkels, kan deze parameter afzonderlijk worden geëvalueerd.
+In de afbeeldingen zien we dat een radius van 0 meter de originele route exact volgt. Bij een privacyradius van 400 meter kunnen we aanzienlijke overlap tussen bepaalde cirkels zien, wat het gevolg is van de willekeurige plaatsing van nieuwe cirkels. Bij een radius van 1600 meter kunnen we zien dat slechts vier cirkels volstaan om bijna volledig klein Gent te bedekken.
 
-Dan in figuur \ref{fig:timedelta_comparison} kunnen we de vergelijking tussen verschillende tijdsintervallen zien. Deze afbeeldingen zijn gemaakt met een radius van de privacy cirkels op 0 meter. Dit zodat we enkel de invloed van het tijdsinterval kunnen bestuderen.
-
-
+In Figuur~\ref{fig:timedelta_comparison} wordt het effect van verschillende tijdsintervallen weergegeven. Deze afbeeldingen zijn gemaakt met een privacyradius van 0 meter, zodat enkel de invloed van het tijdsinterval zichtbaar is. De geobfusceerde locatie verschuift afhankelijk van waar de privacycirkels liggen. Uit de resultaten blijkt dat een tijdsinterval van 0 seconden ervoor zorgt dat het originele pad behouden blijft. Bij een tijdsinterval van 5 minuten is er meer detail zichtbaar rond de Korenmarkt, waar een langdurige stop plaatsvond. De rest van het pad is minder gedetailleerd, maar geeft nog steeds een algemeen beeld van de afgelegde route. Met een tijdsinterval van een uur zijn er slechts twee punten in Gent, waardoor er weinig nuttige informatie over het exacte traject beschikbaar is, behalve dat de campus en de Korenmarkt werden bezocht.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.32\textwidth]{images/blobs_0.png}
@@ -41,5 +50,3 @@ De gekozen visualisatie is te zien in deze figuur \ref{fig:Obfuscatiealgoritme_g
     \caption{Obfuscatiealgoritme gevisualiseerd}
     \label{fig:Obfuscatiealgoritme_gevisualiseerd}
 \end{figure}
-% Waarom heb ik dat geschreven en waarom moet de lezer dat lezen
-% in de we vorm waar ik de lezer er door sleur

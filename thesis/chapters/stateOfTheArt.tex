@@ -59,28 +59,37 @@ In de studie van obfuscatie heb je 2 paden: hoe Android het aanpakt en voorgaand
 \subsection{Android's oplossing}
 Voordat er dieper wordt ingegaan op locatie-obfuscatie in Android, is het belangrijk om de werking van de locatievoorzieningen in Android te bespreken. Android biedt twee primaire opties om locatiegegevens op te vragen: de standaard open-source implementatie en de Google Play Services-implementatie.
 
-De standaard open-source implementatie leest enkel de data uit van de sensoren en voert geen verdere berekeningen of obfuscatie-algoritmen uit. Deze aanpak biedt ontwikkelaars meer vrijheid, maar brengt ook enkele nadelen met zich mee. Zo worden applicaties die deze versie gebruiken vaker gemarkeerd als potentieel kwaadaardig, omdat ze minder geïntegreerd zijn in het Android-ecosysteem.
+De standaard open-source implementatie leest enkel de data uit van de sensoren en voert geen verdere berekeningen of obfuscatie-algoritmen uit. Deze aanpak biedt ontwikkelaars meer vrijheid, maar brengt ook enkele nadelen met zich mee. Zo worden applicaties die deze versie gebruiken vaker gemarkeerd als potentieel kwaadaardig, omdat ze minder geïntegreerd zijn in het Google Android-ecosysteem.
 
-De Google Play Services-implementatie, daarentegen, maakt gebruik van de Fused Location Provider. De Fused Location Provider combineert gegevens van verschillende sensoren, zoals GPS, wifi, mobiele netwerken en zelfs bewegingssensoren, om een zo nauwkeurig mogelijke locatie te berekenen. Dit proces wordt 'sensor fusion' genoemd. De Fused Location Provider biedt ontwikkelaars een eenvoudige \gls{api} om locatiegegevens op te vragen, waarbij automatisch de meest geschikte bron wordt gekozen op basis van de context, zoals batterijverbruik, nauwkeurigheid en beschikbaarheid van sensoren. Bovendien ondersteunt de Fused Location Provider zowel real-time locatie-updates als eenmalige locatieverzoeken, wat het een flexibele oplossing maakt voor uiteenlopende toepassingen.
+De Google Play Services-implementatie, daarentegen, maakt gebruik van de Fused Location Provider. De Fused Location Provider combineert gegevens van verschillende sensoren, zoals GPS, wifi, mobiele netwerken en zelfs bewegingssensoren, om een zo nauwkeurig mogelijke locatie te berekenen. Dit proces wordt 'sensor fusion' genoemd. De Fused Location Provider biedt ontwikkelaars een \gls{api} om locatiegegevens op te vragen, waarbij automatisch de meest geschikte bron wordt gekozen op basis van de context, zoals batterijverbruik, nauwkeurigheid en beschikbaarheid van sensoren. Bovendien ondersteunt de Fused Location Provider zowel real-time locatie-updates als eenmalige locatieverzoeken, wat het een flexibele oplossing maakt voor uiteenlopende toepassingen.
 
-In de Fused Location Provider zijn er daarnaast verschillende methoden om locatiegegevens te verkrijgen. De meest nauwkeurige methode is via GPS-satellieten, maar alternatieve methoden zoals het gebruik van lokale telefoonmasten of wifi-netwerken bieden ook mogelijkheden. Deze alternatieve methoden introduceren een inherente vorm van obfuscatie, aangezien de nauwkeurigheid doorgaans lager is dan die van GPS. Echter, in dichtbevolkte stedelijke gebieden kan dit juist leiden tot een hogere nauwkeurigheid dan GPS, omdat gebouwen GPS-signalen kunnen blokkeren.
+In de Fused Location Provider zijn er verschillende methoden om locatiegegevens te verkrijgen. De meest nauwkeurige methode is via GPS-satellieten, maar alternatieve methoden zoals het gebruik van lokale telefoonmasten of wifi-netwerken bieden ook mogelijkheden. Deze alternatieve methoden introduceren een inherente vorm van obfuscatie, aangezien de nauwkeurigheid doorgaans lager is dan die van GPS. Echter, in dichtbevolkte stedelijke gebieden kan dit juist leiden tot een hogere nauwkeurigheid dan GPS, omdat gebouwen GPS-signalen kunnen blokkeren.
 
 Sinds Android 12 hebben gebruikers de mogelijkheid gekregen om alleen toegang tot een benaderde locatie (approximate location) toe te staan, wat een extra dimensie toevoegt aan de discussie over privacy en nauwkeurigheid.
 De coarse location-functionaliteit in Android maakt geen gebruik van GPS-satellieten en voegt bovendien een extra laag van obfuscatie toe aan de locatiegegevens. Hoe deze obfuscatie precies wordt toegepast, is echter niet publiekelijk gedocumenteerd. 
 
 \subsection{Voorgaand onderzoek}
-In eerdere onderzoeken, uitgevoerd door Kevin De Boeck, werd aangetoond dat locatie-obfuscatie een dringende noodzaak is. Uit data-analyse op een dataset van locatiegegevens in Frankrijk, verzameld over een periode van zeven dagen, bleek dat gevoelige locaties eenvoudig konden worden geïdentificeerd. Daarnaast konden sociale netwerken worden gereconstrueerd en konden belangrijke plaatsen voor individuen gemakkelijk in kaart worden gebracht.
+\paragraph{Aanval van Kevin De Boeck}
+In eerdere onderzoeken, uitgevoerd door Kevin De Boeck, werd aangetoond dat locatie-obfuscatie een dringende noodzaak is. Uit data-analyse op een dataset van locatiegegevens in Frankrijk, verzameld over een periode van zeven dagen, bleek dat gevoelige locaties eenvoudig konden worden geïdentificeerd. 
+Ook op vlak van het individu kon makkelijk een thuis of andere persoonlijke locaties gevonden worden. Verder konden er sociale grafen gemaakt worden en zelfs een volledige vakantie reis in kaart gebracht worden.
 
-Voortbouwend op deze bevindingen heeft Toon Dehaene onderzoek gedaan naar methoden om GPS-locaties te obfusceren. Het voorgestelde algoritme introduceerde het concept van privacycirkels op locaties die niet eerder waren bezocht. Wanneer een gebruiker zich opnieuw binnen dezelfde cirkel bevindt, wordt altijd het middelpunt van deze cirkel geretourneerd. Dit proces voegt ruis toe aan de coördinaten. Bovendien werd er variatie toegevoegd aan de tijdstippen van locatiegegevens. Dit algoritme werd geïmplementeerd in Rust en toegepast aan de serverzijde om locatie-obfuscatie te realiseren. Het algoritme vormde tevens de basis voor de standaardimplementatie van obfuscatie in de Android-library wat verder wordt uitgelegd.
+\paragraph{Oplossing Toon Dehaene}
+Voortbouwend op deze bevindingen heeft Toon Dehaene onderzoek gedaan naar methoden om GPS-locaties te obfusceren.
+Hiervoor werd een library ontwikkeld in Rust met behulp van PyO3, zodat deze als Python-module kon worden gebruikt voor het verwerken van grote datasets. Het doel was om locatie-traces op serverzijde te obfusceren. Naast de implementatie van parallellisatie was het kernalgoritme voor obfuscatie als volgt:
 
-In vervolgonderzoeken werd verder geëxperimenteerd met het gridsnapping van locaties aan lokale wegen. Dit had als doel om de obfuscatie realistischer te laten lijken, met name in afgelegen gebieden.
-% meer voor aanval dan verdediging. Een van de zwakke punten is in afgelege gebieden => discussie ook info over gridsnapping kan veel vrijgeven
-% TODO verder uitbreiden
+Wanneer er onvoldoende tijd is verstreken sinds de vorige locatie, wordt simpelweg de vorige locatie opnieuw doorgestuurd. Vervolgens wordt het concept van privacycirkels toegepast: als de nieuwe locatie binnen een bestaande privacycirkel valt, wordt het middelpunt van deze cirkel samen met de huidige tijdstempel doorgestuurd. Valt de locatie buiten alle bestaande cirkels, dan wordt er een nieuwe cirkel aangemaakt met een willekeurige hoek en een straal die willekeurig gekozen wordt tussen 0 en de huidige maximale straal. De gebruiker valt dan altijd binnen deze nieuw gegenereerde cirkel, waarvan het middelpunt wordt doorgestuurd.
+
+Dit algoritme introduceert dus ruis op de coördinaten en, belangrijker nog, voorkomt dat derden door het nemen van gemiddelden van geobfusceerde locaties alsnog gevoelige locaties kunnen achterhalen. Het algoritme vormde tevens de basis voor de standaardimplementatie van obfuscatie in de Android-library, wat verderop wordt toegelicht.
+\paragraph{Testen van de oplossing}
+In verder onderzoek van Toon Dehaene werd nagegaan of deze geobfusceerde locaties konden worden teruggevonden via gridsnapping. 
+Dit werd onderzocht om de effectiviteit van locatieobfuscatie in afgelegen gebieden te evalueren. Wanneer er zich slechts één straat binnen de straal van een privacycirkel bevindt, is het immers visueel eenvoudig om de oorspronkelijke route te reconstrueren. Dit roept de vraag op of de straal van de privacycirkel dynamisch zou moeten worden aangepast op basis van de bebouwingsdichtheid.
+
+Een bijkomende onderzoeksvraag was of het mogelijk is om een obfuscatiemethode te ontwikkelen waarbij de geobfusceerde locatie bewust op een willekeurige, maar plausibele locatie binnen een grid wordt geplaatst, zodat de geobfusceerde locaties in afgelegen gebieden realistischer lijken. Uit de resultaten bleek echter dat deze aanpak een averechts effect had. Verder onderzoek naar deze methode valt buiten de scope van deze thesis.
 
 \section{Preliminaire experimenten}
-Aangezien de Android Developer-website niet alle vragen beantwoordt en er nog veel onduidelijkheden zijn, is een deel van de state-of-the-art gewijd aan onderzoek naar hoe deze variabelen het uiteindelijke resultaat beïnvloeden.
+Aangezien de Android Developer-website niet alle vragen beantwoorde en er nog veel onduidelijkheden zijn, is een deel van de state-of-the-art gewijd aan onderzoek naar hoe deze variabelen het uiteindelijke resultaat beïnvloeden.
 \subsection{Verschillende nauwkeurigheidsniveaus}
-De Fused Location Provider biedt vier prioriteitsniveaus voor het bepalen van de locatie, zoals beschreven in de Android-documentatie:
+De Fused Location Provider biedt vier prioriteitsniveaus voor het bepalen van de locatie, zoals beschreven in de Android-documentatie \cite{location_battery}:
 
 \begin{itemize}
     \item \textbf{Balanced power accuracy}: Gebruik deze instelling om locatieprecisie op te vragen binnen een stadsblok, wat een nauwkeurigheid van ongeveer 100 meter is. Dit wordt beschouwd als een grove nauwkeurigheid en verbruikt waarschijnlijk minder stroom. Met deze instelling maken de locatieservices waarschijnlijk gebruik van Wi-Fi en positionering van zendmasten. Houd er echter rekening mee dat de keuze van de locatieprovider afhankelijk is van veel andere factoren, zoals welke bronnen beschikbaar zijn.
@@ -91,21 +100,36 @@ De Fused Location Provider biedt vier prioriteitsniveaus voor het bepalen van de
 
 Naast de beschreven verschillen in nauwkeurigheid en energieverbruik, zijn er ook andere factoren die deze instellingen beïnvloeden. Uit experimenten bleek bijvoorbeeld dat de instelling \textit{balanced power accuracy} wordt beïnvloed door de doze-modus of energiebesparingsmodus van Android. Tijdens tests werd vastgesteld dat een actief gebruikte telefoon een consistente locatie-trace genereerde, terwijl drie andere telefoons aanzienlijke hiaten vertoonden. Deze hiaten werden veroorzaakt doordat de Fused Location Provider de callback niet activeerde vanwege de energiebesparende staten.
 
-Tests met de prioriteiten \textit{low power} en \textit{passive} werden niet uitgevoerd. De \textit{low power}-instelling was niet relevant voor onderzoek naar gebruikerslocatie-traces, terwijl de \textit{passive}-instelling te veel externe variabelen bevatte, waardoor geen waardevolle resultaten konden worden verkregen.
+Tests met de prioriteiten \textit{low power} en \textit{passive} werden niet uitgevoerd. De \textit{low power}-instelling was niet relevant voor onderzoek naar gebruikerslocatie-traces. Dit doordat de beloofde nauwkeurigheid 10km is. De \textit{passive}-instelling dan niet omdat er te veel externe variabelen waren, waardoor geen waardevolle resultaten konden worden verkregen.
+In voornaamste omdat de locatieupdates afhankelijk zijn van wat andere applicaties doen.
+
 \subsection{Coarse location Android}
-Om de coarse location-functionaliteit te onderzoeken, werd de applicatie tweemaal geïnstalleerd op dezelfde telefoon: één keer met coarse location-permissies en één keer met fine location-permissies. Beide applicaties waren geconfigureerd met dezelfde prioriteitsinstellingen om een eerlijke vergelijking mogelijk te maken. Een van de onderzoeksvragen was of de instelling \textit{balanced power accuracy}, die geen gebruik maakt van satellieten, dezelfde resultaten zou opleveren als coarse location. Dit zou inzicht geven in de vraag of de obfuscatie uitsluitend voortkomt uit de inherente onnauwkeurigheid van de gebruikte technologieën, of dat Android actief een extra laag van obfuscatie toepast op de locatiegegevens.
-Als resultaat vinden we de volgende visualisatie\ref{fig:coarsevsfine}. Hierbij is rood de trace met fine probleem en blauw coarse permissies. Hier zien we dat de coarse trace duidelijk minder punten heeft en verder van de echte trace dan de fine trace. 
-Waaruit we kunnen concluderen dat bovenop de inherente onnauwkeurigheid ook nog extra obfuscatie gebeurd.
+Om de coarse location-functionaliteit te onderzoeken, werd de applicatie tweemaal geïnstalleerd op dezelfde telefoon: één keer met coarse location-permissies en één keer met fine location-permissies. Beide applicaties waren geconfigureerd met dezelfde prioriteitsinstellingen om een eerlijke vergelijking mogelijk te maken. Een van de vragen was of de instelling \textit{balanced power accuracy}, die geen gebruik maakt van satellieten, dezelfde resultaten zou opleveren als coarse location. 
+Dit zou inzicht geven in de vraag of de obfuscatie uitsluitend voortkomt uit de inherente onnauwkeurigheid van de gebruikte technologieën, of dat Android actief een extra laag van obfuscatie toepast op de locatiegegevens.
+Als resultaat vinden we de volgende visualisatie \ref{fig:coarsevsfine} en \ref{fig:coarsevsfine2}. Hierbij is rood de trace met fine permissies en blauw coarse permissies. 
+\begin{itemize}
+    \item In beide voorbeelden zien we dat de coarse trace duidelijk minder punten bevat en verder van de werkelijke trace ligt dan de fine trace. Dit komt doordat, wanneer de nieuwe locatie te dicht bij de vorige ligt, de callback eenvoudigweg niet wordt opgeroepen.
+    \item In het tweede voorbeeld zien we dat bij langdurig op dezelfde locatie blijven, de fine permissie relatief veel punten oplevert, waarbij de data varieert en zelfs een uitschieter vertoont. Dit is waarschijnlijk het gevolg van meer interferentie op de signalen in een betonnen gebouw. Opvallend is dat wanneer deze uitschieter optreedt, de coarse locatie eveneens een uitschieter in dezelfde richting vertoont. In dat geval wordt de callback dus wel opgeroepen.
+    \item In het eerste voorbeeld zien we dat het coarse pad slechts vijf punten bevat. Ook ligt het pad meer dan de helft van de breedte van Gent verwijderd van de werkelijke trace. De obfuscatie-oplossing van Android kan niet beïnvloed worden door de gebruiker.
+    \item In het tweede voorbeeld zien we linksboven op de Gentse Steenweg bij de Colruyt dat, wanneer er een volgend punt wordt berekend door de coarse-methode, dit punt ver genoeg van de vorige punten ligt. Dit kan mogelijk een extra privacymaatregel zijn.
+\end{itemize}
+Uit deze bemerkingen kunnen we concluderen dat bovenop de inherente onnauwkeurigheid ook nog extra obfuscatie gebeurd.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{images/coarsevsfine1.png}
-    \includegraphics[width=\textwidth]{images/coarsevsfine2.png}
-    \caption{Vergelijking coarse permissies en fine permissies}
-    \label{fig:coarsevsfine}
+    \caption{Vergelijking coarse permissies en fine permissies 1}
+    \label{fig:coarsevsfine1}
 \end{figure}
-Een interessante vraag die voortkwam uit de experimenten, was hoe de obfuscatie van Android precies werkt. Om dit te onderzoeken, werden de coarse location-gegevens van eerdere tests naast elkaar gelegd. Zoals te zien is in Figuur~\ref{fig:coarse_1_phone}, leveren verschillende dagen en traces steeds dezelfde coördinaten op. Dit wijst erop dat Android een soort privacycirkels implementeert, vergelijkbaar met eerder besproken algoritmen, om aanvallen te voorkomen waarbij gemiddelden over lange periodes worden gebruikt om plaatsen van interesse te identificeren.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/coarsevsfine2.png}
+    \caption{Vergelijking coarse permissies en fine permissies 2}
+    \label{fig:coarsevsfine2}
+\end{figure}
+Een interessante vraag die voortkwam uit deze experimenten, was hoe de obfuscatie van Android precies werkt. Om dit te onderzoeken, werden de coarse location-gegevens van eerdere tests naast elkaar gelegd. 
+Zoals te zien is in Figuur~\ref{fig:coarse_1_phone}, leveren de traces van op verschillende dagen maar wel hetzelfde apparaat steeds dezelfde coördinaten op. Dit wijst erop dat Android een soort privacycirkels implementeert, vergelijkbaar met eerder besproken algoritmen, om aanvallen te voorkomen waarbij gemiddelden over lange periodes worden gebruikt om plaatsen van interesse te identificeren.
 
-Een vervolgonderzoek richtte zich op de consistentie van dit algoritme. De vraag was of de geobfusceerde locaties consistent worden berekend op basis van nabijgelegen telefoonmasten, zodat dezelfde locaties op verschillende apparaten identiek zouden zijn. Uit de resultaten, weergegeven in Figuur~\ref{fig:coarse_3_phones}, blijkt echter dat dit niet het geval is. Dit suggereert dat Android's obfuscatie-algoritme niet uitsluitend gebaseerd is op vaste berekeningen van telefoonmastlocaties, maar mogelijk andere factoren in overweging neemt.
+Een vervolgonderzoek richtte zich op de consistentie van dit algoritme. De vraag was of de geobfusceerde locaties consistent worden berekend op basis van nabijgelegen telefoonmasten, zodat dezelfde locaties op verschillende apparaten identiek zouden zijn. Uit de resultaten, weergegeven in Figuur~\ref{fig:coarse_3_phones}, blijkt echter dat dit niet het geval is. Dit suggereert dat Android's obfuscatie-algoritme niet uitsluitend gebaseerd is op vaste berekeningen van telefoonmastlocaties, maar mogelijk ook andere factoren in overweging neemt.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.24\textwidth]{images/coarse-10-04.png}
