@@ -1,0 +1,29 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{askCoarse}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{activity}\PYG{p}{.}\PYG{n+na}{registerForActivityResult}\PYG{p}{(}
+\PYG{+w}{        }\PYG{n}{ActivityResultContracts}\PYG{p}{.}\PYG{n+na}{RequestPermission}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n}{res}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{\PYGZus{}coarsePermission}\PYG{p}{.}\PYG{n+na}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{res}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{n}{fun}\PYG{+w}{ }\PYG{n+nf}{getCoarsePermission}\PYG{p}{(}\PYG{n}{askIfNecessary}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{Boolean}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{)}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{Boolean}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{\PYGZus{}coarsePermission}\PYG{p}{.}\PYG{n+na}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{activity}\PYG{p}{.}\PYG{n+na}{checkSelfPermission}\PYG{p}{(}
+\PYG{+w}{        }\PYG{n}{Manifest}\PYG{p}{.}\PYG{n+na}{permission}\PYG{p}{.}\PYG{n+na}{ACCESS\PYGZus{}COARSE\PYGZus{}LOCATION}
+\PYG{+w}{    }\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{PackageManager}\PYG{p}{.}\PYG{n+na}{PERMISSION\PYGZus{}GRANTED}
+\PYG{+w}{    }\PYG{n+nf}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{\PYGZus{}coarsePermission}\PYG{p}{.}\PYG{n+na}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{logDebug}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{already granted}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{LogLevel}\PYG{p}{.}\PYG{n+na}{VERBOSE}\PYG{p}{)}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{true}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{askIfNecessary}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{ActivityCompat}\PYG{p}{.}\PYG{n+na}{shouldShowRequestPermissionRationale}\PYG{p}{(}
+\PYG{+w}{                }\PYG{n}{activity}\PYG{p}{,}
+\PYG{+w}{                }\PYG{n}{Manifest}\PYG{p}{.}\PYG{n+na}{permission}\PYG{p}{.}\PYG{n+na}{ACCESS\PYGZus{}COARSE\PYGZus{}LOCATION}
+\PYG{+w}{            }\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{val}\PYG{+w}{ }\PYG{n}{intent}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Intent}\PYG{p}{(}\PYG{n}{android}\PYG{p}{.}\PYG{n+na}{provider}\PYG{p}{.}\PYG{n+na}{Settings}\PYG{p}{.}\PYG{n+na}{ACTION\PYGZus{}APPLICATION\PYGZus{}DETAILS\PYGZus{}SETTINGS}\PYG{p}{)}
+\PYG{+w}{            }\PYG{n}{intent}\PYG{p}{.}\PYG{n+na}{data}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Uri}\PYG{p}{.}\PYG{n+na}{parse}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{package:\PYGZdl{}\PYGZob{}activity.packageName\PYGZcb{}}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{            }\PYG{n}{startActivity}\PYG{p}{(}\PYG{n}{activity}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{intent}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{n}{askCoarse}\PYG{p}{.}\PYG{n+na}{launch}\PYG{p}{(}\PYG{n}{Manifest}\PYG{p}{.}\PYG{n+na}{permission}\PYG{p}{.}\PYG{n+na}{ACCESS\PYGZus{}COARSE\PYGZus{}LOCATION}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{\PYGZus{}coarsePermission}\PYG{p}{.}\PYG{n+na}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{true}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

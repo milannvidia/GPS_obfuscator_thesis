@@ -3,7 +3,7 @@ Naast de resultaten van de testen in verband met de werking van Android besproke
 \section{Visuele representatie}
 Voor het testen van de uiteindelijke library hebben we een specifieke route uitgestippeld die verschillende situaties omvat om de obfuscatie op diverse manieren te evalueren. De gevolgde route startte aan de Technologiecampus Gent, waarna er naar de Korenmarkt werd gefietst. Daar werd gedurende twee uur op een terras gezeten om langdurig verblijf op één locatie te simuleren. Vervolgens werd er met de fiets naar de bibliotheek De Krook gereden, waar een korte stop werd ingelast om een kortstondig verblijf te testen. Daarna werd via een omweg naar station Dampoort gefietst, om vervolgens met de trein naar Lokeren te reizen en zo snel vervoer in een afgesloten ruimte te evalueren. Het resultaat van zo een trace is te zien in figuur~\ref{fig:real_trace}.
 
-In deze trace vallen enkele zaken op. Op locaties waar langere stops werden gemaakt, zoals op de campus, de Korenmarkt, De Krook en station Dampoort, ontstaat een cirkelvormig patroon door kleine variaties in de gemeten locatie. Bij het station is zelfs een uitschieter zichtbaar, vermoedelijk veroorzaakt door beweging onder het spoor waar het GPS-signaal minder duidelijk is. 
+In deze trace vallen enkele zaken op. Op locaties waar langere stops werden gemaakt, zoals op de campus, de Korenmarkt, De Krook en station Dampoort, ontstaat een cirkelvormig patroon door kleine variaties in de gemeten locatie. Bij het station is zelfs een uitschieter zichtbaar, vermoedelijk veroorzaakt door beweging onder het spoor waar het \gls{gps}-signaal minder duidelijk is. 
 
 Verder is het opvallend dat het gefietste traject zeer accuraat wordt weergegeven, terwijl het deel van de route per trein sterk afwijkt van het werkelijke traject. Dit kan te wijten zijn aan het kooi-van-Faraday-effect van de trein of aan de hogere snelheid waarmee wordt gereisd.
 \begin{figure}[h]
@@ -14,7 +14,7 @@ Verder is het opvallend dat het gefietste traject zeer accuraat wordt weergegeve
 \end{figure}
 
 \subsection{Variabelen in kaart brengen}
-Dan wouden we de 2 parameters van het standaard obfuscatiealgoritme testen. Namelijk de radius van de privacycirkels en de tijdsinterval tussen verzonden punten. De variabelen werden samen met Toon Dehaene en Michiel Willocx zorgvuldig gekozen. 
+Dan wilden we de 2 parameters van het standaard obfuscatie-algoritme testen. Namelijk de radius van de privacycirkels en de tijdsinterval tussen verzonden punten. De variabelen werden samen met Toon Dehaene en Michiel Willocx zorgvuldig gekozen. 
 \begin{itemize}
     \item \textbf{Radius(m):} 0, 50, 100, 200, 400, 800, 1600
     \item \textbf{Tijdsinterval(s):} 0, 60, 300, 600, 1800, 3600
@@ -41,19 +41,19 @@ In Figuur~\ref{fig:timedelta_comparison} wordt het effect van verschillende tijd
 
 \subsection{Uiteindelijke resultaat}
 Dan voor alles samen te testen hebben we 1 trace genomen die het meest accuraat was naar de echte beweging van de route. Deze hebben we dan met het algoritme dat lokaal loopt in de library voor de 42 variabelen combinaties laten berekenen. Al deze combinaties zijn te veel voor op deze thesis maar zijn te vinden op \href{https://milannvidia.github.io/GPS_obfuscator_thesis/obfuscation/}{deze github page} om zo overzichtelijker te kunnen vergelijken.
-De gekozen visualisatie is te zien in deze figuur \ref{fig:Obfuscatiealgoritme_gevisualiseerd}. De gekozen variabelen voor deze visualisatie is een privacycirkel met een straal van 400 meter en een tijds interval van 5 minuten. 
+De gekozen visualisatie is te zien in deze Figuur~\ref{fig:Obfuscatiealgoritme_gevisualiseerd}. De gekozen variabelen voor deze visualisatie is een privacycirkel met een straal van 400 meter en een tijds interval van 5 minuten. 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.32\textwidth]{images/real_kader.png}
     \includegraphics[width=0.32\textwidth]{images/blobs.png}
     \includegraphics[width=0.32\textwidth]{images/obfuscated.png}
-    \caption{Obfuscatiealgoritme gevisualiseerd}
+    \caption{Obfuscatie-algoritme gevisualiseerd}
     \label{fig:Obfuscatiealgoritme_gevisualiseerd}
 \end{figure}
 
 Op deze afbeeldingen kunnen we het volgende zien.
 \begin{itemize}
-    \item Er zijn slechts privacy cirkels waar het echte pad langs is geweest. Dit is doordat de permanente opslag tussen iedere test wordt verwijderd. In het echt zou de kaart veel voller staan en minder 1 pad duidelijk zijn. Dit is belangrijk moest de data op het apparaat toch gecomprimeerd worden.
+    \item Er zijn slechts privacy cirkels waar het echte pad langs is geweest. Dit is doordat de permanente opslag tussen iedere test wordt verwijderd. In het echt zou de kaart veel voller staan en minder 1 pad duidelijk zijn. Dit is belangrijk moest de data op het apparaat toch gecomprimeerd worden omdat uit deze cirkels geen pad gemaakt kan worden.
     \item Aan gezien het interval 5 minuten is niet iedere privacycirkel met elkaar verbonden. Bij een interval van 0 seconden is dit wel het geval.
-    \item We kunnen ook duidelijk zien dat snelheid een grote invloed heeft op de uiteindelijke trace. Zo zijn de delen die met de fiets afgelegd zijn kortere lijnstukken. En aangezien de trein rit van Gent-Dampoort naar Lokeren slechts 12 minuten duurt is het logisch dat het langste lijnstuk is.
+    \item We kunnen ook duidelijk zien dat snelheid een grote invloed heeft op de uiteindelijke trace. Zo zijn de delen die met de fiets afgelegd zijn kortere lijnstukken. En aangezien de trein rit van Gent-Dampoort naar Lokeren slechts 12 minuten duurt is het logisch dat dit het langste lijnstuk is.
 \end{itemize}

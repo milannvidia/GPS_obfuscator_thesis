@@ -35,8 +35,8 @@
       \strng{authornamehash}{07eba227d803865041623a04a6207636}
       \strng{authorfullhash}{07eba227d803865041623a04a6207636}
       \strng{authorfullhashraw}{07eba227d803865041623a04a6207636}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Hack bij locatiedatabroker Gravy Analytics treft miljoenen smartphonegebruikers}
@@ -64,8 +64,8 @@
       \strng{authornamehash}{a0b01d53f68d49c8e31c51e189bdd9eb}
       \strng{authorfullhash}{a0b01d53f68d49c8e31c51e189bdd9eb}
       \strng{authorfullhashraw}{a0b01d53f68d49c8e31c51e189bdd9eb}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{year}{2021}
       \verb{urlraw}
@@ -91,8 +91,8 @@
       \strng{authornamehash}{d55011fb35aae5f07cc0600a00de8cab}
       \strng{authorfullhash}{d55011fb35aae5f07cc0600a00de8cab}
       \strng{authorfullhashraw}{d55011fb35aae5f07cc0600a00de8cab}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{year}{2019}
       \verb{urlraw}
@@ -102,29 +102,178 @@
       \verb https://www.theverge.com/interface/2019/3/28/18285274/grindr-national-security-cfius-china-kunlun-military
       \endverb
     \endentry
-    \entry{android_activity}{manual}{}{}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \verb{urlraw}
-      \verb https://developer.android.com/guide/components/activities/activity-lifecycle
-      \endverb
-      \verb{url}
-      \verb https://developer.android.com/guide/components/activities/activity-lifecycle
-      \endverb
-    \endentry
-    \entry{android_alarmmanager}{manual}{}{}
+    \entry{django}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=4b391b2392458f3f1f92f0b33887d9f4}{%
+           family={Foundation},
+           familyi={F\bibinitperiod},
+           given={Django\bibnamedelima Software},
+           giveni={D\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{4b391b2392458f3f1f92f0b33887d9f4}
+      \strng{fullhash}{4b391b2392458f3f1f92f0b33887d9f4}
+      \strng{fullhashraw}{4b391b2392458f3f1f92f0b33887d9f4}
+      \strng{bibnamehash}{4b391b2392458f3f1f92f0b33887d9f4}
+      \strng{authorbibnamehash}{4b391b2392458f3f1f92f0b33887d9f4}
+      \strng{authornamehash}{4b391b2392458f3f1f92f0b33887d9f4}
+      \strng{authorfullhash}{4b391b2392458f3f1f92f0b33887d9f4}
+      \strng{authorfullhashraw}{4b391b2392458f3f1f92f0b33887d9f4}
       \field{sortinit}{6}
       \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Django Web Framework}
+      \field{year}{2005-2025}
       \verb{urlraw}
-      \verb https://developer.android.com/develop/background-work/services/alarms/schedule
+      \verb https://www.djangoproject.com/
       \endverb
       \verb{url}
-      \verb https://developer.android.com/develop/background-work/services/alarms/schedule
+      \verb https://www.djangoproject.com/
       \endverb
     \endentry
-    \entry{kotlin_coroutines}{manual}{}{}
+    \entry{android_activity}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d242a862c3becd11c3eab68c129ae4a8}{%
+           family={Developers},
+           familyi={D\bibinitperiod},
+           given={Android},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{bibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorbibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authornamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \field{extraname}{1}
       \field{sortinit}{7}
       \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Android Activity Lifecycle}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://developer.android.com/guide/components/activities/activity-lifecycle
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/guide/components/activities/activity-lifecycle
+      \endverb
+    \endentry
+    \entry{android_background_work}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d242a862c3becd11c3eab68c129ae4a8}{%
+           family={Developers},
+           familyi={D\bibinitperiod},
+           given={Android},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{bibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorbibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authornamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \field{extraname}{2}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Decision tree background work}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://developer.android.com/develop/background-work/background-tasks#user-initiated
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/develop/background-work/background-tasks#user-initiated
+      \endverb
+    \endentry
+    \entry{android_alarmmanager}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d242a862c3becd11c3eab68c129ae4a8}{%
+           family={Developers},
+           familyi={D\bibinitperiod},
+           given={Android},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{bibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorbibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authornamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \field{extraname}{3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Android AlarmManager Documentation}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://developer.android.com/develop/background-work/services/alarms/schedule
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/develop/background-work/services/alarms/schedule
+      \endverb
+    \endentry
+    \entry{android_persistent}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d242a862c3becd11c3eab68c129ae4a8}{%
+           family={Developers},
+           familyi={D\bibinitperiod},
+           given={Android},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{bibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorbibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authornamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \field{extraname}{4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Persistent Background Tasks in Android}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://developer.android.com/develop/background-work/background-tasks/persistent
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/develop/background-work/background-tasks/persistent
+      \endverb
+    \endentry
+    \entry{kotlin_coroutines}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d242a862c3becd11c3eab68c129ae4a8}{%
+           family={Developers},
+           familyi={D\bibinitperiod},
+           given={Android},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{bibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorbibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authornamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \field{extraname}{5}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Kotlin Coroutines Guide}
+      \field{year}{2024}
       \verb{urlraw}
       \verb https://developer.android.com/kotlin/coroutines
       \endverb
@@ -132,14 +281,199 @@
       \verb https://developer.android.com/kotlin/coroutines
       \endverb
     \endentry
-    \entry{android_persistent}{manual}{}{}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+    \entry{kevin}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{hash=7300f4d2209942afbd3ab46670933f62}{%
+           family={Boeck},
+           familyi={B\bibinitperiod},
+           given={Kevin\bibnamedelima De},
+           giveni={K\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {KuLeuven}%
+      }
+      \strng{namehash}{7300f4d2209942afbd3ab46670933f62}
+      \strng{fullhash}{7300f4d2209942afbd3ab46670933f62}
+      \strng{fullhashraw}{7300f4d2209942afbd3ab46670933f62}
+      \strng{bibnamehash}{7300f4d2209942afbd3ab46670933f62}
+      \strng{authorbibnamehash}{7300f4d2209942afbd3ab46670933f62}
+      \strng{authornamehash}{7300f4d2209942afbd3ab46670933f62}
+      \strng{authorfullhash}{7300f4d2209942afbd3ab46670933f62}
+      \strng{authorfullhashraw}{7300f4d2209942afbd3ab46670933f62}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{CoCoNut Project}
+      \field{type}{phdthesis}
+      \field{year}{2023}
+    \endentry
+    \entry{DehaeneToon2023MLSi}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=e097233ed16cbd9add6c79a1f5589da1}{%
+           family={Dehaene},
+           familyi={D\bibinitperiod},
+           given={Toon},
+           giveni={T\bibinitperiod}}}%
+        {{hash=6360e83e066e8dddf7b9d19c4193a347}{%
+           family={Willocx},
+           familyi={W\bibinitperiod},
+           given={Michiel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=9448bde6355f19070e42486d34faa121}{%
+           family={Lagaisse},
+           familyi={L\bibinitperiod},
+           given={Bert},
+           giveni={B\bibinitperiod}}}%
+        {{hash=c0993df09107775aa929acb0dd6c4e99}{%
+           family={Naessens},
+           familyi={N\bibinitperiod},
+           given={Vincent},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {eng}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{872ff24add887d0465cc552193593dea}
+      \strng{fullhash}{872ff24add887d0465cc552193593dea}
+      \strng{fullhashraw}{872ff24add887d0465cc552193593dea}
+      \strng{bibnamehash}{872ff24add887d0465cc552193593dea}
+      \strng{authorbibnamehash}{872ff24add887d0465cc552193593dea}
+      \strng{authornamehash}{872ff24add887d0465cc552193593dea}
+      \strng{authorfullhash}{872ff24add887d0465cc552193593dea}
+      \strng{authorfullhashraw}{872ff24add887d0465cc552193593dea}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2023 IEEE European Symposium on Security and Privacy Workshops (EuroS&PW)}
+      \field{isbn}{9798350327205}
+      \field{issn}{2768-0657}
+      \field{title}{Masking Location Streams in the Presence of Colluding Service Providers}
+      \field{year}{2023}
+      \field{pages}{405\bibrangedash 414}
+      \range{pages}{10}
+      \keyw{Measurement ; Privacy}
+    \endentry
+    \entry{location_battery}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d242a862c3becd11c3eab68c129ae4a8}{%
+           family={Developers},
+           familyi={D\bibinitperiod},
+           given={Android},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{bibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorbibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authornamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \field{extraname}{6}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Background location and battery life}
+      \field{year}{2025}
       \verb{urlraw}
-      \verb https://developer.android.com/develop/background-work/background-tasks/persistent
+      \verb https://developer.android.com/develop/sensors-and-location/location/battery
       \endverb
       \verb{url}
-      \verb https://developer.android.com/develop/background-work/background-tasks/persistent
+      \verb https://developer.android.com/develop/sensors-and-location/location/battery
+      \endverb
+    \endentry
+    \entry{singleton}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=12f8baf1c20bec0e6f385c47c983b1f4}{%
+           family={Guru},
+           familyi={G\bibinitperiod},
+           given={Refactoring},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{12f8baf1c20bec0e6f385c47c983b1f4}
+      \strng{fullhash}{12f8baf1c20bec0e6f385c47c983b1f4}
+      \strng{fullhashraw}{12f8baf1c20bec0e6f385c47c983b1f4}
+      \strng{bibnamehash}{12f8baf1c20bec0e6f385c47c983b1f4}
+      \strng{authorbibnamehash}{12f8baf1c20bec0e6f385c47c983b1f4}
+      \strng{authornamehash}{12f8baf1c20bec0e6f385c47c983b1f4}
+      \strng{authorfullhash}{12f8baf1c20bec0e6f385c47c983b1f4}
+      \strng{authorfullhashraw}{12f8baf1c20bec0e6f385c47c983b1f4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Singleton Design Pattern}
+      \field{year}{2014-2025}
+      \verb{urlraw}
+      \verb https://refactoring.guru/design-patterns/singleton
+      \endverb
+      \verb{url}
+      \verb https://refactoring.guru/design-patterns/singleton
+      \endverb
+    \endentry
+    \entry{android_opslag}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d242a862c3becd11c3eab68c129ae4a8}{%
+           family={Developers},
+           familyi={D\bibinitperiod},
+           given={Android},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{fullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{bibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorbibnamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authornamehash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhash}{d242a862c3becd11c3eab68c129ae4a8}
+      \strng{authorfullhashraw}{d242a862c3becd11c3eab68c129ae4a8}
+      \field{extraname}{7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Access app-specific files}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://developer.android.com/training/data-storage/app-specific
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/training/data-storage/app-specific
+      \endverb
+    \endentry
+    \entry{folium}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=72b23ce1d8fff9ecb0473dce086a7dea}{%
+           family={Theme},
+           familyi={T\bibinitperiod},
+           given={PyData\bibnamedelima Sphinx},
+           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{72b23ce1d8fff9ecb0473dce086a7dea}
+      \strng{fullhash}{72b23ce1d8fff9ecb0473dce086a7dea}
+      \strng{fullhashraw}{72b23ce1d8fff9ecb0473dce086a7dea}
+      \strng{bibnamehash}{72b23ce1d8fff9ecb0473dce086a7dea}
+      \strng{authorbibnamehash}{72b23ce1d8fff9ecb0473dce086a7dea}
+      \strng{authornamehash}{72b23ce1d8fff9ecb0473dce086a7dea}
+      \strng{authorfullhash}{72b23ce1d8fff9ecb0473dce086a7dea}
+      \strng{authorfullhashraw}{72b23ce1d8fff9ecb0473dce086a7dea}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Folium Library for Geospatial Visualization}
+      \field{year}{2013-2025}
+      \verb{urlraw}
+      \verb https://python-visualization.github.io/folium/latest/
+      \endverb
+      \verb{url}
+      \verb https://python-visualization.github.io/folium/latest/
       \endverb
     \endentry
   \enddatalist

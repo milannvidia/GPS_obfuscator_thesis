@@ -1,69 +1,79 @@
 \chapter{Evaluatie en discussie} \label{chap:evaluatie}
-\section{Evaluatie van het systeem}
-Het voorgestelde systeem wordt geëvalueerd aan de hand van de twee centrale onderzoeksvragen: de gebruiksvriendelijkheid en uitbreidbaarheid van de Android-bibliotheek, en de mate waarin de obfuscatie de privacy van de gebruiker beschermt.
+Het voorgestelde systeem wordt geëvalueerd aan de hand van de twee centrale onderzoeksvragen: de gebruiksvriendelijkheid en uitbreidbaarheid van de Android-library, en de mate waarin de obfuscatie de privacy van de gebruiker beschermt.
 
-\paragraph{Gebruiksvriendelijkheid en uitbreidbaarheid}
-(1) De bibliotheek is ontworpen met een duidelijke abstractielaag, waardoor ontwikkelaars eenvoudig eigen obfuscatie-algoritmen kunnen implementeren via de \texttt{LocationObfuscator}-interface. (2) De standaard initialisatie vereist slechts enkele regels code, dankzij goed gekozen standaardinstellingen, waardoor de instapdrempel laag blijft. (3) Integratie in bestaande projecten verloopt vlot, omdat de library compatibel is met gangbare Android-componenten zoals de WorkManager en FusedLocationProvider. Hierdoor kunnen ontwikkelaars snel locatieverzameling toevoegen zonder diepgaande kennis van de onderliggende complexiteit.
-\paragraph{Effectiviteit van de obfuscatie}
-De obfuscatie beschermt de locatie van de gebruiker door ruis toe te voegen en privacycirkels te hanteren, waardoor individuele sporen niet langer direct aan een specifieke gebruiker kunnen worden gekoppeld. Uit de experimenten blijkt dat het nog steeds mogelijk is om algemene bewegingspatronen af te leiden die nuttig zijn voor marktonderzoek, maar dat gevoelige locaties effectief worden afgeschermd. Alhoewel de variablen goed gekozen moeten worden. De data blijft veilig binnen de applicatie, aangezien de originele, nauwkeurige locatiegegevens het apparaat nooit verlaten noch opgeslagen worden. Voor data brokers is de geobfusceerde data minder waardevol voor individuele profilering, maar blijft waarschijnlijk bruikbaar voor geaggregeerd onderzoek. Echter moet hiervoor een grootschalig onderzoek gedaan worden om meer data te verkrijgen.
+\section{Evaluatie van de onderzoeksvragen}
+\subsection{Gebruiksvriendelijkheid en uitbreidbaarheid}
+De library is ontworpen met een duidelijke abstractielaag, waardoor ontwikkelaars eenvoudig eigen obfuscatie-algoritmes kunnen implementeren via de \texttt{LocationObfuscator}-interface. De standaardinitialisatie vereist slechts enkele regels code dankzij goed gekozen standaardinstellingen, waardoor de instapdrempel laag blijft. Integratie in bestaande projecten verloopt vlot, omdat de library compatibel is met gangbare Android-componenten zoals de WorkManager en FusedLocationProvider. Hierdoor kunnen ontwikkelaars snel locatieverzameling toevoegen zonder diepgaande kennis van de onderliggende complexiteit.
 
-Na dit alles kan deze bibliotheek voor een breed toepassingsveld gebruikt worden. Voor applicaties zoals strava waar de locatie net juist accuraat moet zijn kan de library gewoon als facade gebruikt worden of kan de developer een locatieobfuscator schrijven dat enkel bepaalde locaties obfusceert (zoals een thuisadres).
+\subsection{Effectiviteit van de obfuscatie}
+De obfuscatie beschermt de locatie van de gebruiker door ruis toe te voegen en privacycirkels te hanteren, waardoor individuele sporen niet langer direct aan een specifieke gebruiker kunnen worden gekoppeld. Uit de experimenten blijkt dat het nog steeds mogelijk is om algemene bewegingspatronen af te leiden die nuttig zijn voor marktonderzoek, terwijl gevoelige locaties effectief worden afgeschermd. Het is echter belangrijk dat de variabelen zorgvuldig gekozen worden. De data blijft veilig binnen de applicatie, aangezien de originele, nauwkeurige locatiegegevens het apparaat nooit verlaten of worden opgeslagen. Voor data brokers is de geobfusceerde data minder waardevol voor individuele profilering, maar blijft waarschijnlijk bruikbaar voor geaggregeerd onderzoek. Voor een grondige evaluatie hiervan is echter grootschalig onderzoek nodig.
 
-Verder waar de locatie niet zo van belang is en infrequent nodig is kan dit door instellingen nog steeds bekomen worden. Dit door de frequentie van locatieupdates laag te zetten en met de background task infrequent en kort te laten lopen.
+Naast deze kwalitatieve beoordeling is ook een kwantitatieve evaluatie uitgevoerd. Hiervoor werd een evaluatiefunctie ontwikkeld, waarvan de code te vinden is in \ref{code:evaluatie}. Deze functie werkt als volgt: voor elk punt van de originele route wordt bepaald of het punt is weggelaten. Indien het punt behouden is, wordt de afstand berekend tussen het originele en het geobfusceerde punt. Indien het punt is weggelaten, wordt de minimale afstand genomen tussen (1) het originele punt en het meest recent geobfusceerde punt, of (2) het originele punt en het dichtstbijzijnde geobfusceerde punt in de tijd.
 
-Dit allemaal zonder dat developer een Worker, permissies of de FusedLocationProvider moet begrijpen. Zo kan er uitsluitend gefocussed worden op het obfuscatiealgoritme in locatie privacy onderzoek. Of kan bij strakke deadlines deze leercurve voorkomen worden.
+De resultaten hiervan zijn te zien in Figuur~\ref{fig:dtw}. Dit zijn de gemiddelde afstanden per punt tot het, in tijd, dichtstbijzijnde geobfusceerde punt. Hieruit blijkt duidelijk dat zowel de radius als het tijdsinterval invloed hebben op de mate van obfuscatie. Dit is een evaluatie van de locatie-obfuscatie; een kwantitatieve evaluatie op het vlak van bruikbaarheid is niet mogelijk met de huidige datasets, aangezien het maken van heatmaps veel meer data vereist dan de 42 beschikbare traces.
 
-% ook becijfering
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/dtw.png}
+    \caption{Kwantitatieve evaluatieresultaten}
+    \label{fig:dtw}
+\end{figure}
+
+De library kan voor een breed toepassingsveld gebruikt worden. Voor applicaties zoals Strava, waar locatie juist accuraat moet zijn, kan de library als facade gebruikt worden of kan de ontwikkelaar een locatie-obfuscator schrijven die enkel bepaalde locaties obfusceert (zoals een thuisadres). Door de hoge instelbaarheid van de library is dit een vooruitgang ten opzichte van enkel het coarse permissiesysteem van Android, waar de developer niets kan aanpassen aan de toepassing. Waar locatie minder van belang is en infrequent nodig is, kan dit door de frequentie van locatie-updates laag te zetten en met de background task infrequent en kort te laten lopen.
+
+Dit alles zonder dat de developer een Worker, permissies of de FusedLocationProvider hoeft te begrijpen. Zo kan er uitsluitend gefocust worden op het obfuscatie-algoritme in locatieprivacy-onderzoek, of kan bij strakke deadlines de leercurve beperkt blijven.
+
 \subsection{Beperkingen}
-Ondanks alle maatregelingen heeft de library enkele beperkingen:
+Ondanks alle maatregelen hebben de library en de testapplicatie enkele beperkingen:
 \begin{itemize}
     \item In de huidige versie van de library is slechts beperkt onderzoek verricht naar de langdurige stabiliteit van locatieverzameling in de achtergrond en naar mogelijke onbekende beperkingen die verder reiken dan de maximale threadtijd van 10 minuten per 15 minuten. Om dit grondig te testen, zouden meerdere langdurige runtimes moeten worden voorzien.
     \item Voor de testapplicatie is een fallbackmechanisme geïmplementeerd voor mislukte HTTP-verzoeken, waarbij deze tijdelijk worden opgeslagen in de shared preferences van Android. Echter, shared preferences zijn niet geschikt voor het verwerken van grote hoeveelheden data, wat leidt tot vertragingen bij het lezen en schrijven, vooral wanneer er gedurende langere tijd geen netwerkverbinding beschikbaar is. Bovendien kan de plotselinge piek in internetverkeer bij het herstellen van een netwerkverbinding resulteren in crashes op Android. Verdere uitbreiding van de testapplicatie vereist daarom throttlingmechanismen en een robuustere permanente opslagoplossing, met name voor scenario's waarin testapparaten langdurig geen internetverbinding hebben.
 \end{itemize}
 
-
 \section{Verder werk}
-Dit onderwerp zal in de nabije toekomst een bron van verder onderzoek blijven. Enkele mogelijke richtingen voor toekomstig werk zijn de volgende:
+Dit onderwerp zal in de nabije toekomst een bron van verder onderzoek blijven. Enkele mogelijke richtingen voor toekomstig werk zijn:
 \begin{itemize}
-    \item Éen van de mogelijke uitbreidingen is in de standaardimplementatie van de obfuscatiealgoritme. Waar de radius van de privacycirkel afhankelijk is van de straatdensiteit en het interval tussen locatiepunten afhankelijk is van vervoersmethode.
-    \item Standaardimplementaties (presets) voor bepaalde doeleindes implementeren. Dit zorgt voor minder configuratie als de developer andere doeleindes heeft dan de standaardinstelling.
-    \item Een grootschalige test met vele gebruikers om de bruikbaarheid te kunnen testen van de oplossing.
-    \item  
+    \item Een mogelijke uitbreiding is het aanpassen van de standaardimplementatie van het obfuscatie-algoritme, waarbij de radius van de privacycirkel afhankelijk is van de straatdichtheid en het interval tussen locatiepunten afhankelijk is van de vervoersmethode.
+    \item Standaardimplementaties (presets) voor bepaalde doeleinden implementeren, zodat minder configuratie nodig is als de developer andere doeleinden heeft dan de standaardinstelling.
+    \item Verder kunnen deze standaardimplementaties ook rekening houden met de toestemmingen die de applicatie heeft verkregen. Er is namelijk geen sterke obfuscatie nodig bovenop coarse locaties van Android.
+    \item Een grootschalige test met vele gebruikers om de bruikbaarheid voor onderzoek naar massabewegingen te kunnen testen.
 \end{itemize}
 
 \section{Gebruik van de library}
 \subsection{Initialisatie}
-% Manual gebruik van library, stap voor stap
 Het gebruik van de library verloopt in enkele duidelijke stappen. Eerst wordt een instantie van de \texttt{LocationManager} aangemaakt, waarbij de \texttt{MainActivity} als parameter wordt meegegeven. Dit is noodzakelijk om een observer te kunnen koppelen aan de lifecycle van de \texttt{MainActivity}. Vervolgens wordt een \texttt{LocationObfuscator} ingesteld; dit kan zowel de standaardimplementatie zijn als een door de ontwikkelaar zelf geïmplementeerde klasse. Ten slotte wordt een callbackfunctie geregistreerd, die door de library wordt aangeroepen zodra er een nieuwe locatie beschikbaar is.
-\begin{minted}{java}
-    class MainActivity : ComponentActivity() {
-        private val locationManager = LocationManager.getInstance(this)
-        init {
-            locationManager.locationObfuscator = LocationObfuscatorV1.getInstance()
-            locationManager.callback =
-                { location -> sendLocationToServer(location) }
-        }
+\begin{minted}[breaklines]{java}
+class MainActivity : ComponentActivity() {
+    private val locationManager = LocationManager.getInstance(this)
+    init {
+        locationManager.locationObfuscator = LocationObfuscatorV1.getInstance()
+        locationManager.callback =
+            { location -> sendLocationToServer(location) }
+        locationManager.startTracking()
     }
+}
 \end{minted}
+
 \subsection{LocationObfuscator zelf implementeren}
 Om een eigen locatie-obfuscator te implementeren, kan men onderstaande aanpak volgen. De eenvoudigste implementatie bestaat erin dat de locatie verkregen via de FusedLocationProvider als argument wordt doorgegeven aan de \texttt{obfuscateLocation}-functie, die vervolgens een tuple van coördinaten en tijdstempel retourneert. De overige drie functies (\texttt{load}, \texttt{store} en \texttt{clearStorage}) zijn bedoeld voor het beheren van permanente opslag. Indien nodig kunnen variabelen via de constructor worden meegegeven. Het \texttt{filesDir}-object dat aan deze functies wordt doorgegeven, biedt toegang tot de opslagruimte van de applicatie.
-\begin{minted}{java}
+\begin{minted}[breaklines]{java}
 import android.location.Location
 import be.kuleuven.milanschollier.safegps.LatLonTs
 import be.kuleuven.milanschollier.safegps.LocationObfuscator
 import java.io.File
-class ImplementationExample private constructor() :LocationObfuscator {
+class ImplementationExample private constructor() : LocationObfuscator {
     override fun obfuscateLocation(location: Location): LatLonTs {
         return LatLonTs(location.latitude, location.longitude, location.time)
     }
-    override fun load(filesDir: File) {return}
-    override fun store(filesDir: File) {return}
-    override fun clearStorage(filesDir: File) {return}
+    override fun load(filesDir: File) { return }
+    override fun store(filesDir: File) { return }
+    override fun clearStorage(filesDir: File) { return }
 }
 \end{minted}
+
 \subsection{Live data}
-De developer kan gebruik maken van live data in de library. Zo is finePermission, coarsepermission en running live data dat de applicatie intuitief kan laten reageren op de werking van de library.
-\begin{minted}{java}
+De developer kan gebruikmaken van live data in de library. Zo zijn \texttt{finePermission}, \texttt{coarsePermission} en \texttt{running} live data, waarmee de applicatie intuïtief kan reageren op de werking van de library.
+\begin{minted}[breaklines]{java}
 val finePermission = locationManager.finePermission.observeAsState()
 Button(
     onClick = {
@@ -77,4 +87,3 @@ Button(
     Text(text = if (finePermission.value == true) "Fine permission granted" else "Ask Fine Permission")
 }
 \end{minted}
-\section{Conclusie}

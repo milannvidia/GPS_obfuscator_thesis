@@ -47,24 +47,73 @@ fn main() {
                 }
             }
             let blobs = struct_obfuscator.get_blobs();
+            let score: f64 = calc_score(&lat_lon_ts, &instance_res);
+            // print!(
+            //     "score voor radius {} en time_delta {} is gaps={} en distance={}",
+            //     radius, time_delta, score.0, score.1
+            // );
+            print!("{}", score);
             // Write instance_res to file
-            let res_file_name = format!("{}/{}_{}_res", DATA_OUT, radius, time_delta);
-            let mut res_file = File::create(res_file_name).expect("Could not create file");
-            for loc in &instance_res {
-                writeln!(res_file, "{},{},{}", loc.lat, loc.lon, loc.ts)
-                    .expect("Could not write to file");
-            }
+            // let res_file_name = format!("{}/{}_{}_res", DATA_OUT, radius, time_delta);
+            // let mut res_file = File::create(res_file_name).expect("Could not create file");
+            // for loc in &instance_res {
+            //     writeln!(res_file, "{},{},{}", loc.lat, loc.lon, loc.ts)
+            //         .expect("Could not write to file");
+            // }
 
-            // Write blobs to file
-            let blobs_file_name = format!("{}/{}_{}_blobs", DATA_OUT, radius, time_delta);
-            let mut blobs_file = File::create(blobs_file_name).expect("Could not create file");
-            for blob in blobs {
-                writeln!(blobs_file, "{},{},{}", blob.lat, blob.lon, blob.radius)
-                    .expect("Could not write to file");
-            }
+            // // Write blobs to file
+            // let blobs_file_name = format!("{}/{}_{}_blobs", DATA_OUT, radius, time_delta);
+            // let mut blobs_file = File::create(blobs_file_name).expect("Could not create file");
+            // for blob in blobs {
+            //     writeln!(blobs_file, "{},{},{}", blob.lat, blob.lon, blob.radius)
+            //         .expect("Could not write to file");
+            // }
             println!("{:?}", blobs.len())
         }
     }
+}
+
+fn calc_score(_original: &Vec<LatLonTs>, _obfuscated: &Vec<LatLonTs>) -> f64 {
+    let mut distance: f64 = 0.0;
+    for orig in _original {
+        // Zoek alle obfuscated punten met dezelfde timestamp
+        if let Some(obf) = _obfuscated.iter().find(|o| o.ts == orig.ts) {
+            let p1 = Point::from((orig.lon, orig.lat));
+            let p2 = Point::from((obf.lon, obf.lat));
+            distance += Geodesic::distance(p1, p2);
+        } else {
+            // Zoek de twee obfuscated punten met ts net voor en na orig.ts
+            let mut before: Option<&LatLonTs> = None;
+            let mut after: Option<&LatLonTs> = None;
+            for obf in _obfuscated {
+                if obf.ts <= orig.ts {
+                    if before.is_none() || obf.ts > before.as_ref().unwrap().ts {
+                        before = Some(obf);
+                    }
+                }
+                if obf.ts >= orig.ts {
+                    if after.is_none() || obf.ts < after.as_ref().unwrap().ts {
+                        after = Some(obf);
+                    }
+                }
+            }
+            let p_orig = Point::from((orig.lon, orig.lat));
+            let d_before = before.map(|b| Geodesic::distance(p_orig, Point::from((b.lon, b.lat))));
+            let d_after = after.map(|a| Geodesic::distance(p_orig, Point::from((a.lon, a.lat))));
+            match (d_before, d_after) {
+                (Some(d1), Some(d2)) => distance += d1.min(d2),
+                (Some(d1), None) => distance += d1,
+                (None, Some(d2)) => distance += d2,
+                (None, None) => {
+                    println!("hoe")
+                }
+            }
+        }
+    }
+    if !_original.is_empty() {
+        distance /= _original.len() as f64;
+    }
+    return distance;
 }
 #[derive(Clone, Debug)]
 struct PrivacyBlob {

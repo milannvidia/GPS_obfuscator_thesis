@@ -1,12 +1,12 @@
-\chapter{Design} \label{chap:design}
+\chapter{Design}\label{chap:design}
 Vooraleer de implementatie van de library kan starten, is een grondig ontwerp noodzakelijk. Dit ontwerp wordt in belangrijke mate bepaald door de beperkingen en mogelijkheden van het Android-platform. Daarnaast zijn de functionele vereisten en onderliggende veronderstellingen essentieel voor het uiteindelijke ontwerp.
 \section{Vereisten}
 % dit aanpassen zeggen dat dit de hoofd doelen zijn.
-De doelstellingen van dit onderzoek zijn als volgt geformuleerd:
+De doelstellingen van dit onderzoek zijn als volgt geformuleerd.
 \paragraph{Library} Het ontwikkelen van een library met algemene bruikbaarheid: Het streven is om een library te creëren die in diverse applicaties kan worden toegepast. Deze library moet het proces van het aanvragen van permissies, initialisatie, gebruik en uitbreiding zo efficiënt mogelijk ondersteunen. Dit impliceert dat de library aan onderstaande vereisten moet voldoen om in uiteenlopende soorten applicaties te kunnen werken.
 \begin{itemize}
     \item \textbf{Flexibel}: De library mag niet beperkend zijn in vergelijking met de standaardinstellingen van de Android-implementatie en moet voldoende configuratiemogelijkheden bieden.
-    \item \textbf{Modulair}: Gebruikers moeten in staat zijn om hun eigen obfuscatiealgoritmen te ontwikkelen en te integreren. De code dat ze niet horen te veranderen hoort louter een facade te zijn.
+    \item \textbf{Modulair}: Gebruikers moeten in staat zijn om hun eigen obfuscatie-algoritmes te ontwikkelen en te integreren. De code dat ze niet horen te veranderen hoort louter een facade te zijn.
     \item \textbf{Eenvoudig te integreren}: De library moet functioneren met minimale setup en gebruiksvriendelijke integratiemogelijkheden bieden. Met minimale setup wordt bedoeld dat de library volledig moet functioneren met zo weinig mogelijk lines of code.
     \item \textbf{Lage leercurve}: Een van de aannames is dat de ontwikkelaar mogelijk weinig tot geen kennis heeft van locatie services of background work in Android. Daarom moeten de standaardinstellingen een solide basis bieden voor het veilig omgaan met locatiegegevens.
 \end{itemize}
@@ -25,14 +25,14 @@ Om de werking van de library te kunnen garanderen, worden de volgende veronderst
 \section{Ontwerp}
 Het ontwerp van de library is gebaseerd op het principe van een facade, waarbij de library fungeert als een vereenvoudigde interface voor de standaard Android-functionaliteiten. Dit betekent dat alle variabelen en functionaliteiten aanwezig moeten zijn alsof de ontwikkelaar rechtstreeks met de standaard Android-implementatie werkt, maar met de toegevoegde voordelen van de library.
 
-Met bovenstaande ontwerpprincipes in gedachten illustreert Figuur \ref{fig:flow_diagram_locatie_verzameling} hoe één enkele functie het verzamelen van locatiegegevens kan starten.
+Met bovenstaande ontwerpprincipes in gedachten illustreert Figuur~\ref{fig:flow_diagram_locatie_verzameling} hoe één enkele functie het verzamelen van locatiegegevens kan starten.
 \begin{figure}
     \centering
     \includesvg[width=0.75\textwidth]{images/sequence_diagram.svg}
     \caption{Flow diagram van continue locatieverzameling}
     \label{fig:flow_diagram_locatie_verzameling}
 \end{figure}
-Figuur \ref{fig:flow_diagram_locatie_verzameling} toont vier actoren. De applicatie zelf valt buiten de controle van de library en is dus niet te beïnvloeden. De \texttt{LocationManager} fungeert als het centrale aanspreekpunt dat de volledige werking coördineert, zodat de developer ook maar met één aanspreekpunt bezorgd moet zijn. De \texttt{LocationObfuscator} vormt het modulaire onderdeel dat door de ontwikkelaar naar wens kan worden aangepast of vervangen. Tot slot is er de \texttt{LocationWorker}, die als aparte klasse wordt geïmplementeerd omdat deze de \texttt{Worker} van de WorkManager-\gls{api} van Android moet uitbreiden. Deze scheiding zorgt voor een duidelijke structuur en maakt het systeem flexibel en uitbreidbaar.
+Figuur~\ref{fig:flow_diagram_locatie_verzameling} toont vier actoren. De applicatie zelf valt buiten de controle van de library en is dus niet te beïnvloeden. De \texttt{LocationManager} fungeert als het centrale aanspreekpunt dat de volledige werking coördineert, zodat de developer ook maar met één aanspreekpunt bezorgd moet zijn. De \texttt{LocationObfuscator} vormt het modulaire onderdeel dat door de ontwikkelaar naar wens kan worden aangepast of vervangen. Tot slot is er de \texttt{LocationWorker}, die als aparte klasse wordt geïmplementeerd omdat deze de \texttt{Worker} van de WorkManager-\gls{api} van Android moet uitbreiden. Deze scheiding zorgt voor een duidelijke structuur en maakt het systeem flexibel en uitbreidbaar.
 Het is echter belangrijk om op te merken dat deze implementatie de functie \texttt{RequestPermission} niet omvat, aangezien deze losstaand moet opgeroepen geweest zijn. Want in de flow diagram staan geen Preliminaire checks, als de applicatie geen toegang heeft tot locaties zal deze niet proberen locaties op te vragen.
 
 Verder is de LocationManager een Singleton \cite{singleton} gemaakt. Singletons zorgen ervoor dat er slechts één instantie van een klasse bestaat binnen de applicatie. Zodat wanneer de developer twee-maal de LocationManager probeert te initialiseren de applicatie niet eventueel crashed doordat beide instanties locaties opvragen en het limiet overschrijden.

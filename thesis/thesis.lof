@@ -1,24 +1,26 @@
 \babel@toc {english}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Activity lifecycle Android\blx@tocontentsinit {0}\cite {android_activity}}}{7}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Keuze boom achtergrond werk voor event driven tasks \blx@tocontentsinit {0}\cite {android_background_work}}}{8}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Android WorkManager}}{9}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Vergelijking coarse permissies en fine permissies 1}}{14}{figure.caption.20}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Vergelijking coarse permissies en fine permissies 2}}{15}{figure.caption.21}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Vergelijking coarse permissie op één apparaat}}{15}{figure.caption.22}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Vergelijking coarse permissie op meerdere apparaten}}{15}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Activity lifecycle Android\blx@tocontentsinit {0}\cite {android_activity}}}{9}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Keuze boom achtergrondwerk voor event driven tasks \blx@tocontentsinit {0}\cite {android_background_work}}}{10}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Android WorkManager}}{11}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Vergelijking coarse permissies en fine permissies 1}}{16}{figure.caption.21}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Vergelijking coarse permissies en fine permissies 2}}{17}{figure.caption.22}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Vergelijking coarse permissie op één apparaat}}{17}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Vergelijking coarse permissie op meerdere apparaten}}{17}{figure.caption.24}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Flow diagram van continue locatieverzameling}}{19}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Flow diagram van continue locatieverzameling}}{21}{figure.caption.27}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Klasse diagram van de library}}{22}{figure.caption.27}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Flow diagram van het obfuscatie algoritme}}{27}{figure.caption.31}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Visualisatie van de test applicatie}}{29}{figure.caption.32}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Klasse diagram van de library}}{24}{figure.caption.28}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Flow diagram van het obfuscatie algoritme}}{30}{figure.caption.32}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Visualisatie van de test applicatie}}{32}{figure.caption.33}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Echte pad}}{32}{figure.caption.33}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Vergelijking grootte privacycirkel}}{33}{figure.caption.34}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Vergelijking tijdsinterval locatiegegevens}}{33}{figure.caption.35}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Obfuscatiealgoritme gevisualiseerd}}{34}{figure.caption.36}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Echte pad}}{36}{figure.caption.34}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Vergelijking grootte privacycirkel}}{37}{figure.caption.35}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Vergelijking tijdsinterval locatiegegevens}}{37}{figure.caption.36}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Obfuscatie-algoritme gevisualiseerd}}{38}{figure.caption.37}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Kwantitatieve evaluatieresultaten}}{40}{figure.caption.38}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

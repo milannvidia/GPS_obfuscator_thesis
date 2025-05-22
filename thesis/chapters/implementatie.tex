@@ -2,7 +2,7 @@
 \chapter{Implementatie} \label{chap:implementatie}
 De eerste stap in deze thesis was het onderzoeken van hoe Android omgaat met locatiegegevens en het implementeren van deze functionaliteit in een testapplicatie. Zodra deze applicatie functioneel was, werden de eerste preliminaire testen uitgevoerd en werd de nuttige code afgesplitst om de basis te vormen van de Android-library.
 \section{Overzicht library}
-De structuur van de library is weergegeven in Figuur~\ref{fig:uml_library}. Het merendeel van de functionaliteit is ondergebracht in de klasse \texttt{LocationManager}, die fungeert als het centrale beheerpunt voor locatieverzameling. De klasse \texttt{LocationWorker} vormt de implementatie die vereist is om de WorkManager te benutten voor achtergrondtaken. Daarnaast biedt de interface \texttt{LocationObfuscator} een abstractielaag waarmee ontwikkelaars eigen obfuscatiealgoritmen kunnen implementeren.
+De structuur van de library is weergegeven in Figuur~\ref{fig:uml_library}. Het merendeel van de functionaliteit is ondergebracht in de klasse \texttt{LocationManager}, die fungeert als het centrale beheerpunt voor locatieverzameling. De klasse \texttt{LocationWorker} vormt de implementatie die vereist is om de WorkManager te benutten voor achtergrondtaken. Daarnaast biedt de interface \texttt{LocationObfuscator} een abstractielaag waarmee ontwikkelaars eigen obfuscatie-algoritmes kunnen implementeren.
 \begin{figure}
     \centering
     \includesvg[width=0.75\textwidth]{images/uml.svg}
@@ -22,7 +22,7 @@ Om taken uit te voeren wanneer de hoofdactivity niet actief is, kan gebruik word
 Een foreground service wordt gebruikt om langdurige taken uit te voeren die een hogere prioriteit vereisen. Om een service als foreground service te configureren, moet in de hoofdactiviteit een notificatiekanaal worden aangemaakt. Dit notificatiekanaal zorgt ervoor dat de gebruiker visueel geïnformeerd wordt over de achtergrondactiviteit. 
 Nadat het notificatiekanaal is aangemaakt, kan de Worker, een klasse die de vereiste interface van de WorkManager implementeert, een notificatie genereren en weergeven.
 Dit gebeurt als volgt in de \texttt{LocationManager}, zoals weergegeven in onderstaande code, die een referentie heeft naar de hoofdactiviteit. De \texttt{LocationManager} maakt een notificatiekanaal aan met \texttt{IMPORTANCE\_LOW} om de gebruiker zo min mogelijk te storen.
-\begin{minted}{java}
+\begin{minted}[breaklines]{java}
 private fun setupNotificationChannel() {
     val channelId = "locationTrackingChannel"
     val channelName = "Location Tracking"
@@ -39,7 +39,7 @@ private fun setupNotificationChannel() {
 }
 \end{minted}
 Dan kan de LocationWorker ingrijpen op dit notificatiekanaal door dezelfde ID aan te spreken. De nodige info is een notificatie voor de foregroundInfo, zodat Android weet waarvoor de notificatie bedoeld is. De implementatie Hiervoor is te zien in onderstaande code.
-\begin{minted}{java}
+\begin{minted}[breaklines]{java}
 val notification =
     NotificationCompat.Builder(applicationContext, "locationTrackingChannel")
         .setContentTitle("Location Tracking")
@@ -66,9 +66,9 @@ Doordat de WorkManager beide vereisten kan afhandelen, is er slechts één klass
 
 Een bijkomende reden om de \texttt{LocationManager} als een Singleton te implementeren, is de beperking van de LocationWorker om complexe structuren of referenties door te geven. Zo is de initialisatie van een Worker beperkt tot primitieve datatypes. Hierdoor kan er geen referentie doorgegeven worden naar een stop signaal. Want door gebruik te maken van een Singleton-patroon kan de LocationWorker de \texttt{LocationManager} initialiseren en een referentie behouden naar diens variabelen. Zo bevat de \texttt{LocationManager} bijvoorbeeld een boolean genaamd \texttt{running}, waarmee kan worden aangegeven of de locatieverzameling actief is. Indien de locatieverzameling wordt stopgezet, kan de LocationWorker deze status uitlezen en zichzelf correct beëindigen.
 \subsubsection{Permissies}
-voordeel van Android is sandboxing, waardoor alles waar de applicatie probeert toegang tot te krijgen gemonitord kan worden. 
+Een voordeel van Android is sandboxing, waardoor alles waar de applicatie probeert toegang tot te krijgen gemonitord kan worden. 
 Hierdoor is het noodzakelijk dat de applicatie expliciet toestemming vraagt voor bepaalde functionaliteiten; indien deze toestemming niet wordt verkregen, zal de applicatie bij een toegangsverzoek crashen. Alle benodigde permissies horen ook in het manifestbestand vermeld te worden.
-Dit manifest bestand is vergelijkbaar aan een package.json voor een nodejs project. Hierin staan alle libraries dat de applicatie nodig heeft, maar dus ook de permissies die de app eventueel kan opvragen en de services dat de app eventueel gebruik van kan maken. Dit is nodig om de applicatie te laten compileren naar een \gls{apk}.
+Dit manifestbestand is vergelijkbaar aan een package.json voor een nodejs project. Hierin staan alle libraries dat de applicatie nodig heeft, maar dus ook de permissies die de app eventueel kan opvragen en de services dat de app eventueel gebruik van kan maken. Dit is nodig om de applicatie te laten compileren naar een \gls{apk}.
 
 Android onderscheidt hierbij twee categorieën permissies. 
 De eerste categorie omvat permissies die uitsluitend in het manifestbestand van de applicatie moeten worden opgenomen. Voor deze permissies is geen expliciete toestemming van de gebruiker vereist tijdens runtime.
@@ -82,15 +82,51 @@ Voor deze applicatie zijn de permissies als volgt:
 \end{itemize}
 
 Ook het afhandelen van deze permissies is geïmplementeerd in de library in de functies \texttt{getFinePermission} en \texttt{getCoarsePermission}.
+De werking van deze functies verloopt als volgt:
+\begin{itemize}
+    \item Eerst wordt gecontroleerd of de applicatie de betreffende permissie al heeft. Indien dit het geval is, retourneert de functie \texttt{true}.
+    \item De functie kan ook enkel als controle worden gebruikt, afhankelijk van de parameter \texttt{askIfNecessary}.
+    \item Indien het aanvragen van de permissie is toegestaan, wordt nagegaan of de gebruiker de permissie eerder heeft geweigerd. In dat geval wordt de gebruiker doorgestuurd naar de instellingen, aangezien de standaard pop-up dan niet meer wordt getoond. Is het de eerste aanvraag, dan verschijnt de reguliere pop-up.
+    \item Tot slot wordt de interne variabele, die als LiveData wordt bijgehouden, aangepast en wordt het resultaat geretourneerd.
+\end{itemize}
+\begin{minted}[breaklines]{java}
+private val askCoarse = activity.registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { res ->
+        this._coarsePermission.value = res
+    }
+fun getCoarsePermission(askIfNecessary: Boolean = false): Boolean {
+    this._coarsePermission.value = activity.checkSelfPermission(
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED
+    if (this._coarsePermission.value == true) {
+        this.logDebug("already granted", LogLevel.VERBOSE)
+        return true
+    }
+
+    if (askIfNecessary) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(
+                activity,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        ) {
+            val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            intent.data = Uri.parse("package:${activity.packageName}")
+            startActivity(activity, intent, null)
+        } else askCoarse.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
+    }
+    return this._coarsePermission.value == true
+}  
+\end{minted}
 
 \subsection{Obfuscatie}
 Wanneer de Worker de callback van de \texttt{LocationManager} aanroept met het locatie-resultaat van de \texttt{FusedLocationProvider}, zijn er twee mogelijke paden:
 
 \begin{itemize}
     \item \textbf{Zonder obfuscator:} Indien er geen locatieobfuscator is ingesteld, fungeert de library als een eenvoudige facade. Als er een callbackfunctie is opgegeven, worden de coördinaten en het tijdstip als een \texttt{Triple} doorgegeven aan deze callback.
-    \item \textbf{Met obfuscator:} Indien er wel een locatieobfuscator is ingesteld, wordt het resultaat van de \texttt{FusedLocationProvider} eerst naar de obfuscator gestuurd. Deze retourneert een geobfusceerde \texttt{Triple} met coördinaten en tijdstip, of \texttt{null} indien geen resultaat beschikbaar is. Indien een debugcallback is ingesteld, ontvangt deze zowel de originele als de geobfusceerde locatie. Alleen als er een geldig resultaat én een callbackfunctie is, wordt de callback aangeroepen met de geobfusceerde locatie.
+    \item \textbf{Met obfuscator:} Indien er wel een locatieobfuscator is ingesteld, wordt het resultaat van de \texttt{FusedLocationProvider} eerst naar de obfuscator gestuurd. Deze retourneert een geobfusceerde \texttt{Triple} met coördinaten en tijdstip, of \texttt{null} indien geen resultaat beschikbaar is. Indien een debug-callback is ingesteld, ontvangt deze zowel de originele als de geobfusceerde locatie. Alleen als er een geldig resultaat én een callbackfunctie is, wordt de callback aangeroepen met de geobfusceerde locatie.
 \end{itemize}
-\begin{minted}{java}\ref{code:callback_manager}
+\begin{minted}[breaklines]{java}
 fun useCallback(location: Location) {
     if (_locationObfuscator == null) {
         _callback?.invoke(Triple(location.latitude, location.longitude, location.time))
@@ -109,7 +145,7 @@ fun useCallback(location: Location) {
     }
 }
 \end{minted}
-\subsubsection{Standaard obfuscatiealgoritme}
+\subsubsection{Standaard obfuscatie-algoritme}
 De library vereist een standaardimplementatie voor een obfuscatieklasse. Hiervoor wordt verwezen naar het werk van Toon Dehaene, waarin het concept van privacyzones centraal staat. Het toevoegen van enkel ruis aan locatiegegevens kan immers leiden tot het risico dat een aanvaller door middel van gemiddelden alsnog gevoelige informatie kan achterhalen. Het algoritme, zoals weergegeven in Figuur~\ref{fig:flow_obfuscatie_algoritmen}, illustreert de werking van deze aanpak.
 
 \begin{itemize}
@@ -127,7 +163,7 @@ Daarnaast is een belangrijke toevoeging het mechanisme om jitter te voorkomen. J
     \label{fig:flow_obfuscatie_algoritmen}
 \end{figure}
 \subsection{Opslag}
-Omdat veel obfuscatiealgoritmen permanente opslag nodig hebben moet iedere obfuscatieklasse ook een load en store functie implementeren. Dit heeft als argument de filesDir van de hoofdactiviteit. Dit is een object waarmee de developer de opslag van de applicatie kan beïnvloeden. In de standaardimplementatie wordt dit gebruikt om voorgaande privacy cirkels op te slaan in een voor andere applicaties afgesloten file. \cite{android_opslag}
+Omdat veel obfuscatie-algoritmes permanente opslag nodig hebben moet iedere obfuscatieklasse ook een load en store functie implementeren. Dit heeft als argument de filesDir van de hoofdactiviteit. Dit is een object waarmee de developer de opslag van de applicatie kan beïnvloeden. In de standaardimplementatie wordt dit gebruikt om voorgaande privacy cirkels op te slaan in een voor andere applicaties afgesloten file. \cite{android_opslag}
 \subsection{Netwerk}
 De library heeft geen functionaliteit voor de locatie door te sturen naar een \gls{api} endpoint. Dit moet geïmplanteerd worden in de callback function die de developer meegeeft aan de LocationManager. In de testapplicatie word de library, aanbevolen door Android zelf, okhttp gebruikt om de locatie door te sturen.
 
@@ -155,7 +191,7 @@ Onder de instellingen bevinden zich zes knoppen met de volgende functies:
     \item \textbf{Nieuwe UUID genereren:} Hiermee wordt een unieke identificatie gegenereerd voor elke test, zodat resultaten eenvoudig te onderscheiden zijn.
     \item \textbf{Tracking starten/stoppen:} De laatste twee knoppen zijn voor locatieverzameling. De status van de tracking wordt eveneens via LiveData weergegeven in de linker knop, zodat de interface altijd de actuele status toont.
 \end{itemize}
-In het onderste tekstvak worden de resultaten gelogd die via de callback (niet de debugcallback) worden doorgegeven. Dit biedt tijdens het testen een directe indicatie dat de applicatie actief locaties verwerkt.
+In het onderste tekstvak worden de resultaten gelogd die via de callback (niet de debug-callback) worden doorgegeven. Dit biedt tijdens het testen een directe indicatie dat de applicatie actief locaties verwerkt.
 
 De drie screenshots tonen respectievelijk:
 \begin{itemize}
@@ -174,23 +210,23 @@ De drie screenshots tonen respectievelijk:
 \subsection{Verzameling}
 Voor de verzameling van data werd gebruik gemaakt van een Azure-webserver, specifiek opgezet voor studenten, met twee endpoints: \texttt{location} en \texttt{blobs}. 
 
-De \texttt{location}-endpoint ontving zowel de geobfusceerde als de originele locatiegegevens, afkomstig van de debugcallback, samen met relevante configuratieparameters. Deze gegevens werden opgeslagen in een CSV-bestand voor latere analyse. 
+De \texttt{location}-endpoint ontving zowel de geobfusceerde als de originele locatiegegevens, afkomstig van de debug-callback, samen met relevante configuratieparameters. Deze gegevens werden opgeslagen in een CSV-bestand voor latere analyse. 
 
 De \texttt{blobs}-endpoint werd gebruikt om de privacycirkels door te sturen. 
 
 Om de afhankelijkheid van een continue internetverbinding te minimaliseren, werd een mechanisme geïmplementeerd waarbij de data lokaal werd opgeslagen wanneer er geen netwerkverbinding beschikbaar was. Zodra de verbinding werd hersteld, werden de opgeslagen gegevens alsnog doorgestuurd naar de server.
 \subsection{Verwerking}
 Voor de verwerking van de resultaten werden jupyter notebooks gehanteerd samen met de library Folium \cite{folium} om de resultaten visueel te kunnen representeren. 
-In elke notebook is er een functie die de data inleest en locatiepunten die in de buurt van mijn privé zijn weg filtert. Dit zorgt ervoor dat alle gevisualiseerde data gepubliceerd kan worden.
-De eerste visualisatie was het verschil tussen coarse en fine Permissies vergelijken voor een experiment. Dit was beide op balanced power accuracy gebeurd zodat beide geen gps satellieten gebruikt. Het resultaat is te zien in het hoofdstuk experimenten in state of the art \ref{fig:coarsevsfine1}\ref{fig:coarsevsfine2}.
+In elke notebook is er een functie die de data inleest en locatiepunten die in de buurt van mijn privélocaties/privésfeer zijn weg filtert. Dit zorgt ervoor dat alle gevisualiseerde data gepubliceerd kan worden.
+De eerste visualisatie was het verschil tussen coarse en fine Permissies vergelijken voor een experiment. Dit was beide op balanced power accuracy gebeurd zodat beide geen \gls{gps} satellieten gebruikt. Het resultaat is te zien in het hoofdstuk experimenten in state of the art \ref{fig:coarsevsfine1}\ref{fig:coarsevsfine2}.
 Een tweede test betrof het gebruik van twee telefoons met coarse permissies en twee met fine permissies. Voor elk paar werd één telefoon ingesteld op high accuracy en de andere op balanced power accuracy. Deze test werd echter niet opgenomen in het preliminaire experimentenonderdeel van het hoofdstuk \textit{State of the Art}, omdat er te veel externe factoren waren die de resultaten beïnvloedden, zoals bv. de beperkingen opgelegd door de energiebesparingsfunctionaliteiten van Android.
 
-De overige tests richtten zich op het evalueren van de standaardimplementatie van het obfuscatiealgoritme in de library. Hierbij werden verschillende variabelen gevarieerd om de werking van het algoritme te analyseren en mogelijke verbeterpunten te identificeren. De inzichten die uit deze tests voortkwamen, werden gebruikt om de library verder te debuggen en te optimaliseren. Een uitgebreide bespreking van deze resultaten is te vinden in het hoofdstuk \textit{Experimenten en resultaten}.
+De overige tests richtten zich op het evalueren van de standaardimplementatie van het obfuscatie-algoritme in de library. Hierbij werden verschillende variabelen gevarieerd om de werking van het algoritme te analyseren en mogelijke verbeterpunten te identificeren. De inzichten die uit deze tests voortkwamen, werden gebruikt om de library verder te debuggen en te optimaliseren. Een uitgebreide bespreking van deze resultaten is te vinden in het hoofdstuk \textit{Experimenten en resultaten}.
 
 \section{Conclusie}
 In dit hoofdstuk werd de implementatie van de Android-library uitgebreid besproken. De library is ontworpen om locatiegegevens op een privacyvriendelijke manier te verzamelen en te verwerken. Het centrale beheer van locatieverzameling wordt uitgevoerd door de \texttt{LocationManager}, terwijl de WorkManager zorgt voor een flexibele en betrouwbare uitvoering van zowel foreground services als periodieke background tasks.
 
-De library integreert een standaard obfuscatiealgoritme gebaseerd op privacycirkels, waarmee gevoelige informatie effectief wordt beschermd. Ontwikkelaars hebben de mogelijkheid om aangepaste obfuscatieklassen te implementeren en gebruik te maken van debugcallbacks voor analyse. Permanente opslag wordt ondersteund om privacycirkels en andere gegevens veilig te bewaren.
+De library integreert een standaard obfuscatie-algoritme gebaseerd op privacycirkels, waarmee gevoelige informatie effectief wordt beschermd. Ontwikkelaars hebben de mogelijkheid om aangepaste obfuscatieklassen te implementeren en gebruik te maken van debug-callbacks voor analyse. Permanente opslag wordt ondersteund om privacycirkels en andere gegevens veilig te bewaren.
 
 Daarnaast werd een testapplicatie ontwikkeld om data te verzamelen via een Azure-webserver. Hierbij werden mechanismen geïmplementeerd om gegevens lokaal op te slaan bij netwerkuitval, wat de betrouwbaarheid van de oplossing verhoogt. Deze aanpak minimaliseert de afhankelijkheid van een continue internetverbinding.
 

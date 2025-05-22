@@ -102,7 +102,7 @@
 %lijst van figuren toevoegen?
 \listoffigurespagetrue
 %lijst van tabellen toevoegen?
-\listoftablespagetrue
+% \listoftablespagetrue
 %lijst van symbolen toevoegen?
 %\listofsymbolspagetrue
 %\listofsymbols{symbolen}				%.tex file met daarin de lijst van symbolen
@@ -116,7 +116,7 @@
 \campus{gent}                       % Define your campus and language (append "eng" to load the English template)
                                             % campuses: denayer, geel, gent, groept, brugge (denayereng, geeleng, ghenteng, groupteng, brugeseng)
 \title{Ontwikkeling van een \newline
-smartphone sdk \newline
+smartphone SDK \newline
 voor het obfusceren \newline
 van locatie data}
 \subtitle{}
@@ -148,21 +148,20 @@ van locatie data}
 
 % Bibliografie: referenties. De items zitten in bib.bib
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Example citation to ensure bibliography is not empty
 \printbibliography
 
 
 % Eventueel enkele appendices
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
-\input{chapters/bijlage1}
+\input{chapters/Code_obfuscatie.tex}
+\input{chapters/Code_dtw.tex}
 
 % Bijlage met daarin het wetenschappelijk artikel
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Beschrijving van deze masterproef in de vorm van een wetenschappelijk artikel}
-The thesis should also contain a short scientific article. If you write your thesis in Dutch, you must write the article in English, and vice versa. We advise you to employ the IEEE Manuscript Templates for Conference Proceedings (\url{https://www.overleaf.com/latex/templates/ieee-conference-template/grfzhhncsfqn}).
-Compile the article in another project and include the generated pdf file as shown below:
-
-\includepdf{article.pdf}
+\includepdf[pages=-]{chapters/Wetenschappelijk_artikel_24_25.pdf}
 
 % Bijlage met daarin de poster
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
