@@ -1,14 +1,35 @@
 \chapter{Evaluatie en discussie} \label{chap:evaluatie}
 \section{Evaluatie van het systeem}
+Het voorgestelde systeem wordt geëvalueerd aan de hand van de twee centrale onderzoeksvragen: de gebruiksvriendelijkheid en uitbreidbaarheid van de Android-bibliotheek, en de mate waarin de obfuscatie de privacy van de gebruiker beschermt.
 
-% requirements afchecken
-% globaler kijken waarom het een goeie oplossing is
+\paragraph{Gebruiksvriendelijkheid en uitbreidbaarheid}
+(1) De bibliotheek is ontworpen met een duidelijke abstractielaag, waardoor ontwikkelaars eenvoudig eigen obfuscatie-algoritmen kunnen implementeren via de \texttt{LocationObfuscator}-interface. (2) De standaard initialisatie vereist slechts enkele regels code, dankzij goed gekozen standaardinstellingen, waardoor de instapdrempel laag blijft. (3) Integratie in bestaande projecten verloopt vlot, omdat de library compatibel is met gangbare Android-componenten zoals de WorkManager en FusedLocationProvider. Hierdoor kunnen ontwikkelaars snel locatieverzameling toevoegen zonder diepgaande kennis van de onderliggende complexiteit.
+\paragraph{Effectiviteit van de obfuscatie}
+De obfuscatie beschermt de locatie van de gebruiker door ruis toe te voegen en privacycirkels te hanteren, waardoor individuele sporen niet langer direct aan een specifieke gebruiker kunnen worden gekoppeld. Uit de experimenten blijkt dat het nog steeds mogelijk is om algemene bewegingspatronen af te leiden die nuttig zijn voor marktonderzoek, maar dat gevoelige locaties effectief worden afgeschermd. Alhoewel de variablen goed gekozen moeten worden. De data blijft veilig binnen de applicatie, aangezien de originele, nauwkeurige locatiegegevens het apparaat nooit verlaten noch opgeslagen worden. Voor data brokers is de geobfusceerde data minder waardevol voor individuele profilering, maar blijft waarschijnlijk bruikbaar voor geaggregeerd onderzoek. Echter moet hiervoor een grootschalig onderzoek gedaan worden om meer data te verkrijgen.
+
+Na dit alles kan deze bibliotheek voor een breed toepassingsveld gebruikt worden. Voor applicaties zoals strava waar de locatie net juist accuraat moet zijn kan de library gewoon als facade gebruikt worden of kan de developer een locatieobfuscator schrijven dat enkel bepaalde locaties obfusceert (zoals een thuisadres).
+
+Verder waar de locatie niet zo van belang is en infrequent nodig is kan dit door instellingen nog steeds bekomen worden. Dit door de frequentie van locatieupdates laag te zetten en met de background task infrequent en kort te laten lopen.
+
+Dit allemaal zonder dat developer een Worker, permissies of de FusedLocationProvider moet begrijpen. Zo kan er uitsluitend gefocussed worden op het obfuscatiealgoritme in locatie privacy onderzoek. Of kan bij strakke deadlines deze leercurve voorkomen worden.
+
 % ook becijfering
 \subsection{Beperkingen}
-In de huidige versie van de library is slechts beperkt onderzoek verricht naar de langdurige stabiliteit van locatieverzameling in de achtergrond en naar mogelijke onbekende beperkingen die verder reiken dan de maximale threadtijd van 10 minuten per 15 minuten. Om dit grondig te testen, zouden meerdere langdurige runtimes moeten worden voorzien.
+Ondanks alle maatregelingen heeft de library enkele beperkingen:
+\begin{itemize}
+    \item In de huidige versie van de library is slechts beperkt onderzoek verricht naar de langdurige stabiliteit van locatieverzameling in de achtergrond en naar mogelijke onbekende beperkingen die verder reiken dan de maximale threadtijd van 10 minuten per 15 minuten. Om dit grondig te testen, zouden meerdere langdurige runtimes moeten worden voorzien.
+    \item Voor de testapplicatie is een fallbackmechanisme geïmplementeerd voor mislukte HTTP-verzoeken, waarbij deze tijdelijk worden opgeslagen in de shared preferences van Android. Echter, shared preferences zijn niet geschikt voor het verwerken van grote hoeveelheden data, wat leidt tot vertragingen bij het lezen en schrijven, vooral wanneer er gedurende langere tijd geen netwerkverbinding beschikbaar is. Bovendien kan de plotselinge piek in internetverkeer bij het herstellen van een netwerkverbinding resulteren in crashes op Android. Verdere uitbreiding van de testapplicatie vereist daarom throttlingmechanismen en een robuustere permanente opslagoplossing, met name voor scenario's waarin testapparaten langdurig geen internetverbinding hebben.
+\end{itemize}
 
-Voor de testapplicatie is een fallbackmechanisme geïmplementeerd voor mislukte HTTP-verzoeken, waarbij deze tijdelijk worden opgeslagen in de shared preferences van Android. Echter, shared preferences zijn niet geschikt voor het verwerken van grote hoeveelheden data, wat leidt tot vertragingen bij het lezen en schrijven, vooral wanneer er gedurende langere tijd geen netwerkverbinding beschikbaar is. Bovendien kan de plotselinge piek in internetverkeer bij het herstellen van een netwerkverbinding resulteren in crashes op Android. Verdere uitbreiding van de testapplicatie vereist daarom throttlingmechanismen en een robuustere permanente opslagoplossing, met name voor scenario's waarin testapparaten langdurig geen internetverbinding hebben.
+
 \section{Verder werk}
+Dit onderwerp zal in de nabije toekomst een bron van verder onderzoek blijven. Enkele mogelijke richtingen voor toekomstig werk zijn de volgende:
+\begin{itemize}
+    \item Éen van de mogelijke uitbreidingen is in de standaardimplementatie van de obfuscatiealgoritme. Waar de radius van de privacycirkel afhankelijk is van de straatdensiteit en het interval tussen locatiepunten afhankelijk is van vervoersmethode.
+    \item Standaardimplementaties (presets) voor bepaalde doeleindes implementeren. Dit zorgt voor minder configuratie als de developer andere doeleindes heeft dan de standaardinstelling.
+    \item Een grootschalige test met vele gebruikers om de bruikbaarheid te kunnen testen van de oplossing.
+    \item  
+\end{itemize}
 
 \section{Gebruik van de library}
 \subsection{Initialisatie}

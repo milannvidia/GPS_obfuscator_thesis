@@ -8,7 +8,7 @@ In deze trace vallen enkele zaken op. Op locaties waar langere stops werden gema
 Verder is het opvallend dat het gefietste traject zeer accuraat wordt weergegeven, terwijl het deel van de route per trein sterk afwijkt van het werkelijke traject. Dit kan te wijten zijn aan het kooi-van-Faraday-effect van de trein of aan de hogere snelheid waarmee wordt gereisd.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.75\textwidth]{images/real.png}
+    \includegraphics[width=\textwidth]{images/real.png}
     \caption{Echte pad}
     \label{fig:real_trace}
 \end{figure}
@@ -44,9 +44,16 @@ Dan voor alles samen te testen hebben we 1 trace genomen die het meest accuraat 
 De gekozen visualisatie is te zien in deze figuur \ref{fig:Obfuscatiealgoritme_gevisualiseerd}. De gekozen variabelen voor deze visualisatie is een privacycirkel met een straal van 400 meter en een tijds interval van 5 minuten. 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.32\textwidth]{images/real.png}
+    \includegraphics[width=0.32\textwidth]{images/real_kader.png}
     \includegraphics[width=0.32\textwidth]{images/blobs.png}
     \includegraphics[width=0.32\textwidth]{images/obfuscated.png}
     \caption{Obfuscatiealgoritme gevisualiseerd}
     \label{fig:Obfuscatiealgoritme_gevisualiseerd}
 \end{figure}
+
+Op deze afbeeldingen kunnen we het volgende zien.
+\begin{itemize}
+    \item Er zijn slechts privacy cirkels waar het echte pad langs is geweest. Dit is doordat de permanente opslag tussen iedere test wordt verwijderd. In het echt zou de kaart veel voller staan en minder 1 pad duidelijk zijn. Dit is belangrijk moest de data op het apparaat toch gecomprimeerd worden.
+    \item Aan gezien het interval 5 minuten is niet iedere privacycirkel met elkaar verbonden. Bij een interval van 0 seconden is dit wel het geval.
+    \item We kunnen ook duidelijk zien dat snelheid een grote invloed heeft op de uiteindelijke trace. Zo zijn de delen die met de fiets afgelegd zijn kortere lijnstukken. En aangezien de trein rit van Gent-Dampoort naar Lokeren slechts 12 minuten duurt is het logisch dat het langste lijnstuk is.
+\end{itemize}

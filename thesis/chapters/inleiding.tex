@@ -1,4 +1,5 @@
 %aanleiding
+\chapter{Inleiding}
 Veel moderne applicaties verzamelen locatiegegevens van hun gebruikers. Deze gegevens worden vaak gebruikt voor crowd-insights die nuttig zijn voor uiteenlopende doeleinden
 Voorbeelden van onderzoeken die hierdoor mogelijk genaakt worden zijn mobiliteitsstudies en stadsplanning. Een voorbeeld hiervan is een winkelketen die wil bepalen waar een nieuwe vestiging het best kan worden gebouwd, zonder bestaande locaties te hinderen.
 Zo is Gravy analytics een data broker die data opkoopt en dan analyses of marktonderzoeken aanbiedt aan bedrijven. 
@@ -14,8 +15,8 @@ Het centrale probleem is dat de werkelijke locatie van een gebruiker doorgaans r
 
 In de huidige stand van zaken is privacy moeilijk te waar borgen. namelijk in de huidige stand van zaken om privacy te geranderen moet de ketting van apparaat naar data broker er als volgt uit zien.
 \begin{itemize}
-    \item In de overdracht van de data naar de server moet volledig beveiligd zijn. Zo mag het netwerkverkeer geen slachtoffer zijn van gekende zwakte zoals man-in-the-middle attack waar een hacker al het netwerkverkeer kan afluisteren.
-    \item Eenmaal de data toekomt bij de server moet de locatiedata versluierd worden om bij eventuele datalekken de gebruikers te beschermen
+    \item In de overdracht van de data naar de server moet volledig beveiligd zijn. Zo mag het netwerkverkeer geen slachtoffer zijn van gekende zwaktes zoals man-in-the-middle attack waar een hacker al het netwerkverkeer kan afluisteren.
+    \item Eenmaal de data toekomt bij de server moet de locatiedata versluierd worden om bij eventuele datalekken de gebruikers te beschermen.
     \item Bij het gebruik van deze data, moest het nog niet versluierd zijn, moet ook veiligheid in achting genomen worden zodat je geen triangulatie krijgt zoals bij dating apps vroeger. Want in deze stap kunnen derde partijen ook gevoelige data verzamelen.
     \item Dan als deze data wordt verkocht aan een data broker, en de data zou nog steeds niet versluierd zijn, moet dit zeker versluierd doorverkocht worden.
     \item Naast al deze veiligheidsrisico is een sociaal veiligheidsrisico waarbij de data broker geen goede itenties heeft ook van belang. Waardoor een strikte controle op de partijen die toegang krijgen tot deze gegevens noodzakelijk om misbruik te voorkomen.
@@ -26,6 +27,8 @@ De aanwezigheid van deze potentiële kwetsbaarheden bemoeilijkt het voor gebruik
 Naast dit centraal probleem zorgen de steile leercurve van de relevante Android-technologieën en vaak voorkomende strakke deadlines voor een bijkomende uitdaging. 
 Deze bijkomende uitdagingen kunnen hierdoor zorgen voor beveiligingslacunes in de implementatie. 
 Een goed ontworpen bibliotheek die de complexiteit voor ontwikkelaars verlaagt en standaard voorziet in robuuste beveiligingsmaatregelen, kan hierdoor deze risico’s aanzienlijk beperken.
+Dit is namelijk de mentaliteit dat de framework Django handhaaft \"Django makes it easier to build better web apps more quickly and with less code.\" en \"Reassuringly secure. Django takes security seriously and helps developers avoid many common security mistakes.\" \cite{django}
+
 
 \section{Onderzoeksvragen}
 % Is het mogelijk om uit te rollen => belangrijk op device zelf, data broker ziet nooit originele data
@@ -40,7 +43,7 @@ In hoeverre beschermd de obfuscatie de locatie van de gebruiker?
 \begin{itemize}
     \item Kan een algemeen pad, dat nog nuttig is voor marktonderwoek, nog afgeleid worden uit het geobfusceerde pad?
     \item Is de data wel degelijk veilig in de bibliotheek?
-    \item Is hoeverre is geobfusceerde data nog nuttig voor data brokers?
+    \item In hoeverre is geobfusceerde data nog nuttig voor data brokers?
 \end{itemize}
 %afbakening
 \section{Doelen en scope}

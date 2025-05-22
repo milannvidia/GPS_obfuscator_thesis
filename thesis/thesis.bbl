@@ -35,8 +35,8 @@
       \strng{authornamehash}{07eba227d803865041623a04a6207636}
       \strng{authorfullhash}{07eba227d803865041623a04a6207636}
       \strng{authorfullhashraw}{07eba227d803865041623a04a6207636}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Hack bij locatiedatabroker Gravy Analytics treft miljoenen smartphonegebruikers}
@@ -64,8 +64,8 @@
       \strng{authornamehash}{a0b01d53f68d49c8e31c51e189bdd9eb}
       \strng{authorfullhash}{a0b01d53f68d49c8e31c51e189bdd9eb}
       \strng{authorfullhashraw}{a0b01d53f68d49c8e31c51e189bdd9eb}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{year}{2021}
       \verb{urlraw}
@@ -91,8 +91,8 @@
       \strng{authornamehash}{d55011fb35aae5f07cc0600a00de8cab}
       \strng{authorfullhash}{d55011fb35aae5f07cc0600a00de8cab}
       \strng{authorfullhashraw}{d55011fb35aae5f07cc0600a00de8cab}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{year}{2019}
       \verb{urlraw}
@@ -183,6 +183,8 @@
       \endverb
     \endentry
   \enddatalist
+  \missing{\egroup}
+  \missing{\global}
 \endrefsection
 \endinput
 

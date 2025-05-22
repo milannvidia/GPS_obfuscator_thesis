@@ -8,30 +8,32 @@ De doelstellingen van dit onderzoek zijn als volgt geformuleerd:
     \item \textbf{Flexibel}: De library mag niet beperkend zijn in vergelijking met de standaardinstellingen van de Android-implementatie en moet voldoende configuratiemogelijkheden bieden.
     \item \textbf{Modulair}: Gebruikers moeten in staat zijn om hun eigen obfuscatiealgoritmen te ontwikkelen en te integreren. De code dat ze niet horen te veranderen hoort louter een facade te zijn.
     \item \textbf{Eenvoudig te integreren}: De library moet functioneren met minimale setup en gebruiksvriendelijke integratiemogelijkheden bieden. Met minimale setup wordt bedoeld dat de library volledig moet functioneren met zo weinig mogelijk lines of code.
-    \item \textbf{Lage leercurve}: Een van de aannames is dat de ontwikkelaar mogelijk weinig tot geen kennis heeft van locatie services in Android. Daarom moeten de standaardinstellingen een solide basis bieden voor het veilig omgaan met locatiegegevens.
+    \item \textbf{Lage leercurve}: Een van de aannames is dat de ontwikkelaar mogelijk weinig tot geen kennis heeft van locatie services of background work in Android. Daarom moeten de standaardinstellingen een solide basis bieden voor het veilig omgaan met locatiegegevens.
 \end{itemize}
-\paragraph{Privacy} Op het vlak van privacy geldt als vereiste dat alle gevoelige data het toestel niet verlaat. Verder dat de data dus niet toegankelijk is voor andere applicaties.
+\paragraph{Privacy} Op het vlak van privacy geldt als vereiste dat alle gevoelige data het toestel niet verlaat en dus ook dat de data niet toegankelijk is voor andere applicaties.
 
 Ook moet de geobfusceerde locatie voldoende accuraat blijven voor het beoogde gebruik, zonder dat het mogelijk is een individu te identificeren of te traceren.
 Voor deze obfuscatietechniek wordt voortgebouwd op het werk van Toon Dehaene, zoals eerder besproken. Dit algoritme zal moeten aangepast worden om geschikt te zijn voor verwerking van datastromen in plaats van parallelle verwerking, en zal geïmplementeerd moeten worden in Kotlin.
 \section{Veronderstellingen}
 Om de werking van de library te kunnen garanderen, worden de volgende veronderstellingen gemaakt:
 \begin{itemize}
-    \item \textbf{Goede intenties van de ontwikkelaar}: Er wordt aangenomen dat de ontwikkelaar te goeder trouw handelt. De library kan immers aangepast of omzeild worden, waardoor het alsnog mogelijk is om de echte locatie door te sturen.
+    \item \textbf{Goede intenties van de ontwikkelaar}: Er wordt aangenomen dat de ontwikkelaar te goeder trouw handelt. De library kan immers aangepast, omzeild of gewoon weg niet gebruikt worden, waardoor het alsnog mogelijk is om de echte locatie door te sturen.
     \item \textbf{Integriteit van het Android-systeem}: Er wordt verondersteld dat het Android-systeem waarop de applicatie draait niet gecompromitteerd is. Dit betekent dat er geen derde partij of de eigenaar roottoegang heeft, aangezien dit zou toelaten om privacygevoelige gegevens rechtstreeks uit te lezen.
     \item \textbf{Correct gebruik van onderzoeks- en debugmodus}: De applicatie zal een onderzoeks- en debugmodus bevatten. Het is essentieel dat deze modus niet in productieomgevingen wordt gebruikt, omdat dit zou kunnen leiden tot het versturen van de echte locatie samen met de geobfusceerde locatie.
     \item \textbf{Normaal gebruik door de gebruiker}: De permanente opslag van gegevens wordt gekoppeld aan de installatie van de applicatie. Bij frequente herinstallatie van de applicatie worden voorgaande privacycirkels verwijderd. Dit zou het mogelijk maken om een gemiddelde te nemen van deze nieuwe privacycirkels, waardoor alsnog gevoelige locaties achterhaald kunnen worden.
 \end{itemize}
 \section{Ontwerp}
 Het ontwerp van de library is gebaseerd op het principe van een facade, waarbij de library fungeert als een vereenvoudigde interface voor de standaard Android-functionaliteiten. Dit betekent dat alle variabelen en functionaliteiten aanwezig moeten zijn alsof de ontwikkelaar rechtstreeks met de standaard Android-implementatie werkt, maar met de toegevoegde voordelen van de library.
-Met bovenstaande ontwerpprincipes in gedachten illustreert Figuur \ref{fig:flow_diagram_locatie_verzameling} hoe één enkele functie het verzamelen van locatiegegevens kan starten. Het is belangrijk op te merken dat deze implementatie de functie \texttt{RequestPermission} niet omvat, aangezien deze losstaand moet opgeroepen geweest zijn. Want in de flow diagram staan de Preliminaire checks niet, als de applicatie geen toegang heeft tot locaties zal deze niet proberen locaties op te vragen.
+
+Met bovenstaande ontwerpprincipes in gedachten illustreert Figuur \ref{fig:flow_diagram_locatie_verzameling} hoe één enkele functie het verzamelen van locatiegegevens kan starten.
 \begin{figure}
     \centering
     \includesvg[width=0.75\textwidth]{images/sequence_diagram.svg}
     \caption{Flow diagram van continue locatieverzameling}
     \label{fig:flow_diagram_locatie_verzameling}
 \end{figure}
-Figuur \ref{fig:flow_diagram_locatie_verzameling} toont vier actoren. De applicatie zelf valt buiten de controle van de library. De \texttt{LocationManager} fungeert als het centrale aanspreekpunt dat de volledige werking coördineert. De \texttt{LocationObfuscator} vormt het modulaire onderdeel dat door de ontwikkelaar naar wens kan worden aangepast of vervangen. Tot slot is er de \texttt{LocationWorker}, die als aparte klasse wordt geïmplementeerd omdat deze de \texttt{Worker} van de WorkManager-\gls{api} van Android moet uitbreiden. Deze scheiding zorgt voor een duidelijke structuur en maakt het systeem flexibel en uitbreidbaar.
+Figuur \ref{fig:flow_diagram_locatie_verzameling} toont vier actoren. De applicatie zelf valt buiten de controle van de library en is dus niet te beïnvloeden. De \texttt{LocationManager} fungeert als het centrale aanspreekpunt dat de volledige werking coördineert, zodat de developer ook maar met één aanspreekpunt bezorgd moet zijn. De \texttt{LocationObfuscator} vormt het modulaire onderdeel dat door de ontwikkelaar naar wens kan worden aangepast of vervangen. Tot slot is er de \texttt{LocationWorker}, die als aparte klasse wordt geïmplementeerd omdat deze de \texttt{Worker} van de WorkManager-\gls{api} van Android moet uitbreiden. Deze scheiding zorgt voor een duidelijke structuur en maakt het systeem flexibel en uitbreidbaar.
+Het is echter belangrijk om op te merken dat deze implementatie de functie \texttt{RequestPermission} niet omvat, aangezien deze losstaand moet opgeroepen geweest zijn. Want in de flow diagram staan geen Preliminaire checks, als de applicatie geen toegang heeft tot locaties zal deze niet proberen locaties op te vragen.
 
 Verder is de LocationManager een Singleton \cite{singleton} gemaakt. Singletons zorgen ervoor dat er slechts één instantie van een klasse bestaat binnen de applicatie. Zodat wanneer de developer twee-maal de LocationManager probeert te initialiseren de applicatie niet eventueel crashed doordat beide instanties locaties opvragen en het limiet overschrijden.
 
